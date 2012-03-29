@@ -17,6 +17,7 @@ namespace SimpleQuiz
         public abstract bool IsAnswerCorrect(string answer);
     }
 
+    // Question about word antonime
     public class AntomineQuestion : Question
     {
         public override string Show()
@@ -30,7 +31,8 @@ namespace SimpleQuiz
         }
     }
 
-    public class WordQuestion : Question
+    // Question with text answer required
+    public class TextQuestion : Question
     {
         public override string Show()
         {
@@ -39,10 +41,36 @@ namespace SimpleQuiz
 
         public override bool IsAnswerCorrect(string answer)
         {
-            return CorrectAnswers.Any(x => x.ToUpper() == answer.ToUpper());
+            if (CorrectAnswers == null || CorrectAnswers.Count() == 0)
+                throw new NullReferenceException("CorrectAnswers collection cannot be null");
+
+            if (!answer.Contains(","))
+            {
+                return (CorrectAnswers.Count() == 1 && CorrectAnswers.Single().ToUpper() == answer);
+            }
+
+            string[] answers = answer.Split(',');
+
+            if (answers == null || answers.Length == 0)
+            {
+                return false;
+            }
+            else
+            {
+                foreach (var item in this.CorrectAnswers)
+                {
+                    if (!answers.Any(x => x.ToUpper() == item.ToUpper()))
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
         }
     }
 
+    // Option/test question with single correct answer
     public class SingleOptionQuestion : Question
     {
         public IEnumerable<Option> Options { get; set; }

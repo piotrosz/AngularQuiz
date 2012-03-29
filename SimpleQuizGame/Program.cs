@@ -13,13 +13,14 @@ namespace SimpleQuizGame
             // Note: Dependency injection might be used
             IQuizCollectionReader reader = new QuizCollectionDirectoryReader() { InputDir = "E:\\" };
 
+
             // User has to select quiz
             QuizCollection quizColl = reader.Read();
 
             bool quizSelected = false;
             int selectedQuizIndex = 0;
 
-            while(!quizSelected)
+            while (!quizSelected)
             {
                 PresentQuizCollection(quizColl);
 
@@ -31,10 +32,12 @@ namespace SimpleQuizGame
             Console.WriteLine("You've selected: {0}.", quizColl[selectedQuizIndex].Name);
             Console.WriteLine();
 
-            // Quiz has been selected - start the game
-            IGame game = new GameYesNo(quizColl[selectedQuizIndex]);
 
-            while(!game.GameResult.IsFinished)
+            // Quiz has been selected - start the game
+            Quiz selectedQuiz = quizColl[selectedQuizIndex];
+            Game game = new GameYesNo(selectedQuiz);
+
+            while (!game.GameResult.IsFinished)
             {
                 ShowQuestion(game.GetNextQuestion());
 

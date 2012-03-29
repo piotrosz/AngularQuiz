@@ -40,18 +40,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AskQuestionsStrategy.cs" />
     <Compile Include="CheckAnswerResult.cs" />
-    <Compile Include="GameYesNo.cs" />
+    <Compile Include="CheckAnswerStrategy.cs" />
+    <Compile Include="Extensions.cs" />
     <Compile Include="GameResult.cs" />
-    <Compile Include="IGame.cs" />
+    <Compile Include="Game.cs" />
     <Compile Include="IQuizCollectionReader.cs" />
     <Compile Include="Option.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Question.cs" />
     <Compile Include="Quiz.cs" />
-    <Compile Include="Answer.cs" />
     <Compile Include="QuizCollection.cs" />
     <Compile Include="QuizCollectionDirectoryReader.cs" />
+    <Compile Include="QuizCollectionFakeReader.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
