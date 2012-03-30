@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace SimpleQuiz
 {
@@ -16,6 +14,11 @@ namespace SimpleQuiz
             IsLast = false;
         }
 
+        public AskQuestionsStrategy()
+        {
+            IsLast = false;
+        }
+
         public Quiz Quiz { get; set; }
 
         public abstract Question GetNextQuestion();
@@ -23,23 +26,27 @@ namespace SimpleQuiz
         public bool IsLast { get; set; }
     }
 
-	// Asks all questions once in random order
+    // Asks all questions once in random order
     public class RandomQuestionsStrategy : AskQuestionsStrategy
     {
-        private Queue<Question> queue;
-     
-        public RandomQuestionsStrategy(Quiz quiz) : base(quiz)
-        {
-            quiz.Shuffle();
+        private Queue<Question> queue = null;
 
-            queue = new Queue<Question>();
+        public RandomQuestionsStrategy() : base() { }
 
-            foreach (var item in quiz)
-                queue.Enqueue(item);
-        }
-        
+        public RandomQuestionsStrategy(Quiz quiz) : base(quiz) { }
+
         public override Question GetNextQuestion()
         {
+            if (queue == null)
+            {
+                queue = new Queue<Question>();
+
+                Quiz.Shuffle();
+
+                foreach (var item in Quiz)
+                    queue.Enqueue(item);
+            }
+
             if (queue.Count == 1)
                 IsLast = true;
 
@@ -50,21 +57,25 @@ namespace SimpleQuiz
         }
     }
 
-	// Asks all questions once starting from the oldest question
+    // Asks all questions one time in order starting from the oldest question
     public class QueueQuestionsStrategy : AskQuestionsStrategy
     {
-        private Queue<Question> queue;
+        private Queue<Question> queue = null;
 
-        public QueueQuestionsStrategy(Quiz quiz) : base(quiz)
-        {
-            queue = new Queue<Question>();
+        public QueueQuestionsStrategy() : base() { }
 
-            foreach (var item in quiz)
-                queue.Enqueue(item);
-        }
+        public QueueQuestionsStrategy(Quiz quiz) : base(quiz) { }
 
         public override Question GetNextQuestion()
         {
+            if (queue == null)
+            {
+                queue = new Queue<Question>();
+
+                foreach (var item in Quiz)
+                    queue.Enqueue(item);
+            }
+
             if (queue.Count == 1)
                 IsLast = true;
 
@@ -75,23 +86,25 @@ namespace SimpleQuiz
         }
     }
 
-	// Asks all question once starting from the newest question
+    // Asks all question one time in order starting from the newest question
     public class StackQuestionsStrategy : AskQuestionsStrategy
     {
-        private Stack<Question> stack;
+        private Stack<Question> stack = null;
 
-        public StackQuestionsStrategy(Quiz quiz) : base(quiz)
-        {
-            stack = new Stack<Question>();
+        public StackQuestionsStrategy() : base() { }
 
-            foreach (var item in quiz)
-            {
-                stack.Push(item);
-            }
-        }
+        public StackQuestionsStrategy(Quiz quiz) : base(quiz) { }
 
         public override Question GetNextQuestion()
         {
+            if (stack == null)
+            {
+                stack = new Stack<Question>();
+
+                foreach (var item in Quiz)
+                    stack.Push(item);
+            }
+
             if (stack.Count == 1)
                 IsLast = true;
 

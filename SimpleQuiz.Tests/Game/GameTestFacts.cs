@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SimpleQuiz
+namespace SimpleQuiz.Tests.Game
 {
-    public interface IQuizCollectionReader
+    public class GameTestFacts
     {
-        QuizCollection Read();
     }
 }

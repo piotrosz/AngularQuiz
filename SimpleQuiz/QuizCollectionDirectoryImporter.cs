@@ -6,14 +6,17 @@ using System.IO;
 
 namespace SimpleQuiz
 {
-    public class QuizCollectionDirectoryReader : IQuizCollectionReader
+    /// <summary>
+    /// Imports are quizes from a given directory.
+    /// </summary>
+    public class QuizCollectionDirectoryImporter : IQuizCollectionImporter
     {
         public string InputDir { get; set; }
 
         private QuizCollection quizCollection = new QuizCollection();
 
         // TODO: Add file contents validation
-        public QuizCollection Read()
+        public QuizCollection Import()
         {
             string[] files = Directory.GetFiles(InputDir, "*.txt", SearchOption.TopDirectoryOnly);
 
@@ -39,7 +42,7 @@ namespace SimpleQuiz
 
                         if (values[1].Contains("$"))
                         {
-                            quiz.Add(GetSingleOptionQuestion(values));
+                            quiz.Add(GetOptionQuestion(values));
                         }
                         else
                         {
@@ -54,9 +57,9 @@ namespace SimpleQuiz
             return quizCollection;
         }
 
-        private SingleOptionQuestion GetSingleOptionQuestion(string[] values)
+        private OptionQuestion GetOptionQuestion(string[] values)
         {
-            var question = new SingleOptionQuestion();
+            var question = new OptionQuestion();
             question.Content = values[0].Trim();
 
             string[] values2 = values[1].Split('$');

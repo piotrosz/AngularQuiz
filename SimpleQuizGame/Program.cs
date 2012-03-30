@@ -2,117 +2,130 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+
 using SimpleQuiz;
 
 namespace SimpleQuizGame
 {
     class Program
     {
+        // Note: Dependency injection might be used
+        private static IQuizCollectionImporter importer = new QuizCollectionDirectoryImporter() { InputDir = "D:\\test" };
+        private static Game game = new GameTest();
+
         static void Main()
         {
-            // Note: Dependency injection might be used
-            IQuizCollectionReader reader = new QuizCollectionDirectoryReader() { InputDir = "E:\\" };
+            StartQuiz();
+        }
 
-
+        private static void StartQuiz()
+        {
             // User has to select quiz
-            QuizCollection quizColl = reader.Read();
+            QuizCollection quizColl = importer.Import();
 
             bool quizSelected = false;
             int selectedQuizIndex = 0;
 
             while (!quizSelected)
             {
-                PresentQuizCollection(quizColl);
+                UIHelper.PresentQuizCollection(quizColl);
 
                 string input = Console.ReadLine();
 
-                quizSelected = ValidateQuizNumber(input, quizColl.Count, out selectedQuizIndex);
+                quizSelected = UIHelper.ValidateQuizNumber(input, quizColl.Count, out selectedQuizIndex);
             }
 
             Console.WriteLine("You've selected: {0}.", quizColl[selectedQuizIndex].Name);
             Console.WriteLine();
 
-
-            // Quiz has been selected - start the game
-            Quiz selectedQuiz = quizColl[selectedQuizIndex];
-            Game game = new GameYesNo(selectedQuiz);
+            // Start the game
+            game.Quiz = quizColl[selectedQuizIndex];
 
             while (!game.GameResult.IsFinished)
             {
-                ShowQuestion(game.GetNextQuestion());
+                // Ask next question
+                UIHelper.ShowQuestion(game.GetNextQuestion());
 
-                string input = Console.ReadLine();
+                // Collect user answer
+                string answer = Console.ReadLine();
 
-                ShowAnswerResult(game.CheckAnswer(input));
+                // Check answer and show results
+                UIHelper.ShowAnswerResult(game.CheckAnswer(answer));
             }
 
-            ShowGameResult(game.GameResult);
+            // Finish the game
+            UIHelper.ShowGameResult(game.GameResult);
 
             Console.WriteLine();
             Console.WriteLine("Press enter to exit");
             Console.ReadLine();
         }
 
-        private static bool ValidateQuizNumber(string input, int count, out int result)
+        static class UIHelper
         {
-            if (string.IsNullOrWhiteSpace(input))
+            public static bool ValidateQuizNumber(string input, int count, out int result)
             {
-                result = 0;
-                return false;
+                int internalResult = -1;
+                result = internalResult;
+
+                if (string.IsNullOrWhiteSpace(input))
+                {
+                    return false;
+                }
+
+                if (!int.TryParse(input, out internalResult))
+                {
+                    return false;
+                }
+
+                if (internalResult < 1 || internalResult > count)
+                {
+                    return false;
+                }
+
+                result = internalResult - 1;
+                return true;
             }
 
-            if (!int.TryParse(input, out result))
+            public static void PresentQuizCollection(QuizCollection quizCollection)
             {
-                return false;
+                Console.WriteLine("Choose quiz please:");
+
+                for (int i = 0; i < quizCollection.Count(); i++)
+                {
+                    Console.WriteLine("{0:#0} {1}", i + 1, quizCollection[i].Name);
+                }
             }
 
-            if (result < 0 || result >= count)
+            public static void ShowQuestion(Question question)
             {
-                return false;
+                Console.WriteLine(question.Show());
             }
 
-            return true;
-        }
-
-        private static void PresentQuizCollection(QuizCollection quizCollection)
-        {
-            Console.WriteLine("Choose quiz please:");
-
-            for (int i = 0; i < quizCollection.Count(); i++)
+            public static void ShowAnswerResult(CheckAnswerResult result)
             {
-                Console.WriteLine("{0:#0} {1}", i, quizCollection[i].Name);
+                if (result.IsCorrect)
+                {
+                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                    Console.WriteLine(result.CorrectAnswersLine);
+                    Console.ResetColor();
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.WriteLine(result.CorrectAnswersLine);
+                    Console.ResetColor();
+                }
+                Console.WriteLine();
             }
-        }
 
-        private static void ShowQuestion(Question question)
-        {
-            Console.WriteLine(question.Show());
-        }
-
-        private static void ShowAnswerResult(CheckAnswerResult result)
-        {
-            if (result.IsCorrect)
+            public static void ShowGameResult(GameResult result)
             {
-                Console.ForegroundColor = ConsoleColor.DarkGreen;
-                Console.WriteLine(result.CorrectAnswersLine);
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine("Points: {0}", result.Points);
+                Console.WriteLine("Max points: {0}", result.MaxPoints);
                 Console.ResetColor();
             }
-            else
-            {
-                Console.ForegroundColor = ConsoleColor.DarkRed;
-                Console.WriteLine(result.CorrectAnswersLine);
-                Console.ResetColor();
-            }
-            Console.WriteLine();
-        }
-
-        private static void ShowGameResult(GameResult result)
-        {
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("Points: {0}", result.Points);
-            Console.WriteLine("Max points: {0}", result.MaxPoints);
-            Console.ResetColor();
-
         }
     }
 }
