@@ -25,16 +25,17 @@ namespace SimpleQuiz
                 string[] lines = File.ReadAllLines(file);
 
                 Quiz quiz = new Quiz();
-
-                foreach (string line in lines)
+                
+                foreach (string line in lines.Where(x => !string.IsNullOrWhiteSpace(x)))
                 {
-                    if (line.StartsWith("#")) // Name line
+                    if (line.StartsWith("[Q]")) // Name line
                     {
                         if (quiz.Count > 0)
                             quizCollection.Add(quiz);
 
                         quiz = new Quiz();
-                        quiz.Name = line.Substring(1).Trim();
+
+                        quiz.Name = line.Substring(3).Trim();
                     }
                     else
                     {

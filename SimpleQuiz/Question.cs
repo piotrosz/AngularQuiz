@@ -12,6 +12,14 @@ namespace SimpleQuiz
         public string Content { get; set; }
         public IEnumerable<string> CorrectAnswers { get; set; }
 
+        public Question() { }
+
+        public Question(string content, string answer)
+        {
+            this.Content = content;
+            this.CorrectAnswers = new List<string>() { answer };
+        }
+
         // Methods below are virtual rather than abstract so that a developer 
         // need override only the ones that interest him.
 
@@ -30,7 +38,7 @@ namespace SimpleQuiz
 
             if (!answer.Contains(","))
             {
-                return (CorrectAnswers.Count() == 1 && CorrectAnswers.Single().ToUpper() == answer.ToUpper());
+                return (CorrectAnswers.Count() == 1 && CorrectAnswers.Single().Trim().ToUpper() == answer.Trim().ToUpper());
             }
 
             string[] answers = answer.Split(',');
@@ -45,7 +53,7 @@ namespace SimpleQuiz
             {
                 foreach (var item in this.CorrectAnswers)
                 {
-                    if (!answers.Any(x => x.ToUpper() == item.ToUpper()))
+                    if (!answers.Any(x => x.Trim().ToUpper() == item.Trim().ToUpper()))
                     {
                         return false;
                     }
@@ -60,6 +68,9 @@ namespace SimpleQuiz
     // Single answer is required 
     public class AntomineQuestion : Question
     {
+        public AntomineQuestion() { }
+        public AntomineQuestion(string content, string answer) : base(content, answer) { }
+
         public override string Show()
         {
             return string.Format("What is the antonime for: {0}?", Content);
@@ -74,6 +85,8 @@ namespace SimpleQuiz
     // Question with text answer required
     public class TextQuestion : Question
     {
+        public TextQuestion() { }
+        public TextQuestion(string content, string answer) : base(content, answer) { }
     }
 
     // Test question (user has to choose the correct answer(s) out of available options)
@@ -86,6 +99,7 @@ namespace SimpleQuiz
             var sb = new StringBuilder();
             sb.AppendLine(Content + "?");
             sb.AppendLine("Choose the correct answer.");
+
             foreach (var item in Options)
             {
                 sb.AppendLine();

@@ -1,0 +1,53 @@
+﻿
+[Q] Spanish - numbers
+30;		treinta
+66;		sesenta y seis
+101;	ciento uno
+27;		veintisiete
+14;		catorce
+15;		quince
+16;		dieciseis
+43;		quarenta y tres
+54;		cincuenta y cuatro 
+
+
+[Q] Spanish - locations
+jest przed;	está delante de
+za;			detrás de
+na;			encima de
+pod;		debajo de
+blisko;		cerca de
+daleko;		lejos de
+wewnątrz;	dentro de
+poza;		fuera de
+obok;		al lado de
+pomiędzy;	entre de
+na lewo;	a la izquierda
+na prawo;	a la derecha
+
+[Q] Things
+wieszak;			perchero
+okno;				ventana
+tablica korkowa;	corcho
+kartka;				hoja
+teczka;				carpeta
+mazak;				rotulador
+biurko;				escritorio
+komputer;			ordenador
+La estanería;		szafka na książki
+Las bandejas;		tace
+
+[Q] La or el
+cartel;el
+mapa;el
+carpeta;la
+garaje;el
+pizarra;la
+dia;el
+mano;la
+problema;el
+leccion;la
+
+
+
+

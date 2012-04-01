@@ -14,7 +14,7 @@ namespace SimpleQuiz.Tests.CheckAnswerStrategy
             public void ChecksCorrectAnswer()
             {
                 // Arrange
-                Question question = QuestionStub.TextQuestion;
+                var question = QuestionStub.TextQuestion;
                 var target = new CheckAnswerYNStrategy();
 
 
@@ -30,7 +30,7 @@ namespace SimpleQuiz.Tests.CheckAnswerStrategy
             public void ChecksIncorrectAnswer()
             {
                 // Arrange
-                Question question = QuestionStub.TextQuestion;
+                var question = QuestionStub.TextQuestion;
                 var target = new CheckAnswerYNStrategy();
 
 

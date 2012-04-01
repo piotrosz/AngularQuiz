@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
 using SimpleQuiz;
 
 namespace SimpleQuizGame
@@ -10,7 +9,7 @@ namespace SimpleQuizGame
     class Program
     {
         // Note: Dependency injection might be used
-        private static IQuizCollectionImporter importer = new QuizCollectionDirectoryImporter() { InputDir = "D:\\test" };
+        private static IQuizCollectionImporter importer = new QuizCollectionDirectoryImporter() { InputDir = @"E:\prog\SimpleQuiz\samples" };
         private static Game game = new GameTest();
 
         static void Main()
@@ -90,11 +89,16 @@ namespace SimpleQuizGame
             public static void PresentQuizCollection(QuizCollection quizCollection)
             {
                 Console.WriteLine("Choose quiz please:");
+                Console.WriteLine();
+
+                Console.ForegroundColor = ConsoleColor.White;
 
                 for (int i = 0; i < quizCollection.Count(); i++)
                 {
                     Console.WriteLine("{0:#0} {1}", i + 1, quizCollection[i].Name);
                 }
+
+                Console.ResetColor();
             }
 
             public static void ShowQuestion(Question question)

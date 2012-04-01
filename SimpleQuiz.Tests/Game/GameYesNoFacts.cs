@@ -57,7 +57,7 @@ namespace SimpleQuiz.Tests.Game
 
 
                 // Act
-                Question result = null;
+                SimpleQuiz.Question result = null;
 
                 for(int i = 0; i < quiz.Count; i++)
                     result = target.GetNextQuestion();

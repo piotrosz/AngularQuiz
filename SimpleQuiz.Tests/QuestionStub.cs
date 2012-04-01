@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace SimpleQuiz.Tests
 {
@@ -9,14 +6,7 @@ namespace SimpleQuiz.Tests
     {
         public static TextQuestion TextQuestion
         {
-            get
-            {
-                return new TextQuestion
-                {
-                    Content = "Po wodzie pływa kaczka się nazywa",
-                    CorrectAnswers = new List<string>() { "kaczka" }
-                };
-            }
+            get { return new TextQuestion("Po wodzie pływa kaczka się nazywa", "kaczka"); }
         }
     }
 }
