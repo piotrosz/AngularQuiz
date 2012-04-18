@@ -34,7 +34,7 @@ namespace SimpleQuiz
         public virtual bool IsAnswerCorrect(string answer)
         {
             if (CorrectAnswers == null || CorrectAnswers.Count() == 0)
-                throw new NullReferenceException("CorrectAnswers collection cannot be null");
+                throw new NullReferenceException("CorrectAnswers collection cannot be null or empty");
 
             if (!answer.Contains(","))
             {

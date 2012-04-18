@@ -7,7 +7,7 @@ using System.IO;
 namespace SimpleQuiz
 {
     /// <summary>
-    /// Imports are quizes from a given directory.
+    /// Imports all quizes from a given directory.
     /// </summary>
     public class QuizCollectionDirectoryImporter : IQuizCollectionImporter
     {
@@ -24,24 +24,23 @@ namespace SimpleQuiz
             {
                 string[] lines = File.ReadAllLines(file);
 
-                Quiz quiz = new Quiz();
-                
-                foreach (string line in lines.Where(x => !string.IsNullOrWhiteSpace(x)))
+                var quiz = new Quiz();
+
+                foreach (string line in lines.Where(x => !IsCommentOrEmptyLine(x)))
                 {
-                    if (line.StartsWith("[Q]")) // Name line
+                    if (IsNameLine(line))
                     {
                         if (quiz.Count > 0)
                             quizCollection.Add(quiz);
 
-                        quiz = new Quiz();
-
-                        quiz.Name = line.Substring(3).Trim();
+                        quiz = new Quiz { Name = line.Trim() };
                     }
-                    else
-                    {
-                        string[] values = line.Split(';');
 
-                        if (values[1].Contains("$"))
+                    if (IsQuestionLine(line))
+                    {
+                        string[] values = line.Split('?');
+
+                        if (IsOptionQuestion(values[1]))
                         {
                             quiz.Add(GetOptionQuestion(values));
                         }
@@ -94,7 +93,27 @@ namespace SimpleQuiz
 
         private List<string> GetCommaSeparated(string value)
         {
-            return value.Split(',').Select(x => x.Trim()).ToList();
+            return value.Split(';').Select(x => x.Trim()).ToList();
+        }
+
+        private bool IsNameLine(string value)
+        {
+            return !value.Contains("?");
+        }
+
+        private bool IsQuestionLine(string value)
+        {
+            return value.Contains("?");
+        }
+
+        private bool IsCommentOrEmptyLine(string value)
+        {
+            return string.IsNullOrWhiteSpace(value) || value.Trim().StartsWith("#");
+        }
+
+        private bool IsOptionQuestion(string value)
+        {
+            return value.Contains("$");
         }
     }
 }
