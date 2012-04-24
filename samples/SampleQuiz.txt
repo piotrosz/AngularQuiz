@@ -10,7 +10,6 @@ Spanish - numbers
 43?		quarenta y tres
 54?		cincuenta y cuatro 
 
-
 Spanish - locations
 jest przed?	está delante de
 za?			detrás de
@@ -25,7 +24,7 @@ pomiędzy?	entre de
 na lewo?	a la izquierda
 na prawo?	a la derecha
 
-Things
+Things in the house
 wieszak?			perchero
 okno?				ventana
 tablica korkowa?	corcho
@@ -48,30 +47,76 @@ mano?la
 problema?el
 leccion?la
 
-Basic words
-curtain? 	cortina
-wardrobe? 	armario
-floor? 		suelo
-chimney? 	chimenea
-carpet? 	alfombra
-drawer? 	cajon
-modest? 	sencillo
-handsome? 	generoso
-funny? 		gracioso
-fresh? 		fresco
+Furniture
+curtain? 		cortina
+wardrobe? 		armario
+floor? 			suelo
+chimney? 		chimenea
+carpet? 		alfombra
+drawer? 		cajon
+chest of drawers? cómoda
+mirror?			espejo
+pillow?			almohada
+night table?	mesilla de noche
+bath?			bañera
+armchair?		sillón
+washing mashine?	lavadora
+painting?		cuadro
+sink?			fregadero
+oven?			horno
+
+Look
 straight?	liso
 curly? 		rizado
 short?		corto
 dark?		oscuro
 moustache?	bigote
 beard?		barba
+modest? 	sencillo
+handsome? 	generoso,majo
+funny? 		gracioso
+no tiene pelo? calvo
+thin?		delgado
+
+La ropa
 skirt?		falda 
 socks?		calcetines
 trousers?	pantalones
 glove?		guante
 scarf?		bufanda
 
+Profesions
+lekarz?			médico
+pielegniarka?	enfermera
+weterynarz?		veterinario
+sprzedawca?		dependiente
+strazak?		bombero
+astronauta?		astronauto
+listonosz?		cartero
+prawnik?		abogado
+kucharz?		cocinero
+
+Popular adjectives
+heavy?		pesado
+light?		ligero
+round?		redondo
+square?		cuadrado
+long?		largo
+short?		corto
+solid?		duro
+soft?		blando
+useful, handy?	práctico
+flat?		plano
+colorful?	de colores muy vivos
+dry?		seco
+wet?		mojado
+old?		viejo
+electric?	eléctrico
+
+
+
+
 # This is a comment
 
 Quiz with options
-Question text?	option1; option2; rightAnswer $ rightAnswer	
+Question text?	option1; option2; rightAnswer $ 2
