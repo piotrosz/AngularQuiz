@@ -54,6 +54,7 @@
     <Compile Include="QuestionStub.cs" />
     <Compile Include="Question\TextQuestionFacts.cs" />
     <Compile Include="QuizCollectionFakeImporter.cs" />
+    <Compile Include="QuizCollectionTextParserFacts.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SimpleQuiz\SimpleQuiz.csproj">

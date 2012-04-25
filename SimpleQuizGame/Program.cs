@@ -20,7 +20,7 @@ namespace SimpleQuizGame
         private static void StartQuiz()
         {
             // User has to select quiz
-            QuizCollection quizColl = importer.Import();
+            var quizColl = importer.Import();
 
             bool quizSelected = false;
             int selectedQuizIndex = 0;
@@ -31,14 +31,16 @@ namespace SimpleQuizGame
 
                 string input = Console.ReadLine();
 
-                quizSelected = UIHelper.ValidateQuizNumber(input, quizColl.Count, out selectedQuizIndex);
+                quizSelected = UIHelper.ValidateQuizNumber(input, quizColl.Count(), out selectedQuizIndex);
             }
 
-            Console.WriteLine("You've selected: {0}.", quizColl[selectedQuizIndex].Name);
+            Quiz quiz = quizColl.ElementAt(selectedQuizIndex);
+
+            Console.WriteLine("You've selected: {0}.", quiz.Name);
             Console.WriteLine();
 
             // Start the game
-            game.Quiz = quizColl[selectedQuizIndex];
+            game.Quiz = quiz;
 
             while (!game.GameResult.IsFinished)
             {
@@ -86,16 +88,18 @@ namespace SimpleQuizGame
                 return true;
             }
 
-            public static void PresentQuizCollection(QuizCollection quizCollection)
+            public static void PresentQuizCollection(IEnumerable<Quiz> quizCollection)
             {
                 Console.WriteLine("Choose quiz please:");
                 Console.WriteLine();
 
                 Console.ForegroundColor = ConsoleColor.White;
 
-                for (int i = 0; i < quizCollection.Count(); i++)
+                int i = 1;
+                foreach (Quiz quiz in quizCollection)
                 {
-                    Console.WriteLine("{0:#0} {1}", i + 1, quizCollection[i].Name);
+                    Console.WriteLine("{0:#0} {1}", i, quiz.Name);
+                    i++;
                 }
 
                 Console.ResetColor();

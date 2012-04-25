@@ -113,7 +113,15 @@ wet?		mojado
 old?		viejo
 electric?	eléctrico
 
-
+Materials
+glass?vidrio
+wood?madera
+cotton?algodón
+wool?lana
+ceramic?cerámica
+paper?papel
+stone?piedra
+rubbish?basura
 
 
 # This is a comment

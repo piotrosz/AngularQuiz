@@ -5,7 +5,7 @@ namespace SimpleQuiz.Tests
 {
     public class QuizCollectionFakeImporter : IQuizCollectionImporter
     {
-        public QuizCollection Import()
+        public IEnumerable<Quiz> Import()
         {
             var result = new QuizCollection()
             {

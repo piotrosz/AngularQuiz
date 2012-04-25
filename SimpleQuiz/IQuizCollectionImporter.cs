@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace SimpleQuiz
 {
     public interface IQuizCollectionImporter
     {
-        QuizCollection Import();
+        IEnumerable<Quiz> Import();
     }
 }

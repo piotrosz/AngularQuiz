@@ -53,7 +53,8 @@
     <Compile Include="Quiz.cs" />
     <Compile Include="QuizCollection.cs" />
     <Compile Include="QuizCollectionDirectoryImporter.cs" />
-    <Compile Include="QuizCollectionOuterSpaceImporter.cs" />
+    <Compile Include="QuizCollectionHttpImporter.cs" />
+    <Compile Include="QuizCollectionTextParser.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
