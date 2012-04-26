@@ -10,18 +10,29 @@ namespace SimpleQuizGame
     {
         // Note: Dependency injection might be used
         private static IQuizCollectionImporter importer = new QuizCollectionDirectoryImporter() { InputDir = @"E:\prog\SimpleQuiz\samples" };
-        private static Game game = new GameTest();
-
+        
         static void Main()
         {
-            StartQuiz();
-        }
-
-        private static void StartQuiz()
-        {
-            // User has to select quiz
             var quizColl = importer.Import();
 
+            const char quit = 'q';
+            char input;
+            do
+            {
+                StartQuiz(quizColl);
+
+                Console.WriteLine();
+                Console.WriteLine("Press '{0}' to quit. Press enter to start next quiz.", quit);
+                input = Console.ReadKey().KeyChar;
+            }
+            while (input != quit);
+        }
+
+        static void StartQuiz(IEnumerable<Quiz> quizColl)
+        {
+            Game game = new GameTest();
+
+            // User has to select quiz first
             bool quizSelected = false;
             int selectedQuizIndex = 0;
 
@@ -36,8 +47,8 @@ namespace SimpleQuizGame
 
             Quiz quiz = quizColl.ElementAt(selectedQuizIndex);
 
-            Console.WriteLine("You've selected: {0}.", quiz.Name);
-            Console.WriteLine();
+            Console.Write("You've selected: ");
+            UIHelper.WriteLineColor(ConsoleColor.White, quiz.Name);
 
             // Start the game
             game.Quiz = quiz;
@@ -56,10 +67,6 @@ namespace SimpleQuizGame
 
             // Finish the game
             UIHelper.ShowGameResult(game.GameResult);
-
-            Console.WriteLine();
-            Console.WriteLine("Press enter to exit");
-            Console.ReadLine();
         }
 
         static class UIHelper
@@ -112,18 +119,9 @@ namespace SimpleQuizGame
 
             public static void ShowAnswerResult(CheckAnswerResult result)
             {
-                if (result.IsCorrect)
-                {
-                    Console.ForegroundColor = ConsoleColor.DarkGreen;
-                    Console.WriteLine(result.CorrectAnswersLine);
-                    Console.ResetColor();
-                }
-                else
-                {
-                    Console.ForegroundColor = ConsoleColor.DarkRed;
-                    Console.WriteLine(result.CorrectAnswersLine);
-                    Console.ResetColor();
-                }
+                ConsoleColor color = result.IsCorrect ? ConsoleColor.DarkGreen : ConsoleColor.DarkRed;
+
+                WriteLineColor(color, result.CorrectAnswersLine);
                 Console.WriteLine();
             }
 
@@ -132,6 +130,13 @@ namespace SimpleQuizGame
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("Points: {0}", result.Points);
                 Console.WriteLine("Max points: {0}", result.MaxPoints);
+                Console.ResetColor();
+            }
+
+            public static void WriteLineColor(ConsoleColor color, string format, params object[] arg)
+            {
+                Console.ForegroundColor = color;
+                Console.WriteLine(format, arg);
                 Console.ResetColor();
             }
         }

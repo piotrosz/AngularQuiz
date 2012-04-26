@@ -9,7 +9,7 @@ namespace SimpleQuiz
     /// <summary>
     /// Imports all quizes from a given directory.
     /// </summary>
-    public class QuizCollectionDirectoryImporter : QuizCollectionTextParser, IQuizCollectionImporter
+    public class QuizCollectionDirectoryImporter : IQuizCollectionImporter
     {
         public string InputDir { get; set; }
 
@@ -28,7 +28,8 @@ namespace SimpleQuiz
 
         public IEnumerable<Quiz> Import()
         {
-            return Parse(ReadAllLines());
+            return new QuizCollectionTextParser()
+                .Parse(ReadAllLines());
         }
     }
 }

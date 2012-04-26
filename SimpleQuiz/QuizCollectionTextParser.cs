@@ -16,92 +16,98 @@ namespace SimpleQuiz
         {
             Quiz quiz = null;
 
-            Queue<string> queue = new Queue<string>(lines.Where(x => !IsCommentOrEmptyLine(x)));
+            var queue = new Queue<string>(lines.Where(x => !Is.CommentOrEmpty(x)));
 
-            while(queue.Count > 0)
+            while (queue.Count > 0)
             {
                 string line = queue.Dequeue();
 
-                if (IsNameLine(line))
+                if (Is.Name(line))
                     quiz = new Quiz { Name = line.Trim() };
 
-                if (IsQuestionLine(line) && quiz != null)
+                if (Is.Question(line) && quiz != null)
                 {
                     string[] values = line.Split(QuestionSeparator);
 
-                    quiz.Add(GetQuestion(values));
+                    quiz.Add(Get.Question(values));
 
-                    if (queue.Count == 0 || IsNameLine(queue.Peek()))
+                    if (queue.Count == 0 || Is.Name(queue.Peek()))
                         yield return quiz;
                 }
             }
         }
 
-        private Question GetQuestion(string[] values)
+        class Is
         {
-            if (IsOptionQuestion(values[1]))
-                return GetOptionQuestion(values);
-            else
-                return GetTextQuestion(values);
-        }
-
-        private OptionQuestion GetOptionQuestion(string[] values)
-        {
-            var question = new OptionQuestion();
-            question.Content = values[0].Trim();
-
-            string[] values2 = values[1].Split(OptionQuestionSeparator);
-
-            var options = new List<Option>();
-            var optionsCsv = GetCommaSeparated(values2[0]);
-
-            for (int i = 0; i < optionsCsv.Count; i++)
+            public static bool Name(string line)
             {
-                options.Add(new Option
-                {
-                    Id = i.ToString(),
-                    Name = optionsCsv[i]
-                });
+                return !line.Contains(QuestionSeparator);
             }
 
-            question.Options = options;
-            question.CorrectAnswers = GetCommaSeparated(values2[1]);
+            public static bool Question(string line)
+            {
+                return line.Contains(QuestionSeparator);
+            }
 
-            return question;
+            public static bool CommentOrEmpty(string line)
+            {
+                return string.IsNullOrWhiteSpace(line) || line.Trim().StartsWith(CommentIndicator.ToString());
+            }
+
+            public static bool OptionQuestion(string line)
+            {
+                return line.Contains(OptionQuestionSeparator);
+            }
         }
 
-        private TextQuestion GetTextQuestion(string[] values)
+        class Get
         {
-            var question = new TextQuestion();
-            question.Content = values[0].Trim();
-            question.CorrectAnswers = GetCommaSeparated(values[1]);
+            public static Question Question(string[] values)
+            {
+                if (Is.OptionQuestion(values[1]))
+                    return OptionQuestion(values);
+                else
+                    return TextQuestion(values);
+            }
 
-            return question;
-        }
+            public static OptionQuestion OptionQuestion(string[] values)
+            {
+                var question = new OptionQuestion();
+                question.Content = values[0].Trim();
 
-        private List<string> GetCommaSeparated(string value)
-        {
-            return value.Split(AnswersSeparator).Select(x => x.Trim()).ToList();
-        }
+                string[] values2 = values[1].Split(OptionQuestionSeparator);
 
-        private bool IsNameLine(string value)
-        {
-            return !value.Contains(QuestionSeparator);
-        }
+                var options = new List<Option>();
+                var optionsCsv = CommaSeparated(values2[0]);
 
-        private bool IsQuestionLine(string value)
-        {
-            return value.Contains(QuestionSeparator);
-        }
+                for (int i = 0; i < optionsCsv.Count; i++)
+                {
+                    options.Add(new Option
+                    {
+                        Id = i.ToString(),
+                        Name = optionsCsv[i]
+                    });
+                }
 
-        private bool IsCommentOrEmptyLine(string value)
-        {
-            return string.IsNullOrWhiteSpace(value) || value.Trim().StartsWith(CommentIndicator.ToString());
-        }
+                question.Options = options;
+                question.CorrectAnswers = CommaSeparated(values2[1]);
 
-        private bool IsOptionQuestion(string value)
-        {
-            return value.Contains(OptionQuestionSeparator);
+                return question;
+            }
+
+            public static TextQuestion TextQuestion(string[] values)
+            {
+                var question = new TextQuestion();
+                question.Content = values[0].Trim();
+                question.CorrectAnswers = CommaSeparated(values[1]);
+
+                return question;
+            }
+
+            public static List<string> CommaSeparated(string value)
+            {
+                return value.Split(AnswersSeparator).Select(x => x.Trim()).ToList();
+            }
         }
     }
 }

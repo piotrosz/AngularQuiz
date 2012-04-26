@@ -52,6 +52,7 @@
     <Compile Include="Game\GameYesNoFacts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuestionStub.cs" />
+    <Compile Include="Question\OptionQuestionFacts.cs" />
     <Compile Include="Question\TextQuestionFacts.cs" />
     <Compile Include="QuizCollectionFakeImporter.cs" />
     <Compile Include="QuizCollectionTextParserFacts.cs" />

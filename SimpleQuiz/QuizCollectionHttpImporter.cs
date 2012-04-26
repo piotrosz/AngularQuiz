@@ -6,7 +6,7 @@ using System.Net;
 
 namespace SimpleQuiz
 {
-    public class QuizCollectionHttpImporter : QuizCollectionTextParser, IQuizCollectionImporter
+    public class QuizCollectionHttpImporter : IQuizCollectionImporter
     {
         public string Uri { get; set; }
 
@@ -19,7 +19,8 @@ namespace SimpleQuiz
                 contents = client.DownloadString(Uri);
             }
 
-            return Parse(contents.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None));
+            return new QuizCollectionTextParser()
+                .Parse(contents.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None));
         }
     }
 }
