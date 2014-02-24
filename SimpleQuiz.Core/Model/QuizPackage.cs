@@ -9,6 +9,7 @@ namespace SimpleQuiz.Core.Model
     public class QuizPackage : Entity
     {
         [Required]
+        [StringLength(255)]
         public string Name { get; set; }
 
         public virtual IEnumerable<Quiz> Quizes { get; set; }

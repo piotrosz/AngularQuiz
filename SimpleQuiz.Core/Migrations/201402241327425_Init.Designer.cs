@@ -13,7 +13,7 @@ namespace SimpleQuiz.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201402201548597_Init"; }
+            get { return "201402241327425_Init"; }
         }
         
         string IMigrationMetadata.Source

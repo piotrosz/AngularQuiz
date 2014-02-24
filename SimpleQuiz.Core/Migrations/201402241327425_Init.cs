@@ -14,7 +14,7 @@ namespace SimpleQuiz.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         QuestionId = c.Int(nullable: false),
                         OrderId = c.Int(nullable: false),
-                        CreatedOn = c.DateTime(),
+                        CreatedOn = c.DateTime(nullable: false, defaultValueSql: "GETDATE()"),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -25,18 +25,21 @@ namespace SimpleQuiz.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         QuestionCorrectAnswerId = c.Int(nullable: false),
                         Content = c.String(nullable: false),
-                        CreatedOn = c.DateTime(),
+                        CreatedOn = c.DateTime(nullable: false, defaultValueSql: "GETDATE()"),
                     })
-                .PrimaryKey(t => t.Id);
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.QuestionCorrectAnswer", t => t.QuestionCorrectAnswerId, cascadeDelete: true)
+                .Index(t => t.QuestionCorrectAnswerId);
             
             CreateTable(
                 "dbo.Question",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
+                        QuizId = c.Int(nullable: false),
                         OrderId = c.Int(nullable: false),
                         Content = c.String(nullable: false),
-                        CreatedOn = c.DateTime(),
+                        CreatedOn = c.DateTime(nullable: false, defaultValueSql: "GETDATE()"),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -45,20 +48,23 @@ namespace SimpleQuiz.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(nullable: false),
+                        Name = c.String(nullable: false, maxLength: 255),
+                        QuizPackageId = c.Int(nullable: false),
                         Timestamp = c.Binary(nullable: false, fixedLength: true, timestamp: true, storeType: "rowversion"),
-                        CreatedOn = c.DateTime(),
+                        CreatedOn = c.DateTime(nullable: false, defaultValueSql: "GETDATE()"),
                     })
-                .PrimaryKey(t => t.Id);
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.QuizPackage", t => t.QuizPackageId, cascadeDelete: true)
+                .Index(t => t.QuizPackageId);
             
             CreateTable(
                 "dbo.QuizPackage",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(nullable: false),
+                        Name = c.String(nullable: false, maxLength: 255),
                         Timestamp = c.Binary(nullable: false, fixedLength: true, timestamp: true, storeType: "rowversion"),
-                        CreatedOn = c.DateTime(),
+                        CreatedOn = c.DateTime(nullable: false, defaultValueSql: "GETDATE()"),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -76,9 +82,9 @@ namespace SimpleQuiz.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        ApplicationUserId = c.Int(nullable: false),
+                        UserId = c.Int(nullable: false),
                         Timestamp = c.Binary(nullable: false, fixedLength: true, timestamp: true, storeType: "rowversion"),
-                        CreatedOn = c.DateTime(),
+                        CreatedOn = c.DateTime(nullable: false, defaultValueSql: "GETDATE()"),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -91,7 +97,7 @@ namespace SimpleQuiz.Migrations
                         QuizId = c.Int(nullable: false),
                         Points = c.Int(nullable: false),
                         MaxPoints = c.Int(nullable: false),
-                        CreatedOn = c.DateTime(),
+                        CreatedOn = c.DateTime(nullable: false, defaultValueSql: "GETDATE()"),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -155,10 +161,14 @@ namespace SimpleQuiz.Migrations
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
             DropForeignKey("dbo.AspNetUserLogins", "User_Id", "dbo.AspNetUsers");
+            DropForeignKey("dbo.Quiz", "QuizPackageId", "dbo.QuizPackage");
+            DropForeignKey("dbo.QuestionCorrectAnswerOption", "QuestionCorrectAnswerId", "dbo.QuestionCorrectAnswer");
             DropIndex("dbo.AspNetUserClaims", new[] { "User_Id" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserLogins", new[] { "User_Id" });
+            DropIndex("dbo.Quiz", new[] { "QuizPackageId" });
+            DropIndex("dbo.QuestionCorrectAnswerOption", new[] { "QuestionCorrectAnswerId" });
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");

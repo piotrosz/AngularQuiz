@@ -39,6 +39,16 @@ namespace SimpleQuiz.Core.Model
             CorrectAnswerOptions = options;
         }
 
+        public QuestionCorrectAnswer(QuestionCorrectAnswerOption singleCorrectAnswerOption)
+        {
+            CorrectAnswerOptions = new List<QuestionCorrectAnswerOption> { singleCorrectAnswerOption };
+        }
+
+        public QuestionCorrectAnswer(IEnumerable<QuestionCorrectAnswerOption> correctAnswerOptions)
+        {
+            CorrectAnswerOptions = correctAnswerOptions;
+        }
+
         public int QuestionId { get; set; }
 
         public int OrderId { get; set; }

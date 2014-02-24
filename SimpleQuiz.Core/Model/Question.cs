@@ -33,6 +33,8 @@ namespace SimpleQuiz.Core.Model
             CorrectAnswers = multipleCorrectAnswers.Select(a => new QuestionCorrectAnswer(a));
         }
 
+        public int QuizId { get; set; }
+
         public int OrderId { get; set; }
 
         [Required]

@@ -17,6 +17,8 @@ namespace SimpleQuiz.Core.Model
 
         public int QuestionCorrectAnswerId { get; set; }
 
+        public virtual QuestionCorrectAnswer QuestionCorrectAnswer { get; set; }
+
         [Required]
         public string Content { get; set; }
     }

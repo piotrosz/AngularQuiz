@@ -8,7 +8,7 @@ namespace SimpleQuiz.Core.Model
 {
     public class UserQuizScorePackage : Entity
     {
-        public int ApplicationUserId { get; set; }
+        public int UserId { get; set; }
 
         public virtual IEnumerable<UserQuizScore> UserQuizScores { get; set; }
 

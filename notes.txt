@@ -1,4 +1,4 @@
 Enable-Migrations -ProjectName SimpleQuiz.Core -ContextProjectName SimpleQuiz.Core -ContextTypeName SimpleQuiz.Core.DAL.SimpleQuizContext -StartupProjectName SimpleQuiz.Web [-Force]
 Add-Migration ... -ProjectName SimpleQuiz.Core -StartupProjectName SimpleQuiz.Web
 Update-Database -ProjectName SimpleQuiz.Core -StartupProjectName SimpleQuiz.Web
-Update-Database -ProjectName SimpleQuiz.Core -StartupProjectName SimpleQuiz.Web -ConnectionString -ProviderName System.Data.SqlClient
+Update-Database -ProjectName SimpleQuiz.Core -StartupProjectName SimpleQuiz.Web 

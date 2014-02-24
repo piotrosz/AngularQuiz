@@ -9,7 +9,7 @@ using System.Web;
 
 namespace SimpleQuiz.Core.DAL
 {
-    public class SimpleQuizContext : IdentityDbContext<ApplicationUser>
+    public class SimpleQuizContext : IdentityDbContext<User>
     {
         public SimpleQuizContext() : base("DefaultConnection") {}
 
