@@ -32,7 +32,12 @@ namespace SimpleQuiz.Web.Controllers
         [ResponseType(typeof(Quiz))]
         public IHttpActionResult GetQuiz(int id)
         {
-            Quiz quiz = _unitOfWork.Quiz.List().SingleOrDefault(q => q.Id == id);
+            Quiz quiz = _unitOfWork.Quiz.List()
+                .Include("Questions")
+                .Include("Questions.CorrectAnswers")
+                .Include("Questions.CorrectAnswers.CorrectAnswerOptions")
+                .SingleOrDefault(q => q.Id == id);
+
             if (quiz == null)
             {
                 return NotFound();

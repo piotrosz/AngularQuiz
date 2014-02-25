@@ -1,4 +1,6 @@
 Enable-Migrations -ProjectName SimpleQuiz.Core -ContextProjectName SimpleQuiz.Core -ContextTypeName SimpleQuiz.Core.DAL.SimpleQuizContext -StartupProjectName SimpleQuiz.Web [-Force]
 Add-Migration ... -ProjectName SimpleQuiz.Core -StartupProjectName SimpleQuiz.Web
 Update-Database -ProjectName SimpleQuiz.Core -StartupProjectName SimpleQuiz.Web
-Update-Database -ProjectName SimpleQuiz.Core -StartupProjectName SimpleQuiz.Web 
+
+
+Entity Framework lazy loading options: http://msdn.microsoft.com/en-us/data/jj574232.aspx

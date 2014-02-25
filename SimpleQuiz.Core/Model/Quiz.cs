@@ -12,7 +12,7 @@ namespace SimpleQuiz.Core.Model
         [StringLength(255)]
         public string Name { get; set; }
 
-        public virtual IEnumerable<Question> Questions { get; set; }
+        public virtual ICollection<Question> Questions { get; set; }
 
         public int QuizPackageId { get; set; }
 

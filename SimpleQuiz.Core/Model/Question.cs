@@ -31,7 +31,7 @@ namespace SimpleQuiz.Core.Model
             }
 
             Content = content;
-            CorrectAnswers = multipleCorrectAnswers.Select(a => new QuestionCorrectAnswer(a));
+            CorrectAnswers = multipleCorrectAnswers.Select(a => new QuestionCorrectAnswer(a)).ToList();
         }
 
         public int QuizId { get; set; }
@@ -41,7 +41,6 @@ namespace SimpleQuiz.Core.Model
         [Required]
         public string Content { get; set; }
 
-        [JsonIgnore]
-        public virtual IEnumerable<QuestionCorrectAnswer> CorrectAnswers { get; set; }
+        public ICollection<QuestionCorrectAnswer> CorrectAnswers { get; set; }
     }
 }

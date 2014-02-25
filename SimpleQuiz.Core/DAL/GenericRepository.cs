@@ -20,6 +20,8 @@ namespace SimpleQuiz.Core.DAL
                 throw new ArgumentNullException("context");
             }
 
+            context.Configuration.LazyLoadingEnabled = false;
+
             this._context = context;
             this._dbSet = context.Set<TEntity>();
         }
@@ -32,8 +34,8 @@ namespace SimpleQuiz.Core.DAL
         public virtual IQueryable<TEntity> List()
         {
             IQueryable<TEntity> query = _dbSet;
-
-            return _dbSet;
+            
+            return query;
         }
 
         public void Attach(TEntity entity)

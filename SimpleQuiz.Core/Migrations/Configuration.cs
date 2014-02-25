@@ -8,12 +8,14 @@
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using SimpleQuiz.Core.DAL;
+    using System.Collections.Generic;
 
     internal sealed class Configuration : DbMigrationsConfiguration<SimpleQuizContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            //AutomaticMigrationDataLossAllowed
         }
 
         protected override void Seed(SimpleQuizContext context)
@@ -62,28 +64,39 @@
             context.Questions.AddOrUpdate(q => q.Content, question1, question2, question3);
             context.SaveChanges();
 
-            var correctAnswer1 = new QuestionCorrectAnswer { QuestionId = question1.Id };
+            var correctAnswersList = new List<QuestionCorrectAnswer>
+            {
+                new QuestionCorrectAnswer { QuestionId = question1.Id },
 
-            var correctAnswer2 = new QuestionCorrectAnswer { QuestionId = question2.Id, OrderId = 1 };
-            var correctAnswer3 = new QuestionCorrectAnswer { QuestionId = question2.Id, OrderId = 2 };
-            var correctAnswer4 = new QuestionCorrectAnswer { QuestionId = question2.Id, OrderId = 3 };
+                new QuestionCorrectAnswer { QuestionId = question2.Id, OrderId = 1 },
+                new QuestionCorrectAnswer { QuestionId = question2.Id, OrderId = 2 },
+                new QuestionCorrectAnswer { QuestionId = question2.Id, OrderId = 3 },
 
-            var correctAnswer5 = new QuestionCorrectAnswer { QuestionId = question3.Id, OrderId = 1 };
-            var correctAnswer6 = new QuestionCorrectAnswer { QuestionId = question3.Id, OrderId = 2 };
+                new QuestionCorrectAnswer { QuestionId = question3.Id, OrderId = 1 },
+                new QuestionCorrectAnswer { QuestionId = question3.Id, OrderId = 2 }
+            };
 
-            context.QuestionCorrectAnswers.AddOrUpdate(
-                correctAnswer1, correctAnswer2, correctAnswer3, 
-                correctAnswer4, correctAnswer5, correctAnswer6);
+            correctAnswersList.ForEach(a =>
+            {
+                var toRemove = context.QuestionCorrectAnswers.SingleOrDefault(x => x.OrderId == a.OrderId && x.QuestionId == a.QuestionId); 
+                if(toRemove != null)
+                {
+                    context.QuestionCorrectAnswers.Remove(toRemove);
+                    context.SaveChanges();
+                }
+            });
+           
+            context.QuestionCorrectAnswers.AddRange(correctAnswersList);
             context.SaveChanges();
 
-            var correctAnswerOption1 = new QuestionCorrectAnswerOption("pasé") { QuestionCorrectAnswerId = correctAnswer1.Id };
+            var correctAnswerOption1 = new QuestionCorrectAnswerOption("pasé") { QuestionCorrectAnswerId = correctAnswersList[0].Id };
 
-            var correctAnswerOption2 = new QuestionCorrectAnswerOption("Vino") { QuestionCorrectAnswerId = correctAnswer2.Id };
-            var correctAnswerOption3 = new QuestionCorrectAnswerOption("dije") { QuestionCorrectAnswerId = correctAnswer2.Id };
-            var correctAnswerOption4 = new QuestionCorrectAnswerOption("estaba") { QuestionCorrectAnswerId = correctAnswer2.Id };
+            var correctAnswerOption2 = new QuestionCorrectAnswerOption("Vino") { QuestionCorrectAnswerId = correctAnswersList[1].Id };
+            var correctAnswerOption3 = new QuestionCorrectAnswerOption("dije") { QuestionCorrectAnswerId = correctAnswersList[2].Id };
+            var correctAnswerOption4 = new QuestionCorrectAnswerOption("estaba") { QuestionCorrectAnswerId = correctAnswersList[3].Id };
 
-            var correctAnswerOption5 = new QuestionCorrectAnswerOption("cayó") { QuestionCorrectAnswerId = correctAnswer3.Id };
-            var correctAnswerOption6 = new QuestionCorrectAnswerOption("hablaba") { QuestionCorrectAnswerId = correctAnswer3.Id };
+            var correctAnswerOption5 = new QuestionCorrectAnswerOption("cayó") { QuestionCorrectAnswerId = correctAnswersList[4].Id };
+            var correctAnswerOption6 = new QuestionCorrectAnswerOption("hablaba") { QuestionCorrectAnswerId = correctAnswersList[5].Id };
 
             context.QuestionCorrectAnswersOptions.AddOrUpdate(o => o.Content, 
                 correctAnswerOption1, correctAnswerOption2, correctAnswerOption3,

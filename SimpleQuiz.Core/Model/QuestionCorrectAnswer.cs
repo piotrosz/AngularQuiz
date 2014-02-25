@@ -46,13 +46,13 @@ namespace SimpleQuiz.Core.Model
 
         public QuestionCorrectAnswer(IEnumerable<QuestionCorrectAnswerOption> correctAnswerOptions)
         {
-            CorrectAnswerOptions = correctAnswerOptions;
+            CorrectAnswerOptions = correctAnswerOptions.ToList();
         }
 
         public int QuestionId { get; set; }
 
         public int OrderId { get; set; }
 
-        public virtual IEnumerable<QuestionCorrectAnswerOption> CorrectAnswerOptions { get; set; }
+        public ICollection<QuestionCorrectAnswerOption> CorrectAnswerOptions { get; set; }
     }
 }
