@@ -15,6 +15,11 @@ namespace SimpleQuiz.Core.DAL
 
         public GenericRepository(SimpleQuizContext context)
         {
+            if(context == null)
+            {
+                throw new ArgumentNullException("context");
+            }
+
             this._context = context;
             this._dbSet = context.Set<TEntity>();
         }
@@ -29,6 +34,17 @@ namespace SimpleQuiz.Core.DAL
             IQueryable<TEntity> query = _dbSet;
 
             return _dbSet;
+        }
+
+        public void Attach(TEntity entity)
+        {
+            //_context.Entry<TEntity>(entity).State = EntityState.Modified;
+            _dbSet.Attach(entity);
+        }
+
+        public void Delete(TEntity entity)
+        {
+            _dbSet.Remove(entity);
         }
     }
 }

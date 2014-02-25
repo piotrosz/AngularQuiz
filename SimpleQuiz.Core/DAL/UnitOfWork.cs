@@ -43,5 +43,13 @@ namespace SimpleQuiz.Core.DAL
         {
             _context.SaveChanges();
         }
+
+        public void Dispose()
+        {
+            if(_context != null)
+            {
+                _context.Dispose();
+            }
+        }
     }
 }

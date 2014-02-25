@@ -10,6 +10,8 @@ namespace SimpleQuiz.Core.DAL
     public interface IGenericRepository<TEntity> where TEntity : Entity
     {
         void Insert(TEntity entity);
+        void Attach(TEntity entity);
+        void Delete(TEntity entity);
         IQueryable<TEntity> List();
     }
 }

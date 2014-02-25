@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SimpleQuiz.Core.DAL
 {
-    public interface IUnitOfWork
+    public interface IUnitOfWork : IDisposable
     {
         IGenericRepository<Quiz> Quiz { get; }
         IGenericRepository<QuizPackage> QuizPackage { get; }

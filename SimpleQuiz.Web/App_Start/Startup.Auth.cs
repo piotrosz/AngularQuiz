@@ -32,7 +32,7 @@ namespace SimpleQuiz.Web
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication();
+            app.UseGoogleAuthentication();
         }
     }
 }
