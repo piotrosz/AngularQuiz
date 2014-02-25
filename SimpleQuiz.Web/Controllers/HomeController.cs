@@ -26,5 +26,10 @@ namespace SimpleQuiz.Web.Controllers
 
             return View();
         }
+
+        public ActionResult Quiz()
+        {
+            return View();
+        }
     }
 }
