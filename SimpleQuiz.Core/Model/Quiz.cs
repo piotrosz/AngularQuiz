@@ -1,4 +1,5 @@
-﻿using SimpleQuiz.Core.Model;
+﻿using Newtonsoft.Json;
+using SimpleQuiz.Core.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -15,8 +16,10 @@ namespace SimpleQuiz.Core.Model
 
         public int QuizPackageId { get; set; }
 
+        [JsonIgnore]
         public virtual QuizPackage QuizPackage { get; set; }
 
+        [JsonIgnore]
         [Timestamp]
         public Byte[] Timestamp { get; set; }
     }

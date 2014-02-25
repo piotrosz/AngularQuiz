@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -40,6 +41,7 @@ namespace SimpleQuiz.Core.Model
         [Required]
         public string Content { get; set; }
 
+        [JsonIgnore]
         public virtual IEnumerable<QuestionCorrectAnswer> CorrectAnswers { get; set; }
     }
 }

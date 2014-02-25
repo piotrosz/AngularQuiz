@@ -3,9 +3,9 @@
     ViewBag.Title = "Quiz";
 }
 
-
 <script src="~/Scripts/angular.js"></script>
 <script src="~/Scripts/angular-route.js"></script>
+<script src="~/Scripts/angular-resource.js"></script>
 
 <div ng-app="quiz">
 
@@ -13,7 +13,11 @@
 
 
 <script type="text/javascript">
-    var app = angular.module("quiz", ["ngRoute"]);
+    var app = angular.module("quiz", ["ngRoute", "ngResource"]);
+
+    app.factory("Quiz", function ($resource) {
+        return $resource("/api/quiz/:id", {id:"@@id"});
+    });
 
 
 
