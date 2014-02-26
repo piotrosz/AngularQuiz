@@ -14,10 +14,12 @@ namespace SimpleQuiz.Core.Model
         public string Name { get; set; }
 
         [JsonIgnore]
-        public virtual IEnumerable<Quiz> Quizes { get; set; }
+        public virtual ICollection<Quiz> Quizes { get; set; }
 
         [Timestamp]
         [JsonIgnore]
         public Byte[] Timestamp { get; set; }
+
+        public int QuizCount { get { return Quizes.Count(); } }
     }
 }

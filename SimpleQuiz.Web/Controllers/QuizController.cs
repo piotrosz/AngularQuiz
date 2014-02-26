@@ -16,10 +16,12 @@ namespace SimpleQuiz.Web.Controllers
     public class QuizController : ApiController
     {
         private IUnitOfWork _unitOfWork;
+        private IQuizAnswerChecker _answerChecker;
 
-        public QuizController(IUnitOfWork unitOfWork)
+        public QuizController(IUnitOfWork unitOfWork, IQuizAnswerChecker answerChecker)
         {
             _unitOfWork = unitOfWork;
+            _answerChecker = answerChecker;
         }
 
         // GET api/Quiz
@@ -93,6 +95,21 @@ namespace SimpleQuiz.Web.Controllers
             _unitOfWork.Save();
 
             return CreatedAtRoute("DefaultApi", new { id = quiz.Id }, quiz);
+        }
+
+
+        public IHttpActionResult CheckAnswers(QuizUserAnswers userAnswers)
+        {
+            var quiz = _unitOfWork.Quiz.List().SingleOrDefault(q => q.Id == userAnswers.QuizId);
+
+            if(quiz == null)
+            {
+                return NotFound();
+            }
+
+            CheckQuizAnswersResult result = _answerChecker.Check(quiz, userAnswers);
+
+            return Ok(result);
         }
 
         // DELETE api/Quiz/5

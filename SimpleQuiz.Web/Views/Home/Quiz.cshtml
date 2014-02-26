@@ -3,22 +3,19 @@
     ViewBag.Title = "Quiz";
 }
 
-<script src="~/Scripts/angular.js"></script>
-<script src="~/Scripts/angular-route.js"></script>
-<script src="~/Scripts/angular-resource.js"></script>
-
 <div ng-app="quiz">
-
+    <div ng-view=""></div>
 </div>
 
+@Scripts.Render("~/bundles/angular")
 
-<script type="text/javascript">
-    var app = angular.module("quiz", ["ngRoute", "ngResource"]);
+<!-- main app script -->
+<script src="~/app/app.js"></script>
 
-    app.factory("Quiz", function ($resource) {
-        return $resource("/api/quiz/:id", {id:"@@id"});
-    });
+<!-- controllers -->
+<script src="~/app/controllers/QuizPackageController.js"></script>
+
+<!-- filters-->
 
 
-
-</script>
+<!-- directives -->

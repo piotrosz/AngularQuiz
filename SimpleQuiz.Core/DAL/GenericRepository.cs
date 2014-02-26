@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,10 +21,8 @@ namespace SimpleQuiz.Core.DAL
                 throw new ArgumentNullException("context");
             }
 
-            context.Configuration.LazyLoadingEnabled = false;
-
-            this._context = context;
-            this._dbSet = context.Set<TEntity>();
+            _context = context;
+            _dbSet = context.Set<TEntity>();
         }
 
         public virtual void Insert(TEntity entity)
@@ -40,7 +39,6 @@ namespace SimpleQuiz.Core.DAL
 
         public void Attach(TEntity entity)
         {
-            //_context.Entry<TEntity>(entity).State = EntityState.Modified;
             _dbSet.Attach(entity);
         }
 

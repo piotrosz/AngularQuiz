@@ -41,6 +41,6 @@ namespace SimpleQuiz.Core.Model
         [Required]
         public string Content { get; set; }
 
-        public ICollection<QuestionCorrectAnswer> CorrectAnswers { get; set; }
+        public virtual ICollection<QuestionCorrectAnswer> CorrectAnswers { get; set; }
     }
 }

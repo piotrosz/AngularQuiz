@@ -14,6 +14,8 @@ using Ninject;
 
 namespace SimpleQuiz.Web.Controllers
 {
+    // TODO: Enable Authorize
+    //[Authorize(Roles="admin")]
     public class QuizPackageController : ApiController
     {
         protected IUnitOfWork _unitOfWork;

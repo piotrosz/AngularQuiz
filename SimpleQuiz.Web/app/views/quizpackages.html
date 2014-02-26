@@ -1,0 +1,32 @@
+﻿
+<div class="col-xs-12 col-sm-12 col-md-12">
+    <form class="form-horizontal">
+        <div class="form-horizontal">
+
+            <div class="form-group">
+                <div class="col-md-3">
+                    <input type="text" ng-model="searchPhrase" class="form-control input-md" placeholder="Search by package name" />
+                </div>
+
+                <div class="col-md-3">
+                    <button class="btn btn-primary pull-left" ng-click="doSearch()">
+                        <span class="glyphicon glyphicon-search"></span>
+                        Search
+                    </button>
+                </div>
+            </div>
+
+
+            <div class="well well-sm" ng-show="totalRecordsCount == 0">
+                <h5>No packages when searching by {{searchPhrase}}</h5>
+            </div>
+
+            <div ng-show="totalRecordsCount > 0">
+
+
+
+            </div>
+
+        </div>
+    </form>
+</div>
