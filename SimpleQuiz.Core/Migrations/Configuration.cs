@@ -34,11 +34,24 @@
                 userManager.Create<User>(user, "P@ssw0rd");
             }
 
-            var quizPackage = new QuizPackage { Name = "Test package" };
+            var package1 = new QuizPackage { Name = "El Sustantivo" };
+            var package2 = new QuizPackage { Name = "Los Posesivos" };
+            var package3 = new QuizPackage { Name = "Demostrativos" };
+            var package4 = new QuizPackage { Name = "Pronombres Personales Reflexivos" };
+            var package5 = new QuizPackage { Name =  "Futuro Próximo" };
+            var package6 = new QuizPackage { Name = "Preposición + Pronombre Personal" };
+            var package7 = new QuizPackage { Name = "Pretérito Perfecto" };
+            var package8 = new QuizPackage { Name = "Presente Continuo (Estar + Gerundio)" };
+            var package9 = new QuizPackage { Name = "Pronombres y Adjetivos Indefinidos" };
+            var package10 = new QuizPackage { Name = "Verbos Intransitivos" };
+            var package11 = new QuizPackage { Name = "Preposiciones" };
 
-            context.QuizPackages.AddOrUpdate(p => p.Name, quizPackage);
+            context.QuizPackages.AddOrUpdate(p => p.Name, package1, package2, package3, package4,
+                package5, package6, package7, package8, package9, package10, package11);
+            
+            context.SaveChanges();
 
-            var quiz1 = new Quiz { Name = "Test quiz 1", QuizPackageId = quizPackage.Id };
+            var quiz1 = new Quiz { Name = "Test quiz 1", QuizPackageId = package1.Id };
             context.Quizes.AddOrUpdate(q => q.Name, quiz1);
 
             context.SaveChanges();

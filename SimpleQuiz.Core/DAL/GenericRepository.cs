@@ -46,5 +46,20 @@ namespace SimpleQuiz.Core.DAL
         {
             _dbSet.Remove(entity);
         }
+
+        public int Count(Expression<Func<TEntity, bool>> filter)
+        {
+            if(filter == null)
+            {
+                throw new ArgumentNullException("filter");
+            }
+
+            return List().Count(filter);
+        }
+
+        public int Count()
+        {
+            return List().Count();
+        }
     }
 }

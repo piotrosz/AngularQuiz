@@ -11,6 +11,7 @@ using System.Web.Http.Description;
 using SimpleQuiz.Core.Model;
 using SimpleQuiz.Core.DAL;
 using Ninject;
+using SimpleQuiz.Web.Infrastructure;
 
 namespace SimpleQuiz.Web.Controllers
 {
@@ -26,9 +27,31 @@ namespace SimpleQuiz.Web.Controllers
         }
 
         // GET api/QuizPackage
-        public IQueryable<QuizPackage> GetQuizPackages()
+        public PagedResults<QuizPackage> GetQuizPackages(string searchPhrase, int pageSize, int offset)
         {
-            return _unitOfWork.QuizPackage.List();
+            IEnumerable<QuizPackage> list = _unitOfWork.QuizPackage.List();
+            int totalCount;
+
+            if(!string.IsNullOrWhiteSpace(searchPhrase))
+            {
+                list = list.Where(p => p.Name.ToLower().Contains(searchPhrase.ToLower()));
+                totalCount = _unitOfWork.QuizPackage.Count(p => p.Name.ToLower().Contains(searchPhrase.ToLower()));
+            }
+            else
+            {
+                totalCount = _unitOfWork.QuizPackage.Count();
+            }
+
+            list = list.OrderBy(p => p.Name)
+                .Skip(offset)
+                .Take(pageSize)
+                .ToList();
+
+            return new PagedResults<QuizPackage>()
+            {
+                List = list,
+                TotalCount = totalCount
+            };
         }
 
         // GET api/QuizPackage/5
@@ -97,7 +120,9 @@ namespace SimpleQuiz.Web.Controllers
         [ResponseType(typeof(QuizPackage))]
         public IHttpActionResult DeleteQuizPackage(int id)
         {
-            QuizPackage quizpackage = _unitOfWork.QuizPackage.List().SingleOrDefault(p => p.Id == id);
+            QuizPackage quizpackage = _unitOfWork.QuizPackage.List()
+                .SingleOrDefault(p => p.Id == id);
+
             if (quizpackage == null)
             {
                 return NotFound();

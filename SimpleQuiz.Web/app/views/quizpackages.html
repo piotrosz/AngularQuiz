@@ -9,24 +9,54 @@
                 </div>
 
                 <div class="col-md-3">
-                    <button class="btn btn-primary pull-left" ng-click="doSearch()">
+                    <button class="btn btn-primary pull-left" ng-click="search()">
                         <span class="glyphicon glyphicon-search"></span>
                         Search
                     </button>
                 </div>
             </div>
 
-
-            <div class="well well-sm" ng-show="totalRecordsCount == 0">
-                <h5>No packages when searching by {{searchPhrase}}</h5>
+            <div class="well well-sm" ng-show="totalCount == 0">
+                <h5>No packages found. <span ng-show="searchPhrase != ''">You searched by {{searchPhrase}}.</span></h5>
             </div>
 
-            <div ng-show="totalRecordsCount > 0">
+            <div ng-show="totalCount > 0">
 
+                <ul class="list-group" data-ng-repeat="package in packages">
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-md-1">
+                                <span class="label label-info">{{package.QuizCount}}</span>
+                            </div>
+                            <div class="col-md-6">
+                                {{package.Name}}
+                            </div>
+                            <div class="col-md-5">
+                                <button class="btn btn-success pull-right">Edit</button>
+
+                            </div>
+
+                        </div>
+                    </li>
+                </ul>
 
 
             </div>
 
-        </div>
+            <div class="row">
+
+                <div class="col-md-offset-2 col-md-8 col-md-offset-2 text-center">
+                    <div data-ng-show="totalCount > 0">
+                        <div>
+                            <div data-pagination="" data-previous-text="<" data-next-text=">" data-first-text="<<" data-last-text=">>"
+                                 data-on-select-page="pageChanged(page)" data-total-items="totalCount" data-page="currentPage"
+                                 data-boundary-links="true" class="pagination pagination-sm" data-max-size="5" data-rotate="false" data-items-per-page="10">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
     </form>
 </div>
