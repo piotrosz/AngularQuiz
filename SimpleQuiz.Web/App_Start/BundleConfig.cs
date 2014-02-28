@@ -26,7 +26,7 @@ namespace SimpleQuiz.Web
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.superhero.css",
                       "~/Content/site.css",
-                      "~/Content/toastr.css",
+                      "~/Content/toaster.css",
                       "~/Content/loading-bar.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
@@ -34,7 +34,7 @@ namespace SimpleQuiz.Web
                     "~/Scripts/angular-route.js",
                     "~/Scripts/angular-resource.js",
                     "~/Scripts/angular-animate.js",
-                    "~/Scripts/toastr.js",
+                    "~/Scripts/toaster.js",
                     "~/Scripts/ui-bootstrap-0.10.0.js",
                     "~/Scripts/ui-bootstrap-tpls-0.10.0.js",
                     "~/Scripts/loading-bar.js"

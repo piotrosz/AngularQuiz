@@ -1,8 +1,7 @@
-﻿
+﻿<toaster-container toaster-options="{'time-out': 1700}"></toaster-container>
+
 <div class="col-xs-12 col-sm-12 col-md-12">
     <form class="form-horizontal">
-        <div class="form-horizontal">
-
             <div class="form-group">
                 <div class="col-md-3">
                     <input type="text" ng-model="searchPhrase" class="form-control input-md" placeholder="Search by package name" />
@@ -16,8 +15,8 @@
                 </div>
             </div>
 
-            <div class="well well-sm" ng-show="totalCount == 0">
-                <h5>No packages found. <span ng-show="searchPhrase != ''">You searched by {{searchPhrase}}.</span></h5>
+            <div class="well well-sm" ng-show="totalCount == 0 && searchPhrase != null">
+                <h5>No packages found. <span ng-show="searchPhrase != null">You searched by <i>{{searchPhrase}}</i>.</span></h5>
             </div>
 
             <div ng-show="totalCount > 0">
@@ -32,7 +31,7 @@
                                 {{package.Name}}
                             </div>
                             <div class="col-md-5">
-                                <button class="btn btn-success pull-right">Edit</button>
+                                <button class="btn btn-success pull-right" ng-click="edit(package)">Edit</button>
 
                             </div>
 

@@ -27,7 +27,7 @@ namespace SimpleQuiz.Web.Controllers
         }
 
         // GET api/QuizPackage
-        public PagedResults<QuizPackage> GetQuizPackages(string searchPhrase, int pageSize, int offset)
+        public PagedResults<QuizPackage> GetQuizPackages(int pageSize, int offset, string searchPhrase = null)
         {
             IEnumerable<QuizPackage> list = _unitOfWork.QuizPackage.List();
             int totalCount;

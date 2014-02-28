@@ -1,7 +1,7 @@
 ﻿'use strict';
 
-quizApp.controller("QuizPackageController", function ($scope, quizPackageService, $filter) {
-    $scope.searchPhrase = "";
+quizApp.controller("QuizPackageController", function ($scope, quizPackageService, $modal) {
+    $scope.searchPhrase = null;
 
     // paging 
     $scope.totalCount = 0;
@@ -17,7 +17,7 @@ quizApp.controller("QuizPackageController", function ($scope, quizPackageService
     function getPackages()
     {
         var offset = ($scope.pageSize) * ($scope.currentPage - 1);
-        quizPackageService.get({ searchPhrase: $scope.searchPhrase, pageSize: $scope.pageSize, offset: offset }, function (result) {
+        quizPackageService.query({ searchPhrase: $scope.searchPhrase, pageSize: $scope.pageSize, offset: offset }, function (result) {
             
             $scope.totalCount = result.TotalCount;
             $scope.packages = result.List;
@@ -33,5 +33,16 @@ quizApp.controller("QuizPackageController", function ($scope, quizPackageService
     $scope.pageChanged = function (page) {
         $scope.currentPage = page;
         getPackages();
+    }
+
+    $scope.edit = function (item) {
+
+        var modalInstance = $modal.open({
+            templateUrl: "app/views/packageedit.html",
+            controller: "QuizPackageController",
+            resolve: {
+
+            }
+        });
     }
 });

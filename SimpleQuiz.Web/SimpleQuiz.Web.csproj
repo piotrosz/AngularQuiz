@@ -203,6 +203,8 @@
   <ItemGroup>
     <Content Include="app\controllers\quizPackageController.js" />
     <Content Include="app\services\quizPackage.js" />
+    <Content Include="app\views\packageEdit.html" />
+    <Content Include="Content\toaster.css" />
     <Content Include="Scripts\loading-bar.js" />
     <Content Include="app\views\quizpackages.html" />
     <Content Include="Content\bootstrap.css" />
@@ -210,8 +212,6 @@
     <Content Include="Content\bootstrap.superhero.css" />
     <Content Include="Content\bootstrap.superhero.min.css" />
     <Content Include="Content\loading-bar.css" />
-    <Content Include="Content\toastr.css" />
-    <Content Include="Content\toastr.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -503,9 +503,8 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\toaster.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Scripts\toastr.js" />
-    <Content Include="Scripts\toastr.min.js" />
     <Content Include="Scripts\ui-bootstrap-0.10.0.js" />
     <Content Include="Scripts\ui-bootstrap-0.10.0.min.js" />
     <Content Include="Scripts\ui-bootstrap-tpls-0.10.0.js" />
@@ -539,7 +538,6 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Scripts\version.json" />
     <Content Include="Views\Home\Quiz.cshtml" />
-    <Content Include="Scripts\toastr.min.js.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\filters\" />
@@ -550,7 +548,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
-    <Content Include="Content\toastr.less" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SimpleQuiz.Core\SimpleQuiz.Core.csproj">
