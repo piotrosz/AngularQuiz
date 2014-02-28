@@ -1,6 +1,6 @@
 ﻿'use strict';
 
-quizApp.controller("QuizPackagesController", function ($scope, quizPackageService, $modal) {
+quizApp.controller("QuizPackagesController", function ($scope, quizPackageService, $modal, toaster) {
     $scope.searchPhrase = null;
 
     // paging 
@@ -22,6 +22,9 @@ quizApp.controller("QuizPackagesController", function ($scope, quizPackageServic
             $scope.totalCount = result.TotalCount;
             $scope.packages = result.List;
 
+        }, 
+        function (err) {
+            toaster.pop("error", "Fetch error", "Failed to get quiz packages");
         });
     }
 

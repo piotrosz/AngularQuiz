@@ -203,7 +203,7 @@
   <ItemGroup>
     <Content Include="app\controllers\quizPackageEditController.js" />
     <Content Include="app\controllers\quizPackagesController.js" />
-    <Content Include="app\services\quizPackage.js" />
+    <Content Include="app\services\quizPackageService.js" />
     <Content Include="app\views\packageEdit.html" />
     <Content Include="Content\toaster.css" />
     <Content Include="Scripts\loading-bar.js" />

@@ -20,6 +20,6 @@ namespace SimpleQuiz.Core.Model
         [JsonIgnore]
         public Byte[] Timestamp { get; set; }
 
-        public int QuizCount { get { return Quizes.Count(); } }
+        public int QuizCount { get { return Quizes == null ? -1 : Quizes.Count(); } }
     }
 }
