@@ -1,6 +1,4 @@
-﻿<toaster-container toaster-options="{'time-out': 1700}"></toaster-container>
-
-<div class="col-xs-12 col-sm-12 col-md-12">
+﻿<div class="col-xs-12 col-sm-12 col-md-12">
     <form class="form-horizontal">
             <div class="form-group">
                 <div class="col-md-3">
@@ -14,6 +12,8 @@
                     </button>
                 </div>
             </div>
+
+            <toaster-container toaster-options="{'time-out': 1700}"></toaster-container>
 
             <div class="well well-sm" ng-show="totalCount == 0 && searchPhrase != null">
                 <h5>No packages found. <span ng-show="searchPhrase != null">You searched by <i>{{searchPhrase}}</i>.</span></h5>
@@ -31,7 +31,7 @@
                                 {{package.Name}}
                             </div>
                             <div class="col-md-5">
-                                <button class="btn btn-success pull-right" ng-click="edit(package)">Edit</button>
+                                <button class="btn btn-success pull-right" ng-click="openEditModal(package)">Edit</button>
 
                             </div>
 

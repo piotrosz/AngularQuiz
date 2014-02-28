@@ -7,7 +7,7 @@ quizApp.config(function ($routeProvider/*, cfpLoadingBarProvider */) {
 
     $routeProvider.when("/packages",
     {
-        controller: "QuizPackageController",
+        controller: "QuizPackagesController",
         templateUrl: "/app/views/quizpackages.html"
     })
     .otherwise({ redirectTo: "/packages" });

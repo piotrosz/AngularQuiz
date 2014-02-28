@@ -201,12 +201,13 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="app\controllers\quizPackageController.js" />
+    <Content Include="app\controllers\quizPackageEditController.js" />
+    <Content Include="app\controllers\quizPackagesController.js" />
     <Content Include="app\services\quizPackage.js" />
     <Content Include="app\views\packageEdit.html" />
     <Content Include="Content\toaster.css" />
     <Content Include="Scripts\loading-bar.js" />
-    <Content Include="app\views\quizpackages.html" />
+    <Content Include="app\views\quizPackages.html" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.superhero.css" />

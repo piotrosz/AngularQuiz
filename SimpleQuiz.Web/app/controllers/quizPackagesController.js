@@ -1,6 +1,6 @@
 ﻿'use strict';
 
-quizApp.controller("QuizPackageController", function ($scope, quizPackageService, $modal) {
+quizApp.controller("QuizPackagesController", function ($scope, quizPackageService, $modal) {
     $scope.searchPhrase = null;
 
     // paging 
@@ -35,13 +35,13 @@ quizApp.controller("QuizPackageController", function ($scope, quizPackageService
         getPackages();
     }
 
-    $scope.edit = function (item) {
+    $scope.openEditModal = function (item) {
 
         var modalInstance = $modal.open({
-            templateUrl: "app/views/packageedit.html",
-            controller: "QuizPackageController",
+            templateUrl: "app/views/packageEdit.html",
+            controller: "QuizPackageEditController",
             resolve: {
-
+                quizPackage: function () { return item; }
             }
         });
     }
