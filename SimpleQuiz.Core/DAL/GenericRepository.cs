@@ -39,7 +39,14 @@ namespace SimpleQuiz.Core.DAL
 
         public void Attach(TEntity entity)
         {
-            _dbSet.Attach(entity);
+            //_dbSet.Attach(entity);
+
+            var original = _dbSet.Find(entity.Id);
+
+            if (original != null)
+            {
+                _context.Entry(original).CurrentValues.SetValues(entity);
+            }
         }
 
         public void Delete(TEntity entity)
