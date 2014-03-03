@@ -47,7 +47,7 @@ quizApp.controller("QuizPackagesController", function ($scope, quizPackageServic
         });
     }
 
-   $scope.openDeleteModal = function (item) {
+    $scope.openDeleteModal = function (item) {
         var modalInstance = $modal.open({
             templateUrl: "app/views/packageDelete.html",
             controller: "QuizPackageDeleteController",
@@ -61,6 +61,19 @@ quizApp.controller("QuizPackagesController", function ($scope, quizPackageServic
             getPackages();
         }, function () {
             // Do nothing when dismissed 
+        });
+   }
+
+    $scope.openAddModal = function()
+    {
+        var modalInstance = $modal.open({
+            templateUrl: "app/views/packageAdd.html",
+            controller: "QuizPackageAddController"
+        });
+
+        modalInstance.result.then(function () {
+            $scope.currentPage = 1;
+            getPackages();
         });
     }
 });

@@ -19,10 +19,15 @@ quizApp.factory("quizPackageService", function ($resource) {
         $resource(requestUrl).delete(item, success, error);
     }
 
+    var _add = function (item, success, error) {
+        $resource(requestUrl).save(item, success, error);
+    }
+
     var packagesFactory = {};
     packagesFactory.save = _save;
     packagesFactory.query = _query;
     packagesFactory.delete = _delete;
+    packagesFactory.add = _add;
 
     return packagesFactory;
 });

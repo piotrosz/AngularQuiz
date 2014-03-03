@@ -200,10 +200,12 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\controllers\quizPackageAddController.js" />
     <Content Include="app\controllers\quizPackageDeleteController.js" />
     <Content Include="app\controllers\quizPackageEditController.js" />
     <Content Include="app\controllers\quizPackagesController.js" />
     <Content Include="app\services\quizPackageService.js" />
+    <Content Include="app\views\packageAdd.html" />
     <Content Include="app\views\packageDelete.html" />
     <Content Include="app\views\packageEdit.html" />
     <Content Include="Content\toaster.css" />
