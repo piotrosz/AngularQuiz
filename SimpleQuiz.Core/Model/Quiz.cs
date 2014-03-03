@@ -14,6 +14,8 @@ namespace SimpleQuiz.Core.Model
 
         public virtual ICollection<Question> Questions { get; set; }
 
+        public int QuestionCount { get { return Questions == null ? -1 : Questions.Count; } }
+
         public int QuizPackageId { get; set; }
 
         [JsonIgnore]

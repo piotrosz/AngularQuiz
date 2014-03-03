@@ -1,6 +1,6 @@
 ﻿'use strict';
 
-quizApp.controller("QuizPackagesController", function ($scope, quizPackageService, $modal, toaster) {
+quizApp.controller("QuizPackagesController", function ($scope, quizPackageService, $modal, toaster, $location) {
     $scope.searchPhrase = null;
 
     // paging 
@@ -75,5 +75,9 @@ quizApp.controller("QuizPackagesController", function ($scope, quizPackageServic
             $scope.currentPage = 1;
             getPackages();
         });
+    }
+
+    $scope.details = function (item) {
+        $location.path("/quizes/" + item.Id);
     }
 });

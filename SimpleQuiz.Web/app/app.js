@@ -1,14 +1,18 @@
 ﻿var quizApp = angular.module("quiz", ["ngRoute", "ngResource", "ui.bootstrap", "chieffancypants.loadingBar", "toaster"]);
 
-quizApp.config(function ($routeProvider/*, cfpLoadingBarProvider */) {
+quizApp.config(function ($routeProvider) {
 
-    //cfpLoadingBarProvider.includeSpinner = true;
-    //cfpLoadingBarProvider.includeBar = true;
-
-    $routeProvider.when("/packages",
-    {
-        controller: "QuizPackagesController",
-        templateUrl: "/app/views/quizpackages.html"
-    })
-    .otherwise({ redirectTo: "/packages" });
+    
+    $routeProvider
+        .when("/packages",
+        {
+            controller: "QuizPackagesController",
+            templateUrl: "/app/views/quizpackages.html"
+        })
+        .when("/quizes/:packageId",
+        {
+            controller: "QuizController",
+            templateUrl: "/app/views/quizes.html"
+        })
+        .otherwise({ redirectTo: "/packages" });
 });
