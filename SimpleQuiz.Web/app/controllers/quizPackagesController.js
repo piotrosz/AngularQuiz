@@ -47,13 +47,20 @@ quizApp.controller("QuizPackagesController", function ($scope, quizPackageServic
         });
     }
 
-    $scope.openDeleteModal = function (item) {
+   $scope.openDeleteModal = function (item) {
         var modalInstance = $modal.open({
             templateUrl: "app/views/packageDelete.html",
             controller: "QuizPackageDeleteController",
             resolve: {
                 quizPackage: function () { return item; }
             }
+        });
+
+        modalInstance.result.then(function () {
+            $scope.currentPage = 1;
+            getPackages();
+        }, function () {
+            // Do nothing when dismissed 
         });
     }
 });
