@@ -15,11 +15,16 @@ quizApp.controller("QuizController", function ($scope, quizService, quizPackageS
         quizPackageService.get($scope.packageId, function (result) {
             $scope.quizPackage = result;
         },
-            function () { })
+            function () { });
     }
 
     function getQuizes() {
-
+        quizService.query($scope.packageId,
+            function (result) {
+                $scope.quizes = result;
+        },
+        function (result) {
+        });
     }
 
 });

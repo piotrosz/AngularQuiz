@@ -24,10 +24,10 @@ namespace SimpleQuiz.Web.Controllers
             _answerChecker = answerChecker;
         }
 
-        // GET api/Quiz
-        public IQueryable<Quiz> GetQuizes()
+        [Route("api/quizesbypackage/{packageId:int:min(1)}")]
+        public IQueryable<Quiz> GetQuizesByPackageId(int packageId)
         {
-            return _unitOfWork.Quiz.List();
+            return _unitOfWork.Quiz.List().Where(q => q.QuizPackageId == packageId);
         }
 
         // GET api/Quiz/5

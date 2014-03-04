@@ -6,12 +6,12 @@ quizApp.controller("QuizPackageDeleteController", function ($scope, $modalInstan
 
     $scope.delete = function () {
         quizPackageService.delete($scope.quizPackage,
-            function (arg1) {
-                toaster.pop('success', "Deleted successfully", "Quiz package has been deleted.");
+            function (item) {
+                toaster.pop('success', "Deleted successfully", "Package " + item.Name + " was deleted successfully.");
                 $modalInstance.close();
             },
-            function (arg1) {
-                toaster.pop('error', "Failed to delete", "Something went wrong while deleting.");
+            function (item) {
+                toaster.pop('error', "Failed to delete", "Something went wrong while deleting " + item.Name + ".");
             });
     };
 

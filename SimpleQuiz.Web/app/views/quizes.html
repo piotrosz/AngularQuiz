@@ -14,33 +14,28 @@
 
         <toaster-container toaster-options="{'time-out': 1700}"></toaster-container>
 
-        <div class="well well-sm" ng-show="totalCount == 0">
+        <div class="well well-sm" ng-show="quizes.length == 0">
             <h5>No quizes found.</h5>
         </div>
 
-        <div ng-show="totalCount > 0">
-            <ul class="list-group" data-ng-repeat="quiz in quizes">
-                <li class="list-group-item">
-                    <div class="row">
-                        <div class="col-md-1">
-                            <span class="label label-info">{{quiz.QuestionCount}}</span>
-                        </div>
-                        <div class="col-md-9">
-                            {{quiz.Name}}
-                        </div>
-
-                        <div class="col-md-1">
-                            <button class="btn btn-info pull-right" ng-click="details(quiz)">Details</button>
-                        </div>
-                        <div class="col-md-1">
-                            <button class="btn btn-success pull-right" ng-click="openEditModal(quiz)">Edit</button>
-                        </div>
-                        <div class="col-md-1">
-                            <button class="btn btn-danger pull-right" ng-click="openDeleteModal(quiz)">Delete</button>
-                        </div>
+        <ul class="list-group" data-ng-repeat="quiz in quizes">
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-md-1">
+                        <span class="label label-info">{{quiz.QuestionCount}}</span>
                     </div>
-                </li>
-            </ul>
-        </div>
+                    <div class="col-md-9">
+                        {{quiz.Name}}
+                    </div>
+
+                    <div class="col-md-1">
+                        <button class="btn btn-success pull-right" ng-click="openEditModal(quiz)">Edit</button>
+                    </div>
+                    <div class="col-md-1">
+                        <button class="btn btn-danger pull-right" ng-click="openDeleteModal(quiz)">Delete</button>
+                    </div>
+                </div>
+            </li>
+        </ul>
     </form>
 </div>

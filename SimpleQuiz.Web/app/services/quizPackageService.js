@@ -27,12 +27,11 @@ quizApp.factory("quizPackageService", function ($resource) {
         $resource(requestUrl, { id: "@Id" }).get({id: id}, success, error);
     }
 
-    var packagesFactory = {};
-    packagesFactory.save = _save;
-    packagesFactory.query = _query;
-    packagesFactory.delete = _delete;
-    packagesFactory.add = _add;
-    packagesFactory.get = _get;
-
-    return packagesFactory;
+    return {
+        save: _save,
+        query: _query,
+        delete: _delete,
+        add: _add,
+        get: _get
+    };
 });

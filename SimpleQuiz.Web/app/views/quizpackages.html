@@ -30,20 +30,16 @@
                             <div class="col-md-1">
                                 <span class="label label-info">{{package.QuizCount}}</span>
                             </div>
-                            <div class="col-md-8">
-                                {{package.Name}}
+                            <div class="col-md-9">
+                                <button class="btn btn-link" ng-click="details(package)">{{package.Name}}</button>
                             </div>
 
-                            <div class="col-md-1">
-                                <button class="btn btn-info pull-right" ng-click="details(package)">Details</button>
-                            </div> 
                             <div class="col-md-1">
                                 <button class="btn btn-success pull-right" ng-click="openEditModal(package)">Edit</button>
                             </div>
                             <div class="col-md-1">
                                 <button class="btn btn-danger pull-right" ng-click="openDeleteModal(package)">Delete</button>
                             </div>
-
                         </div>
                     </li>
                 </ul>

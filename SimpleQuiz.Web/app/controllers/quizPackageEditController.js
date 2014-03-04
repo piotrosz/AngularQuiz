@@ -6,12 +6,12 @@ quizApp.controller("QuizPackageEditController", function ($scope, $modalInstance
 
     $scope.save = function () {
         quizPackageService.save($scope.quizPackage,
-            function (arg1) {
-                toaster.pop('success', "Saved successfully", "Quiz package has been updated.");
+            function (item) {
+                toaster.pop('success', "Updated successfully", "Package " + item.Name + " was updated successfully.");
                 $modalInstance.close();
             }, 
-            function (arg1) {
-                toaster.pop('error', "Failed to save", "Something went wrong while saving.");
+            function (item) {
+                toaster.pop('error', "Failed to save", "Something went wrong while saving " + item.Name + ".");
             });
     };
 
