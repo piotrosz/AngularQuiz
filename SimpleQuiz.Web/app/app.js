@@ -2,7 +2,6 @@
 
 quizApp.config(function ($routeProvider) {
 
-    
     $routeProvider
         .when("/packages",
         {
@@ -13,6 +12,11 @@ quizApp.config(function ($routeProvider) {
         {
             controller: "QuizController",
             templateUrl: "/app/views/quizes.html"
+        })
+        .when("/questions/:quizId",
+        {
+            controller: "QuestionController",
+            templateUrl: "/app/views/questions.html"
         })
         .otherwise({ redirectTo: "/packages" });
 });

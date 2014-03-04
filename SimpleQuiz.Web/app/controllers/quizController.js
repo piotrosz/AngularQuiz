@@ -27,4 +27,45 @@ quizApp.controller("QuizController", function ($scope, quizService, quizPackageS
         });
     }
 
+    $scope.openEditModal = function (item) {
+        var modalInstance = $modal.open({
+            templateUrl: "app/views/quizEdit.html",
+            controller: "QuizEditController",
+            resolve: {
+                quiz: function () { return item; }
+            }
+        });
+    }
+
+    $scope.openDeleteModal = function (item) {
+        var modalInstance = $modal.open({
+            templateUrl: "app/views/quizDelete.html",
+            controller: "QuizDeleteController",
+            resolve: {
+                quiz: function () { return item; }
+            }
+        });
+
+        modalInstance.result.then(function () {
+            getQuizes();
+        }, function () {
+            // Do nothing when dismissed 
+        });
+    }
+
+    $scope.openAddModal = function () {
+        var modalInstance = $modal.open({
+            templateUrl: "app/views/quizAdd.html",
+            controller: "QuizAddController"
+        });
+
+        modalInstance.result.then(function () {
+            getQuizes();
+        });
+    }
+
+    $scope.details = function (item) {
+        $location.path("/questions/" + item.Id);
+    }
+
 });
