@@ -19,9 +19,14 @@ quizApp.factory("quizService", function ($resource) {
         $resource("/api/quiz/").save(item, success, error);
     }
 
+    var _delete = function (item, success, error) {
+        $resource(requestUrl).delete(item, success, error);
+    }
+
     return {
         query: _query,
         save: _save,
-        add: _add
+        add: _add,
+        delete: _delete
     };
 });
