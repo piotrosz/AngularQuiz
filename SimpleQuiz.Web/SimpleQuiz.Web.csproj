@@ -200,16 +200,22 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\controllers\modalControllerBase.js" />
+    <Content Include="app\controllers\quizAddController.js" />
     <Content Include="app\controllers\quizController.js" />
+    <Content Include="app\controllers\quizEditController.js" />
     <Content Include="app\controllers\quizPackageAddController.js" />
     <Content Include="app\controllers\quizPackageDeleteController.js" />
     <Content Include="app\controllers\quizPackageEditController.js" />
     <Content Include="app\controllers\quizPackagesController.js" />
+    <Content Include="app\directives\directives.js" />
     <Content Include="app\services\quizPackageService.js" />
     <Content Include="app\services\quizService.js" />
     <Content Include="app\views\packageAdd.html" />
     <Content Include="app\views\packageDelete.html" />
     <Content Include="app\views\packageEdit.html" />
+    <Content Include="app\views\quizAdd.html" />
+    <Content Include="app\views\quizEdit.html" />
     <Content Include="app\views\quizes.html" />
     <Content Include="Content\toaster.css" />
     <Content Include="Scripts\loading-bar.js" />

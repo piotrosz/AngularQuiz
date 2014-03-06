@@ -97,7 +97,7 @@ namespace SimpleQuiz.Web.Controllers
             return CreatedAtRoute("DefaultApi", new { id = quiz.Id }, quiz);
         }
 
-
+         [Route("api/quizcheckanswers")]
         public IHttpActionResult CheckAnswers(QuizUserAnswers userAnswers)
         {
             var quiz = _unitOfWork.Quiz.List().SingleOrDefault(q => q.Id == userAnswers.QuizId);

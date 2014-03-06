@@ -19,6 +19,8 @@ app.config(function(cfpLoadingBarProvider){
 	cfpLoadingBarProvider.includeBar = true;
 })
 
-Web API 2 authentication:
 
-
+TODO:
+- Check Google log in
+- Authorize on API controllers
+- Add admin role

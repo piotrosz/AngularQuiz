@@ -1,6 +1,8 @@
 ﻿'use strict';
 
-quizApp.controller("QuizPackageAddController", function ($scope, $modalInstance, quizPackageService, toaster) {
+quizApp.controller("QuizPackageAddController", function ($scope, $controller, $modalInstance, quizPackageService, toaster) {
+
+    $controller("ModalControllerBase", { $scope: $scope, $modalInstance: $modalInstance });
 
     $scope.quizPackage = {};
 
@@ -13,9 +15,5 @@ quizApp.controller("QuizPackageAddController", function ($scope, $modalInstance,
             function (arg1) {
                 toaster.pop('error', "Failed to add", "Something went wrong while adding.");
             });
-    };
-
-    $scope.close = function () {
-        $modalInstance.dismiss("cancel");
     };
 })

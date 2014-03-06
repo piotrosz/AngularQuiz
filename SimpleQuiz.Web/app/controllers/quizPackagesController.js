@@ -16,15 +16,14 @@ quizApp.controller("QuizPackagesController", function ($scope, quizPackageServic
 
     function getPackages() {
         var offset = ($scope.pageSize) * ($scope.currentPage - 1);
-        quizPackageService.query({ searchPhrase: $scope.searchPhrase, pageSize: $scope.pageSize, offset: offset }, function (result) {
-
-            $scope.totalCount = result.TotalCount;
-            $scope.packages = result.List;
-
-        },
-        function (err) {
-            toaster.pop("error", "Fetch error", "Failed to get quiz packages");
-        });
+        quizPackageService.query({ searchPhrase: $scope.searchPhrase, pageSize: $scope.pageSize, offset: offset },
+            function (result) {
+                $scope.totalCount = result.TotalCount;
+                $scope.packages = result.List;
+            },
+            function (err) {
+                toaster.pop("error", "Fetch error", "Failed to get quiz packages");
+            });
     }
 
     $scope.search = function () {

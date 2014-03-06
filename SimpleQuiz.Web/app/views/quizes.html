@@ -8,11 +8,11 @@
             </div>
 
             <div class="col-md-4">
-                <button class="btn btn-default pull-right" ng-click="openAddModal()">Add new</button>
+                <button class="btn btn-default pull-right" ng-click="openAddModal(quizPackage.Id)">Add new</button>
             </div>
         </div>
 
-        <toaster-container toaster-options="{'time-out': 1700}"></toaster-container>
+        <toaster-container toaster-options="{'time-out': 5000}"></toaster-container>
 
         <div class="well well-sm" ng-show="quizes.length == 0">
             <h5>No quizes found.</h5>

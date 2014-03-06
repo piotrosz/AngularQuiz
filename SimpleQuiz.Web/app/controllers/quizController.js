@@ -1,6 +1,6 @@
 ﻿'use strict';
 
-quizApp.controller("QuizController", function ($scope, quizService, quizPackageService, toaster, $routeParams) {
+quizApp.controller("QuizController", function ($scope, $modal, quizService, quizPackageService, toaster, $routeParams) {
 
     init();
 
@@ -53,10 +53,13 @@ quizApp.controller("QuizController", function ($scope, quizService, quizPackageS
         });
     }
 
-    $scope.openAddModal = function () {
+    $scope.openAddModal = function (packageId) {
         var modalInstance = $modal.open({
             templateUrl: "app/views/quizAdd.html",
-            controller: "QuizAddController"
+            controller: "QuizAddController",
+            resolve: {
+                packageId: function () { return packageId; }
+            }
         });
 
         modalInstance.result.then(function () {
