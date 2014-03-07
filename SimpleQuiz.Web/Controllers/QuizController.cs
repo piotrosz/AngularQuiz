@@ -10,6 +10,8 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using SimpleQuiz.Core.Model;
 using SimpleQuiz.Core.DAL;
+using SimpleQuiz.Core.AnswerCheck;
+using SimpleQuiz.Core.Model.Questions;
 
 namespace SimpleQuiz.Web.Controllers
 {
@@ -25,9 +27,9 @@ namespace SimpleQuiz.Web.Controllers
         }
 
         [Route("api/quizesbypackage/{packageId:int:min(1)}")]
-        public IQueryable<Quiz> GetQuizesByPackageId(int packageId)
+        public IEnumerable<Quiz> GetQuizesByPackageId(int packageId)
         {
-            return _unitOfWork.Quiz.List().Where(q => q.QuizPackageId == packageId);
+            return _unitOfWork.Quiz.List().Where(q => q.QuizPackageId == packageId).ToList();
         }
 
         // GET api/Quiz/5

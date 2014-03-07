@@ -8,40 +8,43 @@ namespace SimpleQuiz.Migrations
         public override void Up()
         {
             CreateTable(
-                "dbo.QuestionCorrectAnswer",
+                "dbo.OpenQuestionCorrectAnswer",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
                         QuestionId = c.Int(nullable: false),
                         OrderId = c.Int(nullable: false),
-                        CreatedOn = c.DateTime(nullable: false, defaultValueSql: "GETDATE()"),
+                        OpenQuestion_Id = c.Int(),
                     })
-                .PrimaryKey(t => t.Id);
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.OpenQuestion", t => t.OpenQuestion_Id)
+                .Index(t => t.OpenQuestion_Id);
             
             CreateTable(
-                "dbo.QuestionCorrectAnswerOption",
+                "dbo.OpenQuestionCorrectAnswerOption",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        QuestionCorrectAnswerId = c.Int(nullable: false),
-                        Content = c.String(nullable: false),
-                        CreatedOn = c.DateTime(nullable: false, defaultValueSql: "GETDATE()"),
+                        OpenQuestionCorrectAnswerId = c.Int(nullable: false),
+                        Content = c.String(nullable: false, maxLength: 1024),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.QuestionCorrectAnswer", t => t.QuestionCorrectAnswerId, cascadeDelete: true)
-                .Index(t => t.QuestionCorrectAnswerId);
+                .ForeignKey("dbo.OpenQuestionCorrectAnswer", t => t.OpenQuestionCorrectAnswerId, cascadeDelete: true)
+                .Index(t => t.OpenQuestionCorrectAnswerId);
             
             CreateTable(
-                "dbo.Question",
+                "dbo.OpenQuestion",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
                         QuizId = c.Int(nullable: false),
                         OrderId = c.Int(nullable: false),
                         Content = c.String(nullable: false),
-                        CreatedOn = c.DateTime(nullable: false, defaultValueSql: "GETDATE()"),
+                        View = c.String(nullable: false),
                     })
-                .PrimaryKey(t => t.Id);
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Quiz", t => t.QuizId, cascadeDelete: true)
+                .Index(t => t.QuizId);
             
             CreateTable(
                 "dbo.Quiz",
@@ -49,13 +52,26 @@ namespace SimpleQuiz.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Name = c.String(nullable: false, maxLength: 255),
+                        View = c.String(nullable: false, maxLength: 255),
                         QuizPackageId = c.Int(nullable: false),
-                        Timestamp = c.Binary(nullable: false, fixedLength: true, timestamp: true, storeType: "rowversion"),
-                        CreatedOn = c.DateTime(nullable: false, defaultValueSql: "GETDATE()"),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.QuizPackage", t => t.QuizPackageId, cascadeDelete: true)
                 .Index(t => t.QuizPackageId);
+            
+            CreateTable(
+                "dbo.CategoryQuestion",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        QuizId = c.Int(nullable: false),
+                        OrderId = c.Int(nullable: false),
+                        Content = c.String(nullable: false),
+                        View = c.String(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Quiz", t => t.QuizId, cascadeDelete: true)
+                .Index(t => t.QuizId);
             
             CreateTable(
                 "dbo.QuizPackage",
@@ -64,9 +80,50 @@ namespace SimpleQuiz.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         Name = c.String(nullable: false, maxLength: 255),
                         Timestamp = c.Binary(nullable: false, fixedLength: true, timestamp: true, storeType: "rowversion"),
-                        CreatedOn = c.DateTime(nullable: false, defaultValueSql: "GETDATE()"),
                     })
                 .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.SortQuestion",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        QuizId = c.Int(nullable: false),
+                        OrderId = c.Int(nullable: false),
+                        Content = c.String(nullable: false),
+                        View = c.String(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Quiz", t => t.QuizId, cascadeDelete: true)
+                .Index(t => t.QuizId);
+            
+            CreateTable(
+                "dbo.TestQuestionOption",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Content = c.String(nullable: false, maxLength: 1024),
+                        QuestionId = c.Int(nullable: false),
+                        IsCorrect = c.Boolean(nullable: false),
+                        SortQuestion_Id = c.Int(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.SortQuestion", t => t.SortQuestion_Id)
+                .Index(t => t.SortQuestion_Id);
+            
+            CreateTable(
+                "dbo.TestQuestion",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        QuizId = c.Int(nullable: false),
+                        OrderId = c.Int(nullable: false),
+                        Content = c.String(nullable: false),
+                        View = c.String(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Quiz", t => t.QuizId, cascadeDelete: true)
+                .Index(t => t.QuizId);
             
             CreateTable(
                 "dbo.AspNetRoles",
@@ -84,7 +141,6 @@ namespace SimpleQuiz.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         UserId = c.Int(nullable: false),
                         Timestamp = c.Binary(nullable: false, fixedLength: true, timestamp: true, storeType: "rowversion"),
-                        CreatedOn = c.DateTime(nullable: false, defaultValueSql: "GETDATE()"),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -97,7 +153,6 @@ namespace SimpleQuiz.Migrations
                         QuizId = c.Int(nullable: false),
                         Points = c.Int(nullable: false),
                         MaxPoints = c.Int(nullable: false),
-                        CreatedOn = c.DateTime(nullable: false, defaultValueSql: "GETDATE()"),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -161,14 +216,26 @@ namespace SimpleQuiz.Migrations
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
             DropForeignKey("dbo.AspNetUserLogins", "User_Id", "dbo.AspNetUsers");
+            DropForeignKey("dbo.TestQuestion", "QuizId", "dbo.Quiz");
+            DropForeignKey("dbo.SortQuestion", "QuizId", "dbo.Quiz");
+            DropForeignKey("dbo.TestQuestionOption", "SortQuestion_Id", "dbo.SortQuestion");
             DropForeignKey("dbo.Quiz", "QuizPackageId", "dbo.QuizPackage");
-            DropForeignKey("dbo.QuestionCorrectAnswerOption", "QuestionCorrectAnswerId", "dbo.QuestionCorrectAnswer");
+            DropForeignKey("dbo.OpenQuestion", "QuizId", "dbo.Quiz");
+            DropForeignKey("dbo.CategoryQuestion", "QuizId", "dbo.Quiz");
+            DropForeignKey("dbo.OpenQuestionCorrectAnswer", "OpenQuestion_Id", "dbo.OpenQuestion");
+            DropForeignKey("dbo.OpenQuestionCorrectAnswerOption", "OpenQuestionCorrectAnswerId", "dbo.OpenQuestionCorrectAnswer");
             DropIndex("dbo.AspNetUserClaims", new[] { "User_Id" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserLogins", new[] { "User_Id" });
+            DropIndex("dbo.TestQuestion", new[] { "QuizId" });
+            DropIndex("dbo.SortQuestion", new[] { "QuizId" });
+            DropIndex("dbo.TestQuestionOption", new[] { "SortQuestion_Id" });
             DropIndex("dbo.Quiz", new[] { "QuizPackageId" });
-            DropIndex("dbo.QuestionCorrectAnswerOption", new[] { "QuestionCorrectAnswerId" });
+            DropIndex("dbo.OpenQuestion", new[] { "QuizId" });
+            DropIndex("dbo.CategoryQuestion", new[] { "QuizId" });
+            DropIndex("dbo.OpenQuestionCorrectAnswer", new[] { "OpenQuestion_Id" });
+            DropIndex("dbo.OpenQuestionCorrectAnswerOption", new[] { "OpenQuestionCorrectAnswerId" });
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
@@ -176,11 +243,15 @@ namespace SimpleQuiz.Migrations
             DropTable("dbo.UserQuizScore");
             DropTable("dbo.UserQuizScorePackage");
             DropTable("dbo.AspNetRoles");
+            DropTable("dbo.TestQuestion");
+            DropTable("dbo.TestQuestionOption");
+            DropTable("dbo.SortQuestion");
             DropTable("dbo.QuizPackage");
+            DropTable("dbo.CategoryQuestion");
             DropTable("dbo.Quiz");
-            DropTable("dbo.Question");
-            DropTable("dbo.QuestionCorrectAnswerOption");
-            DropTable("dbo.QuestionCorrectAnswer");
+            DropTable("dbo.OpenQuestion");
+            DropTable("dbo.OpenQuestionCorrectAnswerOption");
+            DropTable("dbo.OpenQuestionCorrectAnswer");
         }
     }
 }

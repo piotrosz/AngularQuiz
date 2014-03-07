@@ -46,9 +46,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CheckAnswerStrategy\AnswerExactStrategyFacts.cs" />
+    <Compile Include="CheckAnswerStrategy\CheckAnswerOpenQuestionStrategyFacts.cs" />
+    <Compile Include="CheckAnswerStrategy\CheckAnswerTestQuestionStrategyFacts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Stubs\StubQuestions.cs" />
+    <Compile Include="Stubs\StubOpenQuestions.cs" />
+    <Compile Include="Stubs\StubTestQuestions.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SimpleQuiz.Core\SimpleQuiz.Core.csproj">

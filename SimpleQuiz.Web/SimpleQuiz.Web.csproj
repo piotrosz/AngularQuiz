@@ -215,10 +215,13 @@
     <Content Include="app\views\packageAdd.html" />
     <Content Include="app\views\packageDelete.html" />
     <Content Include="app\views\packageEdit.html" />
+    <Content Include="app\views\questionStandard.html" />
     <Content Include="app\views\quizAdd.html" />
     <Content Include="app\views\quizDelete.html" />
     <Content Include="app\views\quizEdit.html" />
-    <Content Include="app\views\quizes.html" />
+    <Content Include="app\views\packageQuizes.html" />
+    <Content Include="app\views\quizQuestions.html" />
+    <Content Include="app\views\quizStandard.html" />
     <Content Include="Content\toaster.css" />
     <Content Include="Scripts\loading-bar.js" />
     <Content Include="app\views\quizPackages.html" />

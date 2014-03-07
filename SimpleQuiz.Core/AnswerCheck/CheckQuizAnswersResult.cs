@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using SimpleQuiz.Core.Model;
 
-namespace SimpleQuiz
+namespace SimpleQuiz.Core.AnswerCheck
 {
     public class CheckQuizAnswersResult
     {

@@ -16,11 +16,11 @@ namespace SimpleQuiz.Core.Model
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [JsonIgnore]
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        [DataType(DataType.DateTime)]
-        [DisplayName("Created date")]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
-        public DateTime CreatedOn { get; set; }
+        //[JsonIgnore]
+        //[DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        //[DataType(DataType.DateTime)]
+        //[DisplayName("Created date")]
+        //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
+        //public DateTime CreatedOn { get; set; }
     }
 }

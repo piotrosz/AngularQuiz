@@ -1,4 +1,5 @@
 ﻿using SimpleQuiz.Core.Model;
+using SimpleQuiz.Core.Model.Questions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,8 @@ namespace SimpleQuiz.Core.DAL
         private readonly SimpleQuizContext _context;
         private GenericRepository<QuizPackage> _quizPackageRepository;
         private GenericRepository<Quiz> _quizRepository;
+        private GenericRepository<OpenQuestion> _openQuestionRepository;
+        private GenericRepository<TestQuestion> _testQuestionRepository;
 
         public UnitOfWork()
         {
@@ -37,6 +40,16 @@ namespace SimpleQuiz.Core.DAL
         public IGenericRepository<Quiz> Quiz
         {
             get { return GetRepositoryLazy(_quizRepository); }
+        }
+
+        public IGenericRepository<OpenQuestion> OpenQuestion
+        {
+            get { return GetRepositoryLazy(_openQuestionRepository);  }
+        }
+
+        public IGenericRepository<TestQuestion> TestQuestion
+        {
+            get { return GetRepositoryLazy(_testQuestionRepository); }
         }
 
         public void Save()

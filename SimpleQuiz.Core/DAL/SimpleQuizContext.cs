@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
 using SimpleQuiz.Core.Model;
+using SimpleQuiz.Core.Model.Questions;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -28,9 +29,16 @@ namespace SimpleQuiz.Core.DAL
 
         public DbSet<QuizPackage> QuizPackages { get; set; }
         public DbSet<Quiz> Quizes { get; set; }
-        public DbSet<Question> Questions { get; set; }
-        public DbSet<QuestionCorrectAnswer> QuestionCorrectAnswers { get; set; }
-        public DbSet<QuestionCorrectAnswerOption> QuestionCorrectAnswersOptions { get; set; }
+        
+        public DbSet<OpenQuestion> OpenQuestions { get; set; }
+        public DbSet<OpenQuestionCorrectAnswer> OpenQuestionCorrectAnswers { get; set; }
+        public DbSet<OpenQuestionCorrectAnswerOption> OpenQuestionCorrectAnswersOptions { get; set; }
+
+        public DbSet<TestQuestion> TestQuestions { get; set; }
+        public DbSet<TestQuestionOption> TestQuestionOptions { get; set; }
+        
+        //public DbSet<SortQuestion> SortQuestions { get; set; }
+        //public DbSet<CategoryQuestion> CategoryQuestions { get; set; }
 
         public DbSet<UserQuizScorePackage> UserQuizScorePackages { get; set; }
         public DbSet<UserQuizScore> UserQuizScores { get; set; }

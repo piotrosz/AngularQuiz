@@ -1,6 +1,7 @@
 ﻿using Ninject.Modules;
-using SimpleQuiz.CheckAnswerStrategy;
+using SimpleQuiz.Core.AnswerCheck;
 using SimpleQuiz.Core.DAL;
+using SimpleQuiz.Core.Model.Questions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,11 @@ namespace SimpleQuiz.Core.Ninject
         {
             Bind<IUnitOfWork>().To<UnitOfWork>();
             Bind<IQuizAnswerChecker>().To<QuizAnswersChecker>();
-            Bind<ICheckAnswerStrategy>().To<AnswerExactStrategy>();
+
+            Bind<ICheckAnswerStrategy<OpenQuestion>>().To<CheckAnswerOpenQuestionStrategy>();
+            Bind<ICheckAnswerStrategy<CategoryQuestion>>().To<CheckAnswerCategoryQuestionStrategy>();
+            Bind<ICheckAnswerStrategy<TestQuestion>>().To<CheckAnswerTestQuestionStrategy>();
+            Bind<ICheckAnswerStrategy<SortQuestion>>().To<CheckAnswerSortQuestionStrategy>();
         }
     }
 }

@@ -11,12 +11,12 @@ quizApp.config(function ($routeProvider) {
         .when("/quizes/:packageId",
         {
             controller: "QuizController",
-            templateUrl: "/app/views/quizes.html"
+            templateUrl: "/app/views/packageQuizes.html"
         })
         .when("/questions/:quizId",
         {
             controller: "QuestionController",
-            templateUrl: "/app/views/questions.html"
+            templateUrl: "/app/views/quizQuestions.html"
         })
         .otherwise({ redirectTo: "/packages" });
 });

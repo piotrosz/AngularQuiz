@@ -2,8 +2,9 @@
 using System.Linq;
 using System.Collections.Generic;
 using SimpleQuiz.Core.Model;
+using SimpleQuiz.Core.Model.Questions;
 
-namespace SimpleQuiz
+namespace SimpleQuiz.Core.AnswerCheck
 {
     public class CheckAnswerResult
     {
@@ -12,13 +13,11 @@ namespace SimpleQuiz
         public CheckAnswerResult(Question question)
         {
             CorrectAswersIds = new List<int>();
-            IncorrectAnswersIds = new List<int>();
             Question = question;
         }
 
         public bool IsCorrect { get; set; }
 
         public List<int> CorrectAswersIds { get; set; }
-        public List<int> IncorrectAnswersIds { get; set; }
     }
 }

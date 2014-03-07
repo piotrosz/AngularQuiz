@@ -1,16 +1,18 @@
 ﻿using SimpleQuiz.Core.Model;
+using SimpleQuiz.Core.Model.Questions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SimpleQuiz.CheckAnswerStrategy
+namespace SimpleQuiz.Core.AnswerCheck
 {
-    //Full correct answer text is required
-    //ignores case, uses current culture
-    public class AnswerExactStrategy : ICheckAnswerStrategy
+    // Full correct answer text is required.
+    // Ignores case, uses current culture.
+    // Answers order is significant.
+    public class CheckAnswerOpenQuestionStrategy : ICheckAnswerStrategy<OpenQuestion>
     {
-        public CheckAnswerResult Check(QuestionUserAnswer userAnswer, Question question)
+        public CheckAnswerResult Check(QuestionUserAnswer userAnswer, OpenQuestion question)
         {
             if(question == null)
             {
@@ -38,7 +40,7 @@ namespace SimpleQuiz.CheckAnswerStrategy
 
             for (int answerIndex = 0; answerIndex < userAnswer.Answers.Count; answerIndex++)
             {
-                QuestionCorrectAnswer correctAnswer = question.CorrectAnswers.OrderBy(a => a.OrderId).ElementAt(answerIndex);
+                OpenQuestionCorrectAnswer correctAnswer = question.CorrectAnswers.OrderBy(a => a.OrderId).ElementAt(answerIndex);
 
                 if (correctAnswer.CorrectAnswerOptions.Any(
                     o => o.Content.Equals(userAnswer.Answers[answerIndex], StringComparison.CurrentCultureIgnoreCase))
@@ -49,7 +51,6 @@ namespace SimpleQuiz.CheckAnswerStrategy
                 else
                 {
                     result.IsCorrect = false;
-                    result.IncorrectAnswersIds.Add(correctAnswer.Id);
                 }
             }
 

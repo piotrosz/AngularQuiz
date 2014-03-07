@@ -1,6 +1,6 @@
 ﻿'use strict';
 
-quizApp.controller("QuizController", function ($scope, $modal, quizService, quizPackageService, toaster, $routeParams) {
+quizApp.controller("QuizController", function ($scope, $modal, quizService, quizPackageService, toaster, $routeParams, $location) {
 
     init();
 
