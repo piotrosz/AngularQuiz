@@ -209,6 +209,7 @@
     <Content Include="app\controllers\quizPackageDeleteController.js" />
     <Content Include="app\controllers\quizPackageEditController.js" />
     <Content Include="app\controllers\quizPackagesController.js" />
+    <Content Include="app\controllers\quizQuestionsController.js" />
     <Content Include="app\directives\directives.js" />
     <Content Include="app\services\quizPackageService.js" />
     <Content Include="app\services\quizService.js" />

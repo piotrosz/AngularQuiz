@@ -23,10 +23,15 @@ quizApp.factory("quizService", function ($resource) {
         $resource(requestUrl).delete(item, success, error);
     }
 
+    var _get = function (id, success, error) {
+        $resource(requestUrl, { id: "@Id" }).get({ id: id }, success, error);
+    }
+
     return {
         query: _query,
         save: _save,
         add: _add,
-        delete: _delete
+        delete: _delete,
+        get: _get
     };
 });
