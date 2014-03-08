@@ -1,25 +1,58 @@
 ﻿<div class="well-sm">
-    <button class="btn btn-sm btn-info" ng-click="areOpenQuestionsCollapsed = !areOpenQuestionsCollapsed">Open questions</button>
-
-    <div class="well" collapse="areOpenQuestionsCollapsed">
-
-        Open Questions
+    <div class="well-sm" ng-click="areOpenQuestionsCollapsed = !areOpenQuestionsCollapsed">
+        <a class="">Open questions</a>
+        <span class="badge">{{quiz.OpenQuestions.length}}</span>
 
     </div>
+
+    <div class="well" collapse="areOpenQuestionsCollapsed">
+        <ul class="list-group" data-ng-repeat="question in quiz.OpenQuestions">
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-md-10">{{question.Content}}</div>
+                    <div class="col-md-1">
+                        <button class="btn btn-success pull-right" ng-click="openOpenQuestionEditModal(question)">Edit</button>
+                    </div>
+                    <div class="col-md-1">
+                        <button class="btn btn-danger pull-right" ng-click="openOpenQuestionDeleteModal(question)">Delete</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul ng-repeat="answer in question.CorrectAnswers">
+                            <li>
+                                {{answer.OrderId}}
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
 </div>
 
 <div class="well-sm">
-    <button class="btn btn-sm btn-info" ng-click="areTestQuestionsCollapsed = !areTestQuestionsCollapsed">Test questions</button>
+    <div class="well-sm" ng-click="areTestQuestionsCollapsed = !areTestQuestionsCollapsed">
+        <a class="">Test questions</a>
+        <span class="badge">{{quiz.TestQuestions.length}}</span>
+    </div>
 
     <div class="well" collapse="areTestQuestionsCollapsed">
 
-        Open Questions
+
+
+        Test questions
 
     </div>
 </div>
 
 <div class="well-sm">
-    <button class="btn btn-sm btn-info" ng-click="areCategoryQuestionsCollapsed = !areCategoryQuestionsCollapsed">Category questions</button>
+    <div class="well-sm" ng-click="areCategoryQuestionsCollapsed = !areCategoryQuestionsCollapsed">
+        <a class="">Category questions</a>
+        <span class="badge">{{quiz.CategoryQuestions.length}}</span>
+    </div>
 
     <div class="well" collapse="areCategoryQuestionsCollapsed">
 
@@ -29,7 +62,10 @@
 </div>
 
 <div class="well-sm">
-    <button class="btn btn-sm btn-info" ng-click="areSortQuestionsCollapsed = !areSortQuestionsCollapsed">Sort questions</button>
+    <div class="well-sm" ng-click="areSortQuestionsCollapsed = !areSortQuestionsCollapsed">
+        <a>Sort questions</a>
+        <span class="badge">{{quiz.SortQuestions.length}}</span>
+    </div>
 
     <div class="well" collapse="areSortQuestionsCollapsed">
 

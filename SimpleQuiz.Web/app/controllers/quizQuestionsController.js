@@ -1,17 +1,30 @@
 ﻿'use strict';
 
-quizApp.controller("QuizQuestionsController", function ($scope, quizService, toaster) {
+quizApp.controller("QuizQuestionsController", function ($scope, quizService, toaster, $routeParams) {
 
     init();
 
     function init()
     {
-        $scope.areOpenQuestionsCollapsed = true;
-        $scope.areTestQuestionsCollapsed = true;
-        $scope.areCategoryQuestionsCollapsed = false;
-        $scope.areSortQuestionsCollapsed = false;
+        $scope.quizId = $routeParams.quizId;
 
-        //$scope.quiz = quizService.get();
+        getQuiz();
+    }
+
+    function getQuiz()
+    {
+        quizService.get($scope.quizId,
+            function (result) {
+                $scope.quiz = result;
+
+                $scope.areOpenQuestionsCollapsed = $scope.quiz.OpenQuestions.length == 0;
+                $scope.areTestQuestionsCollapsed = $scope.quiz.TestQuestions.length == 0;
+                $scope.areCategoryQuestionsCollapsed = $scope.quiz.CategoryQuestions.length == 0;
+                $scope.areSortQuestionsCollapsed = $scope.quiz.SortQuestions.length == 0;
+            },
+            function (result) {
+
+            });
     }
 
 });

@@ -49,7 +49,7 @@ namespace SimpleQuiz.Core.Model.Questions
             CorrectAnswerOptions = correctAnswerOptions.ToList();
         }
 
-        public int QuestionId { get; set; }
+        public int OpenQuestionId { get; set; }
 
         public int OrderId { get; set; }
 

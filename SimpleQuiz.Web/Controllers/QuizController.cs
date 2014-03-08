@@ -37,9 +37,10 @@ namespace SimpleQuiz.Web.Controllers
         public IHttpActionResult GetQuiz(int id)
         {
             Quiz quiz = _unitOfWork.Quiz.List()
-                .Include("Questions")
-                .Include("Questions.CorrectAnswers")
-                .Include("Questions.CorrectAnswers.CorrectAnswerOptions")
+                .Include("OpenQuestions")
+                .Include("OpenQuestions.CorrectAnswers")
+                .Include("OpenQuestions.CorrectAnswers.CorrectAnswerOptions")
+                .Include("TestQuestions")
                 .SingleOrDefault(q => q.Id == id);
 
             if (quiz == null)

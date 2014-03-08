@@ -15,7 +15,7 @@
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
             AutomaticMigrationDataLossAllowed = true;
         }
 
@@ -83,19 +83,19 @@
 
             var correctAnswersList = new List<OpenQuestionCorrectAnswer>
             {
-                new OpenQuestionCorrectAnswer { QuestionId = question1.Id },
+                new OpenQuestionCorrectAnswer { OpenQuestionId = question1.Id },
 
-                new OpenQuestionCorrectAnswer { QuestionId = question2.Id, OrderId = 1 },
-                new OpenQuestionCorrectAnswer { QuestionId = question2.Id, OrderId = 2 },
-                new OpenQuestionCorrectAnswer { QuestionId = question2.Id, OrderId = 3 },
+                new OpenQuestionCorrectAnswer { OpenQuestionId = question2.Id, OrderId = 1 },
+                new OpenQuestionCorrectAnswer { OpenQuestionId = question2.Id, OrderId = 2 },
+                new OpenQuestionCorrectAnswer { OpenQuestionId = question2.Id, OrderId = 3 },
 
-                new OpenQuestionCorrectAnswer { QuestionId = question3.Id, OrderId = 1 },
-                new OpenQuestionCorrectAnswer { QuestionId = question3.Id, OrderId = 2 }
+                new OpenQuestionCorrectAnswer { OpenQuestionId = question3.Id, OrderId = 1 },
+                new OpenQuestionCorrectAnswer { OpenQuestionId = question3.Id, OrderId = 2 }
             };
 
             correctAnswersList.ForEach(a =>
             {
-                var toRemove = context.OpenQuestionCorrectAnswers.SingleOrDefault(x => x.OrderId == a.OrderId && x.QuestionId == a.QuestionId); 
+                var toRemove = context.OpenQuestionCorrectAnswers.SingleOrDefault(x => x.OrderId == a.OrderId && x.OpenQuestionId == a.OpenQuestionId); 
                 if(toRemove != null)
                 {
                     context.OpenQuestionCorrectAnswers.Remove(toRemove);

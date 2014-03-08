@@ -12,10 +12,13 @@ quizApp.controller("QuizController", function ($scope, $modal, quizService, quiz
 
     function getQuizPackage()
     {
-        quizPackageService.get($scope.packageId, function (result) {
-            $scope.quizPackage = result;
-        },
-            function () { });
+        quizPackageService.get($scope.packageId,
+            function (result) {
+                $scope.quizPackage = result;
+            },
+            function (result) {
+                toaster.pop("Error", "Cannot get quiz package")
+            });
     }
 
     function getQuizes() {
