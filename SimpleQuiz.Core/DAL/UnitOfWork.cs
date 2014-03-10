@@ -15,6 +15,8 @@ namespace SimpleQuiz.Core.DAL
         private GenericRepository<Quiz> _quizRepository;
         private GenericRepository<OpenQuestion> _openQuestionRepository;
         private GenericRepository<TestQuestion> _testQuestionRepository;
+        private GenericRepository<CategoryQuestion> _categoryQuestionRepository;
+        private GenericRepository<SortQuestion> _sortQuestionRepository;
 
         public UnitOfWork()
         {
@@ -50,6 +52,16 @@ namespace SimpleQuiz.Core.DAL
         public IGenericRepository<TestQuestion> TestQuestion
         {
             get { return GetRepositoryLazy(_testQuestionRepository); }
+        }
+
+        public IGenericRepository<CategoryQuestion> CategoryQuestion
+        {
+            get { return GetRepositoryLazy(_categoryQuestionRepository); }
+        }
+
+        public IGenericRepository<SortQuestion> SortQuestion
+        {
+            get { return GetRepositoryLazy(_sortQuestionRepository); }
         }
 
         public void Save()

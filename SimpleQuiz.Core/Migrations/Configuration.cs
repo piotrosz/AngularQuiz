@@ -21,19 +21,7 @@
 
         protected override void Seed(SimpleQuizContext context)
         {
-            //  This method will be called after migrating to the latest version.
-
-            if(!context.Users.Any(u => u.UserName == "piotr"))
-            {
-                var userManager = new UserManager<User>(new UserStore<User>(context));
-                var user = new User
-                {
-                     UserName = "piotr",
-                     Email = "piotr@piotr.pl"
-                };
-
-                userManager.Create<User>(user, "P@ssw0rd");
-            }
+            AddSampleUser(context);
 
             var package1 = new QuizPackage { Name = "El Sustantivo" };
             var package2 = new QuizPackage { Name = "Los Posesivos" };
@@ -56,28 +44,51 @@
             context.Quizes.AddOrUpdate(q => q.Name, quiz1);
 
             context.SaveChanges();
-            
-            var question1 = new OpenQuestion 
-                 { 
-                     QuizId = quiz1.Id,
-                     Content = "Pues muy tremenda, muy... ¡Ay! ¡Qué miedo []!",
-                     View = "OpenQuestionStandard"
-                 };
+
+            AddOpenQuestions(context, quiz1);
+            AddTestQuestions(context, quiz1);
+            AddCategoryQuestions(context, quiz1);
+            AddSortQuestions(context, quiz1);
+        }
+
+        private static void AddSampleUser(SimpleQuizContext context)
+        {
+            if (!context.Users.Any(u => u.UserName == "piotr"))
+            {
+                var userManager = new UserManager<User>(new UserStore<User>(context));
+                var user = new User
+                {
+                    UserName = "piotr",
+                    Email = "piotr@piotr.pl"
+                };
+
+                userManager.Create<User>(user, "P@ssw0rd");
+            }
+        }
+
+        private static void AddOpenQuestions(SimpleQuizContext context, Quiz quiz)
+        {
+            var question1 = new OpenQuestion
+            {
+                QuizId = quiz.Id,
+                Content = "Pues muy tremenda, muy... ¡Ay! ¡Qué miedo []!",
+                View = "OpenQuestionStandard"
+            };
 
             var question2 = new OpenQuestion
             {
-                QuizId = quiz1.Id,
+                QuizId = quiz.Id,
                 Content = "[] un cliente para hacerle la entrada - el check-in - como [] antes y le [] yo atendiendo y le [] un ataque.",
                 View = "OpenQuestionStandard"
             };
 
             var question3 = new OpenQuestion
             {
-                QuizId = quiz1.Id,
+                QuizId = quiz.Id,
                 Content = "Y se [] aquí - aquí justo delante de la recepción que Uds. no lo pueden ver, pero aquí delante...Y el cliente no []",
                 View = "OpenQuestionStandard"
             };
-            
+
             context.OpenQuestions.AddOrUpdate(q => q.Content, question1, question2, question3);
             context.SaveChanges();
 
@@ -95,14 +106,14 @@
 
             correctAnswersList.ForEach(a =>
             {
-                var toRemove = context.OpenQuestionCorrectAnswers.SingleOrDefault(x => x.OrderId == a.OrderId && x.OpenQuestionId == a.OpenQuestionId); 
-                if(toRemove != null)
+                var toRemove = context.OpenQuestionCorrectAnswers.SingleOrDefault(x => x.OrderId == a.OrderId && x.OpenQuestionId == a.OpenQuestionId);
+                if (toRemove != null)
                 {
                     context.OpenQuestionCorrectAnswers.Remove(toRemove);
                     context.SaveChanges();
                 }
             });
-           
+
             context.OpenQuestionCorrectAnswers.AddRange(correctAnswersList);
             context.SaveChanges();
 
@@ -115,25 +126,44 @@
             var correctAnswerOption5 = new OpenQuestionCorrectAnswerOption("cayó") { OpenQuestionCorrectAnswerId = correctAnswersList[4].Id };
             var correctAnswerOption6 = new OpenQuestionCorrectAnswerOption("hablaba") { OpenQuestionCorrectAnswerId = correctAnswersList[5].Id };
 
-            context.OpenQuestionCorrectAnswersOptions.AddOrUpdate(o => o.Content, 
+            var correctAnswerOption7 = new OpenQuestionCorrectAnswerOption("Hablaba") { OpenQuestionCorrectAnswerId = correctAnswersList[5].Id };
+
+            context.OpenQuestionCorrectAnswersOptions.AddOrUpdate(o => o.Content,
                 correctAnswerOption1, correctAnswerOption2, correctAnswerOption3,
-                correctAnswerOption4, correctAnswerOption5, correctAnswerOption6);
+                correctAnswerOption4, correctAnswerOption5, correctAnswerOption6, correctAnswerOption7);
+
+            context.SaveChanges();
+        }
+
+        private static void AddTestQuestions(SimpleQuizContext context, Quiz quiz)
+        {
+            var question1 = new TestQuestion() { Content = "He llegado [ ] 5 minutos.", OrderId = 6, QuizId = quiz.Id, View = "TestQuestionStandard" };
+            context.TestQuestions.AddOrUpdate(q => q.Content, question1);
 
             context.SaveChanges();
 
-            var testQuestion1 = new TestQuestion() { Content = "He llegado [ ] 5 minutos.", OrderId = 6, QuizId = quiz1.Id, View = "TestQuestionStandard" };
-            context.TestQuestions.AddOrUpdate(q => q.Content, testQuestion1);
-
-            context.SaveChanges();
-
-            var testOption1 = new TestQuestionOption { Content = "hace", IsCorrect = true, QuestionId = testQuestion1.Id };
-            var testOption2 = new TestQuestionOption { Content = "hadd", IsCorrect = false, QuestionId = testQuestion1.Id };
-            var testOption3 = new TestQuestionOption { Content = "hasd", IsCorrect = false, QuestionId = testQuestion1.Id };
+            var testOption1 = new TestQuestionOption { Content = "hace", IsCorrect = true, TestQuestionId = question1.Id };
+            var testOption2 = new TestQuestionOption { Content = "hadd", IsCorrect = false, TestQuestionId = question1.Id };
+            var testOption3 = new TestQuestionOption { Content = "hasd", IsCorrect = false, TestQuestionId = question1.Id };
             context.TestQuestionOptions.AddOrUpdate(o => o.Content, testOption1);
             context.TestQuestionOptions.AddOrUpdate(o => o.Content, testOption2);
             context.TestQuestionOptions.AddOrUpdate(o => o.Content, testOption3);
 
             context.SaveChanges();
         }
+
+        private static void AddCategoryQuestions(SimpleQuizContext context, Quiz quiz)
+        {
+            var question1 = new CategoryQuestion { Content = "Alphabet or number or bird?", QuizId = quiz.Id, OrderId = 9 };
+
+            context.CategoryQuestions.Add(question1);
+            context.SaveChanges();
+
+            //var options = 
+        }
+
+        private static void AddSortQuestions(SimpleQuizContext context, Quiz quiz)
+        { }
+
     }
 }

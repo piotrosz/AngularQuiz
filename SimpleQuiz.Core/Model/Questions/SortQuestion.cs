@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace SimpleQuiz.Core.Model.Questions
 {
-
     public class SortQuestion : Question
     {
-        public ICollection<TestQuestionOption> Options { get; set; }
+        public ICollection<SortQuestionOption> Options { get; set; }
     }
 }

@@ -82,7 +82,9 @@
       <DependentUpon>201403071434211_Init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Model\Questions\QuestionOption.cs" />
+    <Compile Include="Model\Questions\CategoryQuestionOption.cs" />
+    <Compile Include="Model\Questions\SortQuestionOption.cs" />
+    <Compile Include="Model\Questions\TestQuestionOption.cs" />
     <Compile Include="Model\Questions\CategoryQuestion.cs" />
     <Compile Include="Model\Questions\SortQuestion.cs" />
     <Compile Include="Model\Questions\OpenQuestion.cs" />

@@ -24,7 +24,7 @@ namespace SimpleQuiz.Web
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.superhero.css",
+                      "~/Content/bootstrap.slate.css",
                       "~/Content/site.css",
                       "~/Content/toaster.css",
                       "~/Content/loading-bar.css"));

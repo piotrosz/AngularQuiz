@@ -1,12 +1,31 @@
 ﻿<div class="well-sm">
-    <div class="well-sm" ng-click="areOpenQuestionsCollapsed = !areOpenQuestionsCollapsed">
-        <a class="">Open questions</a>
-        <span class="badge">{{quiz.OpenQuestions.length}}</span>
 
+    <div class="well">
+        <div class="row">
+
+            <div class="col-md-6">
+                <span style="cursor:pointer" ng-click="areOpenQuestionsCollapsed = !areOpenQuestionsCollapsed">
+                    <span class="glyphicon glyphicon-question-sign"></span>
+                    <span class="text-info">Open questions</span>
+                    <span class="badge">{{quiz.OpenQuestions.length}}</span>
+                </span>
+            </div>
+
+            <div class="col-md-6">
+                <button class="btn btn-success pull-right" ng-click="openOpenQuestionAddModal()">
+                    Add
+                </button>
+            </div>
+        </div>
     </div>
 
     <div class="well" collapse="areOpenQuestionsCollapsed">
-        <ul class="list-group" data-ng-repeat="question in quiz.OpenQuestions">
+
+        <span class="label label-info" ng-show="quiz.OpenQuestions.length == 0">
+            No open questions
+        </span>
+
+        <ul class="list-group" data-ng-repeat="question in quiz.OpenQuestions | orderBy: question.OrderId">
             <li class="list-group-item">
                 <div class="row">
                     <div class="col-md-10">{{question.Content}}</div>
@@ -19,11 +38,17 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <ul ng-repeat="answer in question.CorrectAnswers">
-                            <li>
-                                {{answer.OrderId}}
-                            </li>
 
+                        <span class="label label-warning" ng-show="question.CorrectAnswers == null">
+                            No correct answers!
+                        </span>
+
+                        <ul ng-repeat="answer in question.CorrectAnswers | orderBy: answer.OrderId">
+                            <li>
+                                <span class="label label-success" ng-repeat="option in answer.CorrectAnswerOptions">
+                                    {{option.Content}}
+                                </span>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -34,42 +59,105 @@
 </div>
 
 <div class="well-sm">
-    <div class="well-sm" ng-click="areTestQuestionsCollapsed = !areTestQuestionsCollapsed">
-        <a class="">Test questions</a>
-        <span class="badge">{{quiz.TestQuestions.length}}</span>
+    <div class="well">
+
+        <div class="row">
+            <div class="col-md-6">
+                <span style="cursor:pointer" ng-click="areTestQuestionsCollapsed = !areTestQuestionsCollapsed">
+                    <span class="glyphicon glyphicon-ok"></span>
+                    <span class="text-info">Test questions</span>
+                    <span class="badge">{{quiz.TestQuestions.length}}</span>
+                </span>
+            </div>
+            <div class="col-md-6">
+                <button class="btn btn-success pull-right" ng-click="openTestQuestionAddModal()">Add</button>
+            </div>
+        </div>
+
     </div>
 
     <div class="well" collapse="areTestQuestionsCollapsed">
 
+        <span class="label label-info" ng-show="quiz.TestQuestions.length == 0">
+            No test questions
+        </span>
 
+        <ul class="list-group" data-ng-repeat="question in quiz.TestQuestions | orderBy: question.OrderId">
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-md-10">{{question.Content}}</div>
+                    <div class="col-md-1">
+                        <button class="btn btn-success pull-right" ng-click="openTestQuestionEditModal(question)">Edit</button>
+                    </div>
+                    <div class="col-md-1">
+                        <button class="btn btn-danger pull-right" ng-click="openTestQuestionDeleteModal(question)">Delete</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
 
-        Test questions
+                        <span class="label label-warning" ng-show="question.Options.length == 0">
+                            No options!
+                        </span>
+
+                        <ul ng-repeat="option in question.Options | orderBy: answer.OrderId">
+                            <li ng-switch="option.IsCorrect">
+                                <span class="label label-success" ng-switch-when="true">{{option.Content}}</span>
+                                <span class="label label-danger" ng-switch-when="false">{{option.Content}}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+        </ul>
 
     </div>
 </div>
 
 <div class="well-sm">
-    <div class="well-sm" ng-click="areCategoryQuestionsCollapsed = !areCategoryQuestionsCollapsed">
-        <a class="">Category questions</a>
-        <span class="badge">{{quiz.CategoryQuestions.length}}</span>
+    <div class="well">
+
+        <div class="row">
+            <div class="col-md-6">
+                <span style="cursor:pointer" ng-click="areCategoryQuestionsCollapsed = !areCategoryQuestionsCollapsed">
+                    <span class="glyphicon glyphicon-th-large"></span>
+                    <span class="text-info">Category questions</span>
+                    <span class="badge">{{quiz.CategoryQuestions.length}}</span>
+                </span>
+            </div>
+            <div class="col-md-6">
+                <button class="btn btn-success pull-right" ng-click="openAddCategoryQuestionModal()">Add</button>
+            </div>
+        </div>
     </div>
 
     <div class="well" collapse="areCategoryQuestionsCollapsed">
-
-        Category Questions
-
+        <span class="label label-info" ng-show="quiz.CategoryQuestions.length == 0">
+            No category questions
+        </span>
     </div>
 </div>
 
 <div class="well-sm">
-    <div class="well-sm" ng-click="areSortQuestionsCollapsed = !areSortQuestionsCollapsed">
-        <a>Sort questions</a>
-        <span class="badge">{{quiz.SortQuestions.length}}</span>
-    </div>
 
+    <div class="well">
+        <div class="row">
+            <div class="col-md-6">
+                <span style="cursor:pointer" ng-click="areSortQuestionsCollapsed = !areSortQuestionsCollapsed">
+                    <span class="glyphicon glyphicon-sort"></span>
+                    <span class="text-info">Sort questions</span>
+                    <span class="badge">{{quiz.SortQuestions.length}}</span>
+                </span>
+            </div>
+            <div class="col-md-6">
+                <button class="btn btn-success pull-right" ng-click="openAddSortQuestionModal()">Add</button>
+            </div>
+        </div>
+    </div>
     <div class="well" collapse="areSortQuestionsCollapsed">
 
-        Sort Questions
-
+        <span class="label label-info" ng-show="quiz.SortQuestions.length == 0">
+            No sort questions
+        </span>
     </div>
 </div>

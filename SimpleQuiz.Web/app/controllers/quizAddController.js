@@ -4,10 +4,10 @@ quizApp.controller("QuizAddController", function ($scope, $controller, $modalIns
 
     $controller("ModalControllerBase", { $scope: $scope, $modalInstance: $modalInstance, toaster: toaster, $log: $log });
 
-    $scope.quiz = {};
+    $scope.quiz = { View: "Standard" };
 
     $scope.add = function () {
-        quizService.add({ Name: $scope.quiz.Name, QuizPackageId: packageId },
+        quizService.add({ Name: $scope.quiz.Name, View: $scope.quiz.View, QuizPackageId: packageId },
             function (result) {
                 toaster.pop('success', "Added successfully", "Quiz has been added.");
                 $modalInstance.close();

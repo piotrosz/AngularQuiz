@@ -8,6 +8,6 @@ namespace SimpleQuiz.Core.Model.Questions
 {
     public class CategoryQuestion : Question
     {
-
+        public ICollection<CategoryQuestionOption> Options { get; set; }
     }
 }

@@ -211,6 +211,7 @@
     <Content Include="app\controllers\quizPackagesController.js" />
     <Content Include="app\controllers\quizQuestionsController.js" />
     <Content Include="app\directives\directives.js" />
+    <Content Include="app\filters\filters.js" />
     <Content Include="app\services\quizPackageService.js" />
     <Content Include="app\services\quizService.js" />
     <Content Include="app\views\packageAdd.html" />
@@ -223,6 +224,8 @@
     <Content Include="app\views\packageQuizes.html" />
     <Content Include="app\views\quizQuestions.html" />
     <Content Include="app\views\quizStandard.html" />
+    <Content Include="Content\bootstrap.slate.css" />
+    <Content Include="Content\bootstrap.slate.min.css" />
     <Content Include="Content\toaster.css" />
     <Content Include="Scripts\loading-bar.js" />
     <Content Include="app\views\quizPackages.html" />
@@ -559,7 +562,6 @@
     <Content Include="Views\Home\Quiz.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\filters\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>

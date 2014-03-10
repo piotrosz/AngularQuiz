@@ -1,7 +1,11 @@
-﻿//quizApp.directive("errorInfo", function () {
-//    return {
-//        restrict: "E",
-//        scope: { error: "=" },
-//        templateUrl: "/app/views/errorInfo.html"
-//    };
-//});
+﻿quizApp.directive("question", function () {
+    return {
+        restrict: "E",
+        scope: { content: "@" },
+        replace: true,
+        //link: function (scope) {
+            
+        //},
+        template: "<p>{{content}}</p>"
+    };
+});

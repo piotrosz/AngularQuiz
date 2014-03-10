@@ -37,8 +37,11 @@ namespace SimpleQuiz.Core.DAL
         public DbSet<TestQuestion> TestQuestions { get; set; }
         public DbSet<TestQuestionOption> TestQuestionOptions { get; set; }
         
-        //public DbSet<SortQuestion> SortQuestions { get; set; }
-        //public DbSet<CategoryQuestion> CategoryQuestions { get; set; }
+        public DbSet<SortQuestion> SortQuestions { get; set; }
+        public DbSet<SortQuestionOption> SortQuestionOptions { get; set; }
+
+        public DbSet<CategoryQuestion> CategoryQuestions { get; set; }
+        public DbSet<CategoryQuestionOption> CategoryQuestionOption { get; set; }
 
         public DbSet<UserQuizScorePackage> UserQuizScorePackages { get; set; }
         public DbSet<UserQuizScore> UserQuizScores { get; set; }

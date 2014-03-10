@@ -17,10 +17,10 @@ quizApp.controller("QuizQuestionsController", function ($scope, quizService, toa
             function (result) {
                 $scope.quiz = result;
 
-                $scope.areOpenQuestionsCollapsed = $scope.quiz.OpenQuestions.length == 0;
-                $scope.areTestQuestionsCollapsed = $scope.quiz.TestQuestions.length == 0;
-                $scope.areCategoryQuestionsCollapsed = $scope.quiz.CategoryQuestions.length == 0;
-                $scope.areSortQuestionsCollapsed = $scope.quiz.SortQuestions.length == 0;
+                $scope.areOpenQuestionsCollapsed = true;
+                $scope.areTestQuestionsCollapsed = true;
+                $scope.areCategoryQuestionsCollapsed = true;
+                $scope.areSortQuestionsCollapsed = true;
             },
             function (result) {
 
