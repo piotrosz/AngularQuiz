@@ -17,6 +17,8 @@ namespace SimpleQuiz.Web.Controllers
 {
     public class QuizController : QuizControllerBase
     {
+        public QuizController(IUnitOfWork unitOfWork) : base(unitOfWork) {}
+
         //private IQuizAnswerChecker _answerChecker;
 
         //public QuizController(IQuizAnswerChecker answerChecker)

@@ -15,6 +15,8 @@ namespace SimpleQuiz.Web.Controllers
 {
     public class OpenQuestionController : QuizControllerBase
     {
+        public OpenQuestionController(IUnitOfWork unitOfWork) : base(unitOfWork) {}
+
         // GET api/OpenQuestion/5
         [ResponseType(typeof(OpenQuestion))]
         public IHttpActionResult GetOpenQuestion(int id)

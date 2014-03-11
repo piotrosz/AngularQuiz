@@ -19,6 +19,8 @@ namespace SimpleQuiz.Web.Controllers
     //[Authorize(Roles="admin")]
     public class QuizPackageController : QuizControllerBase
     {
+        public QuizPackageController(IUnitOfWork unitOfWork) : base(unitOfWork) {}
+
         // GET api/QuizPackage
         public PagedResults<QuizPackage> GetQuizPackages(int pageSize, int offset, string searchPhrase = null)
         {

@@ -12,11 +12,6 @@ namespace SimpleQuiz.Web.Controllers
     {
         protected IUnitOfWork _unitOfWork;
 
-        public QuizControllerBase()
-        {
-
-        }
-
         public QuizControllerBase(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;

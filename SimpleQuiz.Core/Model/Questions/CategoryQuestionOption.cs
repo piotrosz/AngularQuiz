@@ -18,5 +18,8 @@ namespace SimpleQuiz.Core.Model.Questions
         [Required]
         [StringLength(5000)]
         public string Content { get; set; }
+
+        [Required]
+        public int OrderId { get; set; }
     }
 }

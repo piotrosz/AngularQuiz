@@ -18,9 +18,13 @@ namespace SimpleQuiz.Core.Tests.Stubs
                     Content = "Assign to categories",
                     Options = new List<CategoryQuestionOption>
                     {
-                        new CategoryQuestionOption { Content = }
+                        new CategoryQuestionOption { Content = "A", Category = "Alphabet", OrderId = 1 },
+                        new CategoryQuestionOption { Content = "B", Category = "Alphabet", OrderId = 2 },
+                        new CategoryQuestionOption { Content = "1", Category = "Number", OrderId = 3 },
+                        new CategoryQuestionOption { Content = "goose", Category = "Bird", OrderId = 4 },
+                        new CategoryQuestionOption { Content = "hen", Category = "Bird", OrderId = 5 }
                     }
-                }
+                };
             }
         }
     }

@@ -66,6 +66,12 @@
                 userManager.Create(user, "P@ssw0rd");
             }
 
+            if(!context.Roles.Any(r => r.Name == "admin"))
+            {
+                var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+                roleManager.Create(new IdentityRole("admin"));
+            }
+
             if(!context.Users.Any(u => u.UserName == "admin"))
             {
                 var admin = new User
@@ -170,11 +176,11 @@
 
             var options = new List<CategoryQuestionOption>
             {
-                new CategoryQuestionOption { Category = "Alphabet", Content = "A", CategoryQuestionId = question1.Id },
-                new CategoryQuestionOption { Category = "Alphabet", Content = "B", CategoryQuestionId = question1.Id },
-                new CategoryQuestionOption { Category = "Number", Content = "1234", CategoryQuestionId = question1.Id },
-                new CategoryQuestionOption { Category = "Bird", Content = "hen", CategoryQuestionId = question1.Id },
-                new CategoryQuestionOption { Category = "Number", Content = "-2302.5443", CategoryQuestionId = question1.Id }
+                new CategoryQuestionOption { Category = "Alphabet", Content = "A", CategoryQuestionId = question1.Id, OrderId = 1 },
+                new CategoryQuestionOption { Category = "Alphabet", Content = "B", CategoryQuestionId = question1.Id, OrderId = 2 },
+                new CategoryQuestionOption { Category = "Number", Content = "1234", CategoryQuestionId = question1.Id, OrderId = 3 },
+                new CategoryQuestionOption { Category = "Bird", Content = "hen", CategoryQuestionId = question1.Id, OrderId = 4 },
+                new CategoryQuestionOption { Category = "Number", Content = "-2302.5443", CategoryQuestionId = question1.Id, OrderId = 5 }
             };
 
             context.CategoryQuestionOption.AddOrUpdate(o => o.Content, options.ToArray());
