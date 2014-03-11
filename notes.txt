@@ -1,0 +1,29 @@
+Enable-Migrations -ProjectName SimpleQuiz.Core -ContextProjectName SimpleQuiz.Core -ContextTypeName SimpleQuiz.Core.DAL.SimpleQuizContext -StartupProjectName SimpleQuiz.Web [-Force]
+Add-Migration ... -ProjectName SimpleQuiz.Core -StartupProjectName SimpleQuiz.Web
+Update-Database -ProjectName SimpleQuiz.Core -StartupProjectName SimpleQuiz.Web
+
+-ContextTypeName
+-MigrationsDirectory
+
+Add-Migration Init -ProjectName SimpleQuiz.Core -StartupProjectName SimpleQuiz.Web (you can run it many times)
+
+Entity Framework lazy loading options: http://msdn.microsoft.com/en-us/data/jj574232.aspx
+AngularJS-Toaster: https://github.com/jirikavi/AngularJS-Toaster
+AngularUI Bootstrap: http://angular-ui.github.io/bootstrap/
+Toastr: https://github.com/CodeSeven/toastr
+Loading bar: https://github.com/chieffancypants/angular-loading-bar
+http://bootswatch.com/
+
+
+Uninstall-Package Newtonsoft.Json -Force
+Install-Package Newtonsoft.Json -Version 4.0.5
+
+app.config(function(cfpLoadingBarProvider){
+	cfpLoadingBarProvider.includeSpinner = true;
+	cfpLoadingBarProvider.includeBar = true;
+})
+
+TODO:
+- Check Google log in
+- Authorize on API controllers
+- Add admin role

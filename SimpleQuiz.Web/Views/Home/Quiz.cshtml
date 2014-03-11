@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "Quiz";
+}
+
+<div ng-app="quiz">
+    <div ng-view=""></div>
+</div>
+
+@Scripts.Render("~/bundles/angular")
+
+<!-- main app script -->
+<script src="~/app/app.js"></script>
+
+<!-- directives -->
+<script src="~/app/directives/directives.js"></script>
+
+<!-- filters-->
+<script src="~/app/filters/filters.js"></script>
+
+<!-- controllers -->
+<script src="~/app/controllers/listControllerBase.js"></script>
+<script src="~/app/controllers/modalControllerBase.js"></script>
+<script src="~/app/controllers/question/questionListController.js"></script>
+<script src="~/app/controllers/quiz/quizAddController.js"></script>
+<script src="~/app/controllers/quiz/quizDeleteController.js"></script>
+<script src="~/app/controllers/quiz/quizEditController.js"></script>
+<script src="~/app/controllers/quiz/quizListController.js"></script>
+<script src="~/app/controllers/package/packageAddController.js"></script>
+<script src="~/app/controllers/package/packageDeleteController.js"></script>
+<script src="~/app/controllers/package/packageEditController.js"></script>
+<script src="~/app/controllers/package/packageListController.js"></script>
+
+<!-- services -->
+<script src="~/app/services/packageService.js"></script>
+<script src="~/app/services/quizService.js"></script>

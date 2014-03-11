@@ -1,0 +1,17 @@
+﻿<div class="modal-header">
+    <a href="" class="close" data-ng-click="close()">&times;</a>
+    <h4>Are you sure to delete this quiz package?</h4>
+</div>
+<div class="modal-body">
+    <div class="form-group">
+        <div class="input-group">
+            <span>{{quizPackage.Name}}</span>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" data-ng-click="delete()"
+            class="btn btn-danger pull-right">
+        Delete
+    </button>
+</div>

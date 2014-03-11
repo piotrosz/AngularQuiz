@@ -1,0 +1,68 @@
+﻿
+<div class="row">
+    <div class="col-md-12">&nbsp;</div>
+</div>
+
+<div class="row">
+    <form>
+        <div class="col-md-3">
+            <input type="text" ng-model="searchPhrase" class="form-control input-md" placeholder="Search by package name" />
+        </div>
+
+        <div class="col-md-3">
+            <button class="btn btn-primary pull-left" ng-click="search()">
+                <span class="glyphicon glyphicon-search"></span>
+                Search
+            </button>
+        </div>
+        <div class="col-md-6">
+            <button class="btn btn-default pull-right" ng-click="openAddModal()">Add new</button>
+        </div>
+    </form>
+</div>
+
+<div class="row">
+    <div class="col-md-12">&nbsp;</div>
+</div>
+
+<toaster-container toaster-options="{'time-out': 1700}"></toaster-container>
+
+<div class="well well-sm" ng-show="totalCount == 0 && searchPhrase != null">
+    <h5>No packages found. <span ng-show="searchPhrase != null">You searched by <i>{{searchPhrase}}</i>.</span></h5>
+</div>
+
+<div ng-show="totalCount > 0">
+
+    <ul class="list-group" data-ng-repeat="package in packages">
+        <li class="list-group-item">
+            <div class="row">
+                <div class="col-md-10">
+                    <span class="label label-info">{{package.QuizCount}}</span>
+                    <button class="btn btn-link" ng-click="details(package)">{{package.Name}}</button>
+                </div>
+
+                <div class="col-md-1">
+                    <button class="btn btn-success pull-right" ng-click="openEditModal(package)">Edit</button>
+                </div>
+                <div class="col-md-1">
+                    <button class="btn btn-danger pull-right" ng-click="openDeleteModal(package)">Delete</button>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<div class="row">
+
+    <div class="col-md-offset-2 col-md-8 col-md-offset-2 text-center">
+        <div data-ng-show="totalCount > pageSize">
+            <div>
+                <div data-pagination="" data-previous-text="<" data-next-text=">" data-first-text="<<" data-last-text=">>"
+                     data-on-select-page="pageChanged(page)" data-total-items="totalCount" data-page="currentPage"
+                     data-boundary-links="true" class="pagination pagination-sm" data-max-size="5" data-rotate="false" data-items-per-page="pageSize">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
