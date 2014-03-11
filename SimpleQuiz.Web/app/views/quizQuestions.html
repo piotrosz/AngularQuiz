@@ -135,6 +135,32 @@
         <span class="label label-info" ng-show="quiz.CategoryQuestions.length == 0">
             No category questions
         </span>
+
+        <ul class="list-group" data-ng-repeat="question in quiz.CategoryQuestions | orderBy: question.OrderId">
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-md-10">{{question.Content}}</div>
+                    <div class="col-md-1">
+                        <button class="btn btn-success pull-right" ng-click="openCategoryQuestionEditModal(question)">Edit</button>
+                    </div>
+                    <div class="col-md-1">
+                        <button class="btn btn-danger pull-right" ng-click="openCategoryQuestionDeleteModal(question)">Delete</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <span class="label label-warning" ng-show="question.Options.length == 0">
+                            No options!
+                        </span>
+
+                        <ul ng-repeat="option in question.Options">
+                            <li>{{option.Content}} <span class="text-info">{{option.Category}}</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+        </ul>
     </div>
 </div>
 
@@ -159,5 +185,35 @@
         <span class="label label-info" ng-show="quiz.SortQuestions.length == 0">
             No sort questions
         </span>
+
+        <ul class="list-group" data-ng-repeat="question in quiz.SortQuestions | orderBy: question.OrderId">
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-md-10">{{question.Content}}</div>
+                    <div class="col-md-1">
+                        <button class="btn btn-success pull-right" ng-click="openSortQuestionEditModal(question)">Edit</button>
+                    </div>
+                    <div class="col-md-1">
+                        <button class="btn btn-danger pull-right" ng-click="openSortQuestionDeleteModal(question)">Delete</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <span class="label label-warning" ng-show="question.Options.length == 0">
+                            No options!
+                        </span>
+
+                        <div ng-repeat="option in question.Options | orderBy: answer.OrderId">
+                            <p>
+                                <span class="badge">{{option.OrderId}}</span>
+                                <span>{{option.Content}}</span>
+                                
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
     </div>
 </div>

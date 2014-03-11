@@ -42,6 +42,10 @@ namespace SimpleQuiz.Web.Controllers
                 .Include("OpenQuestions.CorrectAnswers.CorrectAnswerOptions")
                 .Include("TestQuestions")
                 .Include("TestQuestions.Options")
+                .Include("CategoryQuestions")
+                .Include("CategoryQuestions.Options")
+                .Include("SortQuestions")
+                .Include("SortQuestions.Options")
                 .SingleOrDefault(q => q.Id == id);
 
             if (quiz == null)

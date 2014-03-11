@@ -15,7 +15,7 @@
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
             AutomaticMigrationDataLossAllowed = true;
         }
 
@@ -95,11 +95,9 @@
             var correctAnswersList = new List<OpenQuestionCorrectAnswer>
             {
                 new OpenQuestionCorrectAnswer { OpenQuestionId = question1.Id },
-
                 new OpenQuestionCorrectAnswer { OpenQuestionId = question2.Id, OrderId = 1 },
                 new OpenQuestionCorrectAnswer { OpenQuestionId = question2.Id, OrderId = 2 },
                 new OpenQuestionCorrectAnswer { OpenQuestionId = question2.Id, OrderId = 3 },
-
                 new OpenQuestionCorrectAnswer { OpenQuestionId = question3.Id, OrderId = 1 },
                 new OpenQuestionCorrectAnswer { OpenQuestionId = question3.Id, OrderId = 2 }
             };
@@ -117,21 +115,18 @@
             context.OpenQuestionCorrectAnswers.AddRange(correctAnswersList);
             context.SaveChanges();
 
-            var correctAnswerOption1 = new OpenQuestionCorrectAnswerOption("pasé") { OpenQuestionCorrectAnswerId = correctAnswersList[0].Id };
+            var options = new List<OpenQuestionCorrectAnswerOption>
+            {
+                new OpenQuestionCorrectAnswerOption("pasé") { OpenQuestionCorrectAnswerId = correctAnswersList[0].Id },
+                new OpenQuestionCorrectAnswerOption("Vino") { OpenQuestionCorrectAnswerId = correctAnswersList[1].Id },
+                new OpenQuestionCorrectAnswerOption("dije") { OpenQuestionCorrectAnswerId = correctAnswersList[2].Id },
+                new OpenQuestionCorrectAnswerOption("estaba") { OpenQuestionCorrectAnswerId = correctAnswersList[3].Id },
+                new OpenQuestionCorrectAnswerOption("cayó") { OpenQuestionCorrectAnswerId = correctAnswersList[4].Id },
+                new OpenQuestionCorrectAnswerOption("hablaba") { OpenQuestionCorrectAnswerId = correctAnswersList[5].Id },
+                new OpenQuestionCorrectAnswerOption("Hablaba") { OpenQuestionCorrectAnswerId = correctAnswersList[5].Id }
+            };
 
-            var correctAnswerOption2 = new OpenQuestionCorrectAnswerOption("Vino") { OpenQuestionCorrectAnswerId = correctAnswersList[1].Id };
-            var correctAnswerOption3 = new OpenQuestionCorrectAnswerOption("dije") { OpenQuestionCorrectAnswerId = correctAnswersList[2].Id };
-            var correctAnswerOption4 = new OpenQuestionCorrectAnswerOption("estaba") { OpenQuestionCorrectAnswerId = correctAnswersList[3].Id };
-
-            var correctAnswerOption5 = new OpenQuestionCorrectAnswerOption("cayó") { OpenQuestionCorrectAnswerId = correctAnswersList[4].Id };
-            var correctAnswerOption6 = new OpenQuestionCorrectAnswerOption("hablaba") { OpenQuestionCorrectAnswerId = correctAnswersList[5].Id };
-
-            var correctAnswerOption7 = new OpenQuestionCorrectAnswerOption("Hablaba") { OpenQuestionCorrectAnswerId = correctAnswersList[5].Id };
-
-            context.OpenQuestionCorrectAnswersOptions.AddOrUpdate(o => o.Content,
-                correctAnswerOption1, correctAnswerOption2, correctAnswerOption3,
-                correctAnswerOption4, correctAnswerOption5, correctAnswerOption6, correctAnswerOption7);
-
+            context.OpenQuestionCorrectAnswersOptions.AddOrUpdate(o => o.Content, options.ToArray());
             context.SaveChanges();
         }
 
@@ -142,28 +137,61 @@
 
             context.SaveChanges();
 
-            var testOption1 = new TestQuestionOption { Content = "hace", IsCorrect = true, TestQuestionId = question1.Id };
-            var testOption2 = new TestQuestionOption { Content = "hadd", IsCorrect = false, TestQuestionId = question1.Id };
-            var testOption3 = new TestQuestionOption { Content = "hasd", IsCorrect = false, TestQuestionId = question1.Id };
-            context.TestQuestionOptions.AddOrUpdate(o => o.Content, testOption1);
-            context.TestQuestionOptions.AddOrUpdate(o => o.Content, testOption2);
-            context.TestQuestionOptions.AddOrUpdate(o => o.Content, testOption3);
+            var options = new List<TestQuestionOption>
+            {
+                new TestQuestionOption { Content = "hace", IsCorrect = true, TestQuestionId = question1.Id },
+                new TestQuestionOption { Content = "hadd", IsCorrect = false, TestQuestionId = question1.Id },
+                new TestQuestionOption { Content = "hasd", IsCorrect = false, TestQuestionId = question1.Id }
+            };
 
+            context.TestQuestionOptions.AddOrUpdate(o => o.Content, options.ToArray());
             context.SaveChanges();
         }
 
         private static void AddCategoryQuestions(SimpleQuizContext context, Quiz quiz)
         {
-            var question1 = new CategoryQuestion { Content = "Alphabet or number or bird?", QuizId = quiz.Id, OrderId = 9 };
+            var question1 = new CategoryQuestion { Content = "Alphabet or number or bird?", QuizId = quiz.Id, OrderId = 9, View = "Standard" };
 
             context.CategoryQuestions.Add(question1);
             context.SaveChanges();
 
-            //var options = 
+            var options = new List<CategoryQuestionOption>
+            {
+                new CategoryQuestionOption { Category = "Alphabet", Content = "A", CategoryQuestionId = question1.Id },
+                new CategoryQuestionOption { Category = "Alphabet", Content = "B", CategoryQuestionId = question1.Id },
+                new CategoryQuestionOption { Category = "Number", Content = "1234", CategoryQuestionId = question1.Id },
+                new CategoryQuestionOption { Category = "Bird", Content = "hen", CategoryQuestionId = question1.Id },
+                new CategoryQuestionOption { Category = "Number", Content = "-2302.5443", CategoryQuestionId = question1.Id }
+            };
+
+            context.CategoryQuestionOption.AddOrUpdate(o => o.Content, options.ToArray());
+            context.SaveChanges();
         }
 
         private static void AddSortQuestions(SimpleQuizContext context, Quiz quiz)
-        { }
+        {
+            var question1 = new SortQuestion { Content = "Sort the dialogue", QuizId = quiz.Id, View = "Standard", OrderId = 8 };
 
+            context.SortQuestions.Add(question1);
+            context.SaveChanges();
+
+            var options = new List<SortQuestionOption>
+            {
+                new SortQuestionOption { Content = "Hola, por favor siéntese en la silla.", SortQuestionId = question1.Id, OrderId = 1 },
+                new SortQuestionOption { Content = "Tengo un dolor de muelas terrible.", SortQuestionId = question1.Id, OrderId = 2 },
+                new SortQuestionOption { Content = "¿Hace cuánto tiempo tiene el dolor?", SortQuestionId = question1.Id, OrderId = 3 },
+                new SortQuestionOption { Content = "Hace varios días.", SortQuestionId = question1.Id, OrderId = 4 },
+                new SortQuestionOption { Content = "¿Ha tenido este tipo de dolor antes?", SortQuestionId = question1.Id, OrderId = 5 },
+                new SortQuestionOption { Content = "¿En dónde exactamente tiene el dolor?", SortQuestionId = question1.Id, OrderId = 6 },
+                new SortQuestionOption { Content = "Me duele el diente.", SortQuestionId = question1.Id, OrderId = 7 },
+                new SortQuestionOption { Content = "Por favor abra su boca.", SortQuestionId = question1.Id, OrderId = 8 },
+                new SortQuestionOption { Content = "Vamos a tener que sacar el diente.", SortQuestionId = question1.Id, OrderId = 9 },
+                new SortQuestionOption { Content = "La anestesia local hará que no duela.", SortQuestionId = question1.Id, OrderId = 10 },
+                new SortQuestionOption { Content = "Muchas gracias, Doctor.", SortQuestionId = question1.Id, OrderId = 11 }
+            };
+
+            options.ForEach(option => context.SortQuestionOptions.AddOrUpdate(o => o.Content, options.ToArray()));
+            context.SaveChanges();
+        }
     }
 }
