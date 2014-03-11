@@ -15,16 +15,14 @@ using SimpleQuiz.Core.Model.Questions;
 
 namespace SimpleQuiz.Web.Controllers
 {
-    public class QuizController : ApiController
+    public class QuizController : QuizControllerBase
     {
-        private IUnitOfWork _unitOfWork;
-        private IQuizAnswerChecker _answerChecker;
+        //private IQuizAnswerChecker _answerChecker;
 
-        public QuizController(IUnitOfWork unitOfWork, IQuizAnswerChecker answerChecker)
-        {
-            _unitOfWork = unitOfWork;
-            _answerChecker = answerChecker;
-        }
+        //public QuizController(IQuizAnswerChecker answerChecker)
+        //{
+        //    _answerChecker = answerChecker;
+        //}
 
         [Route("api/quizesbypackage/{packageId:int:min(1)}")]
         public IEnumerable<Quiz> GetQuizesByPackageId(int packageId)
@@ -105,20 +103,20 @@ namespace SimpleQuiz.Web.Controllers
             return CreatedAtRoute("DefaultApi", new { id = quiz.Id }, quiz);
         }
 
-         [Route("api/quizcheckanswers")]
-        public IHttpActionResult CheckAnswers(QuizUserAnswers userAnswers)
-        {
-            var quiz = _unitOfWork.Quiz.List().SingleOrDefault(q => q.Id == userAnswers.QuizId);
+        //[Route("api/quizcheckanswers")]
+        //public IHttpActionResult CheckAnswers(QuizUserAnswers userAnswers)
+        //{
+        //    var quiz = _unitOfWork.Quiz.List().SingleOrDefault(q => q.Id == userAnswers.QuizId);
 
-            if(quiz == null)
-            {
-                return NotFound();
-            }
+        //    if(quiz == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            CheckQuizAnswersResult result = _answerChecker.Check(quiz, userAnswers);
+        //    CheckQuizAnswersResult result = _answerChecker.Check(quiz, userAnswers);
 
-            return Ok(result);
-        }
+        //    return Ok(result);
+        //}
 
         // DELETE api/Quiz/5
         [ResponseType(typeof(Quiz))]

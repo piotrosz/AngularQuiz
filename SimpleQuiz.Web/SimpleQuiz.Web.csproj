@@ -189,7 +189,9 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OpenQuestionController.cs" />
     <Compile Include="Controllers\QuizController.cs" />
+    <Compile Include="Controllers\QuizControllerBase.cs" />
     <Compile Include="Controllers\QuizPackageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -202,6 +204,10 @@
   <ItemGroup>
     <Content Include="app\controllers\listControllerBase.js" />
     <Content Include="app\controllers\modalControllerBase.js" />
+    <Content Include="app\controllers\question\categoryQuestionAddController.js" />
+    <Content Include="app\controllers\question\openQuestionAddController.js" />
+    <Content Include="app\controllers\question\sortQuestionAddController.js" />
+    <Content Include="app\controllers\question\testQuestionAddController.js" />
     <Content Include="app\controllers\quiz\quizAddController.js" />
     <Content Include="app\controllers\quiz\quizListController.js" />
     <Content Include="app\controllers\quiz\quizDeleteController.js" />
@@ -218,6 +224,7 @@
     <Content Include="app\views\admin\package\add.html" />
     <Content Include="app\views\admin\package\delete.html" />
     <Content Include="app\views\admin\package\edit.html" />
+    <Content Include="app\views\admin\question\openQuestionAdd.html" />
     <Content Include="app\views\admin\quiz\add.html" />
     <Content Include="app\views\admin\quiz\delete.html" />
     <Content Include="app\views\admin\quiz\edit.html" />

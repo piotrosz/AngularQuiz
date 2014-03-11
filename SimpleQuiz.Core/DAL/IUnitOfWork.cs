@@ -1,4 +1,5 @@
 ﻿using SimpleQuiz.Core.Model;
+using SimpleQuiz.Core.Model.Questions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,10 @@ namespace SimpleQuiz.Core.DAL
     {
         IGenericRepository<Quiz> Quiz { get; }
         IGenericRepository<QuizPackage> QuizPackage { get; }
-        // TODO
+        IGenericRepository<OpenQuestion> OpenQuestion { get; }
+        IGenericRepository<TestQuestion> TestQuestion { get; }
+        IGenericRepository<CategoryQuestion> CategoryQuestion { get; }
+        IGenericRepository<SortQuestion> SortQuestion { get; }
 
         void Save();
     }

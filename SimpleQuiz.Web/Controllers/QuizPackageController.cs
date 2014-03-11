@@ -17,15 +17,8 @@ namespace SimpleQuiz.Web.Controllers
 {
     // TODO: Enable Authorize
     //[Authorize(Roles="admin")]
-    public class QuizPackageController : ApiController
+    public class QuizPackageController : QuizControllerBase
     {
-        protected IUnitOfWork _unitOfWork;
-
-        public QuizPackageController(IUnitOfWork unitOfWork)
-        {
-            _unitOfWork = unitOfWork;
-        }
-
         // GET api/QuizPackage
         public PagedResults<QuizPackage> GetQuizPackages(int pageSize, int offset, string searchPhrase = null)
         {
@@ -132,15 +125,6 @@ namespace SimpleQuiz.Web.Controllers
             _unitOfWork.Save();
 
             return Ok(quizpackage);
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                _unitOfWork.Dispose();
-            }
-            base.Dispose(disposing);
         }
 
         private bool QuizPackageExists(int id)

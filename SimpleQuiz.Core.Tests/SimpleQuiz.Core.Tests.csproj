@@ -46,10 +46,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CheckAnswerStrategy\CheckAnswerCategoryQuestionStrategyFacts.cs" />
     <Compile Include="CheckAnswerStrategy\CheckAnswerOpenQuestionStrategyFacts.cs" />
+    <Compile Include="CheckAnswerStrategy\CheckAnswerSortQuestionStrategyFacts.cs" />
     <Compile Include="CheckAnswerStrategy\CheckAnswerTestQuestionStrategyFacts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Stubs\StubCategoryQuestions.cs" />
     <Compile Include="Stubs\StubOpenQuestions.cs" />
+    <Compile Include="Stubs\StubSortQuestions.cs" />
     <Compile Include="Stubs\StubTestQuestions.cs" />
   </ItemGroup>
   <ItemGroup>
