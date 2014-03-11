@@ -1,6 +1,8 @@
 ﻿'use strict';
 
-quizApp.controller("QuizController", function ($scope, $modal, quizService, quizPackageService, toaster, $routeParams, $location) {
+quizApp.controller("QuizListController", function ($scope, $modal, quizService, packageService, toaster, $routeParams, $location, $controller) {
+
+    $controller("ListControllerBase", { $scope: $scope });
 
     init();
 
@@ -12,7 +14,7 @@ quizApp.controller("QuizController", function ($scope, $modal, quizService, quiz
 
     function getQuizPackage()
     {
-        quizPackageService.get($scope.packageId,
+        packageService.get($scope.packageId,
             function (result) {
                 $scope.quizPackage = result;
             },
@@ -32,8 +34,8 @@ quizApp.controller("QuizController", function ($scope, $modal, quizService, quiz
 
     $scope.openEditModal = function (item) {
         var modalInstance = $modal.open({
-            templateUrl: "app/views/quizEdit.html",
-            controller: "QuizEditController",
+            templateUrl: $scope.getModalTemplateUrl("quiz", "edit"),
+            controller: $scope.getModalControllerName("quiz", "edit"),
             resolve: {
                 quiz: function () { return item; }
             }
@@ -42,8 +44,8 @@ quizApp.controller("QuizController", function ($scope, $modal, quizService, quiz
 
     $scope.openDeleteModal = function (item) {
         var modalInstance = $modal.open({
-            templateUrl: "app/views/quizDelete.html",
-            controller: "QuizDeleteController",
+            templateUrl: $scope.getModalTemplateUrl("quiz", "delete"),
+            controller: $scope.getModalControllerName("quiz", "delete"),
             resolve: {
                 quiz: function () { return item; }
             }
@@ -58,8 +60,8 @@ quizApp.controller("QuizController", function ($scope, $modal, quizService, quiz
 
     $scope.openAddModal = function (packageId) {
         var modalInstance = $modal.open({
-            templateUrl: "app/views/quizAdd.html",
-            controller: "QuizAddController",
+            templateUrl: $scope.getModalTemplateUrl("quiz", "add"),
+            controller: $scope.getModalControllerName("quiz", "add"),
             resolve: {
                 packageId: function () { return packageId; }
             }
@@ -71,7 +73,7 @@ quizApp.controller("QuizController", function ($scope, $modal, quizService, quiz
     }
 
     $scope.details = function (item) {
-        $location.path("/questions/" + item.Id);
+        $location.path("/admin/questions/" + item.Id);
     }
 
 });

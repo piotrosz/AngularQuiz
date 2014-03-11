@@ -1,6 +1,6 @@
 ﻿'use strict';
 
-quizApp.factory("quizPackageService", function ($resource) {
+quizApp.factory("packageService", function ($resource) {
 
     var requestUrl = "/api/QuizPackage/:id";
 

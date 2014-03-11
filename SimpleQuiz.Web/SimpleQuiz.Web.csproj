@@ -200,35 +200,34 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\controllers\listControllerBase.js" />
     <Content Include="app\controllers\modalControllerBase.js" />
-    <Content Include="app\controllers\quizAddController.js" />
-    <Content Include="app\controllers\quizController.js" />
-    <Content Include="app\controllers\quizDeleteController.js" />
-    <Content Include="app\controllers\quizEditController.js" />
-    <Content Include="app\controllers\quizPackageAddController.js" />
-    <Content Include="app\controllers\quizPackageDeleteController.js" />
-    <Content Include="app\controllers\quizPackageEditController.js" />
-    <Content Include="app\controllers\quizPackagesController.js" />
-    <Content Include="app\controllers\quizQuestionsController.js" />
+    <Content Include="app\controllers\quiz\quizAddController.js" />
+    <Content Include="app\controllers\quiz\quizListController.js" />
+    <Content Include="app\controllers\quiz\quizDeleteController.js" />
+    <Content Include="app\controllers\quiz\quizEditController.js" />
+    <Content Include="app\controllers\package\packageAddController.js" />
+    <Content Include="app\controllers\package\packageDeleteController.js" />
+    <Content Include="app\controllers\package\packageEditController.js" />
+    <Content Include="app\controllers\package\packageListController.js" />
+    <Content Include="app\controllers\question\questionListController.js" />
     <Content Include="app\directives\directives.js" />
     <Content Include="app\filters\filters.js" />
-    <Content Include="app\services\quizPackageService.js" />
+    <Content Include="app\services\packageService.js" />
     <Content Include="app\services\quizService.js" />
-    <Content Include="app\views\packageAdd.html" />
-    <Content Include="app\views\packageDelete.html" />
-    <Content Include="app\views\packageEdit.html" />
-    <Content Include="app\views\questionStandard.html" />
-    <Content Include="app\views\quizAdd.html" />
-    <Content Include="app\views\quizDelete.html" />
-    <Content Include="app\views\quizEdit.html" />
-    <Content Include="app\views\packageQuizes.html" />
-    <Content Include="app\views\quizQuestions.html" />
-    <Content Include="app\views\quizStandard.html" />
+    <Content Include="app\views\admin\package\add.html" />
+    <Content Include="app\views\admin\package\delete.html" />
+    <Content Include="app\views\admin\package\edit.html" />
+    <Content Include="app\views\admin\quiz\add.html" />
+    <Content Include="app\views\admin\quiz\delete.html" />
+    <Content Include="app\views\admin\quiz\edit.html" />
+    <Content Include="app\views\admin\quiz\list.html" />
+    <Content Include="app\views\admin\question\list.html" />
     <Content Include="Content\bootstrap.slate.css" />
     <Content Include="Content\bootstrap.slate.min.css" />
     <Content Include="Content\toaster.css" />
     <Content Include="Scripts\loading-bar.js" />
-    <Content Include="app\views\quizPackages.html" />
+    <Content Include="app\views\admin\package\list.html" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.superhero.css" />
@@ -562,6 +561,7 @@
     <Content Include="Views\Home\Quiz.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="app\views\user\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>

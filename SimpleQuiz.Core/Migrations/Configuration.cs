@@ -21,7 +21,7 @@
 
         protected override void Seed(SimpleQuizContext context)
         {
-            AddSampleUser(context);
+            AddSampleUsers(context);
 
             var package1 = new QuizPackage { Name = "El Sustantivo" };
             var package2 = new QuizPackage { Name = "Los Posesivos" };
@@ -51,18 +51,31 @@
             AddSortQuestions(context, quiz1);
         }
 
-        private static void AddSampleUser(SimpleQuizContext context)
+        private static void AddSampleUsers(SimpleQuizContext context)
         {
+            var userManager = new UserManager<User>(new UserStore<User>(context));
+
             if (!context.Users.Any(u => u.UserName == "piotr"))
             {
-                var userManager = new UserManager<User>(new UserStore<User>(context));
                 var user = new User
                 {
                     UserName = "piotr",
                     Email = "piotr@piotr.pl"
                 };
 
-                userManager.Create<User>(user, "P@ssw0rd");
+                userManager.Create(user, "P@ssw0rd");
+            }
+
+            if(!context.Users.Any(u => u.UserName == "admin"))
+            {
+                var admin = new User
+                {
+                    UserName = "admin",
+                    Email = "piotr@piotr.pl"
+                };
+
+                userManager.Create(admin, "P@ssw0rd");
+                userManager.AddToRole(admin.Id, "admin");
             }
         }
 

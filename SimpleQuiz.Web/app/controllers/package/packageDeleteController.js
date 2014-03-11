@@ -1,13 +1,13 @@
 ﻿'use strict';
 
-quizApp.controller("QuizPackageDeleteController", function ($scope, $controller, $modalInstance, quizPackage, quizPackageService, toaster) {
+quizApp.controller("PackageDeleteController", function ($scope, $controller, $modalInstance, quizPackage, packageService, toaster) {
 
     $controller("ModalControllerBase", { $scope: $scope, $modalInstance: $modalInstance });
 
     $scope.quizPackage = quizPackage;
 
     $scope.delete = function () {
-        quizPackageService.delete($scope.quizPackage,
+        packageService.delete($scope.quizPackage,
             function (item) {
                 toaster.pop('success', "Deleted successfully", "Package " + item.Name + " was deleted successfully.");
                 $modalInstance.close();

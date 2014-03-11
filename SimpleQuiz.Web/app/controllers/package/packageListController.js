@@ -1,6 +1,9 @@
 ﻿'use strict';
 
-quizApp.controller("QuizPackagesController", function ($scope, quizPackageService, $modal, toaster, $location) {
+quizApp.controller("PackageListController", function ($scope, packageService, $modal, toaster, $location, $controller) {
+
+    $controller("ListControllerBase", { $scope: $scope });
+
     $scope.searchPhrase = null;
 
     // paging 
@@ -16,7 +19,7 @@ quizApp.controller("QuizPackagesController", function ($scope, quizPackageServic
 
     function getPackages() {
         var offset = ($scope.pageSize) * ($scope.currentPage - 1);
-        quizPackageService.query({ searchPhrase: $scope.searchPhrase, pageSize: $scope.pageSize, offset: offset },
+        packageService.query({ searchPhrase: $scope.searchPhrase, pageSize: $scope.pageSize, offset: offset },
             function (result) {
                 $scope.totalCount = result.TotalCount;
                 $scope.packages = result.List;
@@ -38,8 +41,8 @@ quizApp.controller("QuizPackagesController", function ($scope, quizPackageServic
 
     $scope.openEditModal = function (item) {
         var modalInstance = $modal.open({
-            templateUrl: "app/views/packageEdit.html",
-            controller: "QuizPackageEditController",
+            templateUrl: $scope.getModalTemplateUrl("package", "edit"),
+            controller: $scope.getModalControllerName("package", "edit"),
             resolve: {
                 quizPackage: function () { return item; }
             }
@@ -48,8 +51,8 @@ quizApp.controller("QuizPackagesController", function ($scope, quizPackageServic
 
     $scope.openDeleteModal = function (item) {
         var modalInstance = $modal.open({
-            templateUrl: "app/views/packageDelete.html",
-            controller: "QuizPackageDeleteController",
+            templateUrl: $scope.getModalTemplateUrl("package", "delete"),
+            controller: $scope.getModalControllerName("package", "delete"),
             resolve: {
                 quizPackage: function () { return item; }
             }
@@ -66,8 +69,8 @@ quizApp.controller("QuizPackagesController", function ($scope, quizPackageServic
     $scope.openAddModal = function()
     {
         var modalInstance = $modal.open({
-            templateUrl: "app/views/packageAdd.html",
-            controller: "QuizPackageAddController"
+            templateUrl: $scope.getModalTemplateUrl("package", "add"),
+            controller: $scope.getModalControllerName("package", "add")
         });
 
         modalInstance.result.then(function () {
@@ -77,6 +80,6 @@ quizApp.controller("QuizPackagesController", function ($scope, quizPackageServic
     }
 
     $scope.details = function (item) {
-        $location.path("/quizes/" + item.Id);
+        $location.path("/admin/quizes/" + item.Id);
     }
 });

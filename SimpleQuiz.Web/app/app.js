@@ -3,20 +3,20 @@
 quizApp.config(function ($routeProvider) {
 
     $routeProvider
-        .when("/packages",
+        .when("/admin/packages",
         {
-            controller: "QuizPackagesController",
-            templateUrl: "/app/views/quizpackages.html"
+            controller: "PackageListController",
+            templateUrl: "/app/views/admin/package/list.html"
         })
-        .when("/quizes/:packageId",
+        .when("/admin/quizes/:packageId",
         {
-            controller: "QuizController",
-            templateUrl: "/app/views/packageQuizes.html"
+            controller: "QuizListController",
+            templateUrl: "/app/views/admin/quiz/list.html"
         })
-        .when("/questions/:quizId",
+        .when("/admin/questions/:quizId",
         {
-            controller: "QuizQuestionsController",
-            templateUrl: "/app/views/quizQuestions.html"
+            controller: "QuestionListController",
+            templateUrl: "/app/views/admin/question/list.html"
         })
-        .otherwise({ redirectTo: "/packages" });
+        .otherwise({ redirectTo: "/admin/packages" });
 });
