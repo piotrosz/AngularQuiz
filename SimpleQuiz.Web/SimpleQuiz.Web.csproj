@@ -229,7 +229,18 @@
     <Content Include="app\views\admin\package\add.html" />
     <Content Include="app\views\admin\package\delete.html" />
     <Content Include="app\views\admin\package\edit.html" />
+    <Content Include="app\views\admin\question\category\add.html" />
+    <Content Include="app\views\admin\question\category\delete.html" />
+    <Content Include="app\views\admin\question\category\edit.html" />
     <Content Include="app\views\admin\question\open\add.html" />
+    <Content Include="app\views\admin\question\open\delete.html" />
+    <Content Include="app\views\admin\question\open\edit.html" />
+    <Content Include="app\views\admin\question\sort\add.html" />
+    <Content Include="app\views\admin\question\sort\delete.html" />
+    <Content Include="app\views\admin\question\sort\edit.html" />
+    <Content Include="app\views\admin\question\test\add.html" />
+    <Content Include="app\views\admin\question\test\delete.html" />
+    <Content Include="app\views\admin\question\test\edit.html" />
     <Content Include="app\views\admin\quiz\add.html" />
     <Content Include="app\views\admin\quiz\delete.html" />
     <Content Include="app\views\admin\quiz\edit.html" />
@@ -573,9 +584,6 @@
     <Content Include="Views\Home\Quiz.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\views\admin\question\category\" />
-    <Folder Include="app\views\admin\question\sort\" />
-    <Folder Include="app\views\admin\question\test\" />
     <Folder Include="app\views\user\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
