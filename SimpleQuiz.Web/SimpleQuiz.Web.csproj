@@ -188,11 +188,14 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CategoryQuestionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OpenQuestionController.cs" />
     <Compile Include="Controllers\QuizController.cs" />
     <Compile Include="Controllers\QuizControllerBase.cs" />
     <Compile Include="Controllers\QuizPackageController.cs" />
+    <Compile Include="Controllers\SortQuestionController.cs" />
+    <Compile Include="Controllers\TestQuestionController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -220,6 +223,7 @@
     <Content Include="app\directives\directives.js" />
     <Content Include="app\filters\filters.js" />
     <Content Include="app\services\packageService.js" />
+    <Content Include="app\services\questionService.js" />
     <Content Include="app\services\quizService.js" />
     <Content Include="app\views\admin\package\add.html" />
     <Content Include="app\views\admin\package\delete.html" />

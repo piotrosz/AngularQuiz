@@ -39,6 +39,30 @@ namespace SimpleQuiz.Web
                     "~/Scripts/ui-bootstrap-tpls-0.10.0.js",
                     "~/Scripts/loading-bar.js"
                 ));
+
+            bundles.Add(new ScriptBundle("~/bundles/app").Include(
+                    "~/app/app.js",
+                    "~/app/directives/directives.js",
+                    "~/app/filters/filters.js",
+                    "~/app/controllers/listControllerBase.js",
+                    "~/app/controllers/modalControllerBase.js",
+                    "~/app/controllers/question/questionListController.js",
+                    "~/app/controllers/quiz/quizAddController.js",
+                    "~/app/controllers/quiz/quizDeleteController.js",
+                    "~/app/controllers/quiz/quizEditController.js",
+                    "~/app/controllers/quiz/quizListController.js",
+                    "~/app/controllers/package/packageAddController.js",
+                    "~/app/controllers/package/packageDeleteController.js",
+                    "~/app/controllers/package/packageEditController.js",
+                    "~/app/controllers/package/packageListController.js",
+                    "~/app/controllers/question/categoryQuestionAddController.js",
+                    "~/app/controllers/question/openQuestionAddController.js",
+                    "~/app/controllers/question/sortQuestionAddController.js",
+                    "~/app/controllers/question/testQuestionAddController.js",
+                    "~/app/services/packageService.js",
+                    "~/app/services/quizService.js",
+                    "~/app/services/questionService.js"
+                ));
         }
     }
 }

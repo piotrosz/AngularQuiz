@@ -1,6 +1,6 @@
 ﻿'use strict';
 
-quizApp.controller("OpenQuestionAddController", function ($scope, $controller, $modalInstance, quizService, packageId, toaster, $log) {
+quizApp.controller("OpenQuestionAddController", function ($scope, $controller, $modalInstance, questionService, packageId, toaster, $log) {
 
     $controller("ModalControllerBase", { $scope: $scope, $modalInstance: $modalInstance, toaster: toaster, $log: $log });
 
@@ -13,9 +13,9 @@ quizApp.controller("OpenQuestionAddController", function ($scope, $controller, $
     };
 
     $scope.add = function () {
-        quizService.add({ Name: $scope.quiz.Name, View: $scope.quiz.View, QuizPackageId: packageId },
+        questionService.add('open', { Name: $scope.quiz.Name, View: $scope.quiz.View, QuizPackageId: packageId },
             function (result) {
-                toaster.pop('success', "Added successfully", "Quiz has been added.");
+                toaster.pop('success', "Added successfully", "Open question has been added.");
                 $modalInstance.close();
             },
             function (result) {
