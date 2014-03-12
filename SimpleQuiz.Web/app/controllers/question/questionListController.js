@@ -32,7 +32,7 @@ quizApp.controller("QuestionListController", function ($scope, quizService, toas
     $scope.openAddModal = function(questionType)
     {
         var modalInstance = $modal.open({
-            templateUrl: $scope.getModalTemplateUrl(questionType + "Question", "add"),
+            templateUrl: $scope.getModalTemplateUrl("question/" + questionType, "add"),
             controller: $scope.getModalControllerName(questionType + "Question", "add"),
             resolve: {
                 quizId: function () { return $scope.quizId; }
@@ -47,7 +47,7 @@ quizApp.controller("QuestionListController", function ($scope, quizService, toas
     $scope.openEditModal = function(questionType, question)
     {
         var modalInstance = $modal.open({
-            templateUrl: $scope.getModalTemplateUrl(questionType + "Question", "edit"),
+            templateUrl: $scope.getModalTemplateUrl("question/" + questionType, "edit"),
             controller: $scope.getModalControllerName(questionType + "Question", "add"),
             resolve: {
                 question: function () { return question; }
@@ -58,7 +58,7 @@ quizApp.controller("QuestionListController", function ($scope, quizService, toas
     $scope.openDeleteModal = function(questionType, question)
     {
         var modalInstance = $modal.open({
-            templateUrl: $scope.getModalTemplateUrl(questionType + "Question", "delete"),
+            templateUrl: $scope.getModalTemplateUrl("question/" + questionType, "delete"),
             controller: $scope.getModalControllerName(questionType + "Question", "delete"),
             resolve: {
                 question: function () { return question; }

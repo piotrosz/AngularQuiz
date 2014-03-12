@@ -42,6 +42,7 @@ namespace SimpleQuiz.Web
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                     "~/app/app.js",
+                    "~/app/util.js",
                     "~/app/directives/directives.js",
                     "~/app/filters/filters.js",
                     "~/app/controllers/listControllerBase.js",

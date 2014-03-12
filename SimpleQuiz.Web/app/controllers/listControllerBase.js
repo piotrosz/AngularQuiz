@@ -9,6 +9,6 @@
     };
 
     $scope.getModalControllerName = function (entity, action) {
-        return entity.charAt(0).toUpperCase() + entity.substring(1) + action.charAt(0).toUpperCase() + action.substring(1) + "Controller";
+        return entity.capitalize() + action.capitalize() + "Controller";
     };
 });

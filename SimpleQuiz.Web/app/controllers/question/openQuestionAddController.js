@@ -1,6 +1,6 @@
 ﻿'use strict';
 
-quizApp.controller("OpenQuestionAddController", function ($scope, $controller, $modalInstance, questionService, packageId, toaster, $log) {
+quizApp.controller("OpenQuestionAddController", function ($scope, $controller, $modalInstance, questionService, toaster, $log) {
 
     $controller("ModalControllerBase", { $scope: $scope, $modalInstance: $modalInstance, toaster: toaster, $log: $log });
 
@@ -8,12 +8,14 @@ quizApp.controller("OpenQuestionAddController", function ($scope, $controller, $
         Content: "",
         CorrectAnswers:
             [
-                { CorrectAnswerOptions: { Content: "Content" } }
+                { OrderId: 1, CorrectAnswerOptions: [{ Content: "" }] }
             ]
     };
 
+    $scope.currentOrderId = 1;
+
     $scope.add = function () {
-        questionService.add('open', { Name: $scope.quiz.Name, View: $scope.quiz.View, QuizPackageId: packageId },
+        questionService.add('open', { /*TODO*/ },
             function (result) {
                 toaster.pop('success', "Added successfully", "Open question has been added.");
                 $modalInstance.close();
@@ -24,4 +26,29 @@ quizApp.controller("OpenQuestionAddController", function ($scope, $controller, $
                 $scope.logError(result);
             });
     };
+
+    $scope.addAnswer = function () {
+        $scope.currentOrderId++;
+        $scope.question.CorrectAnswers.push({ OrderId: $scope.currentOrderId, CorrectAnswerOptions: [{ Content: "" }] });
+    };
+
+    $scope.deleteAnswer = function () {
+
+        if($scope.question.CorrectAnswers.length > 1)
+        {
+            $scope.currentOrderId--;
+            $scope.question.CorrectAnswers.pop();
+        }
+    }
+
+    $scope.addOption = function (answer) {
+        answer.CorrectAnswerOptions.push({ Content: "" });
+    };
+
+    $scope.deleteOption = function (answer) {
+        if (answer.CorrectAnswerOptions.length > 1)
+        {
+            answer.CorrectAnswerOptions.pop();
+        }
+    }
 })

@@ -225,10 +225,11 @@
     <Content Include="app\services\packageService.js" />
     <Content Include="app\services\questionService.js" />
     <Content Include="app\services\quizService.js" />
+    <Content Include="app\util.js" />
     <Content Include="app\views\admin\package\add.html" />
     <Content Include="app\views\admin\package\delete.html" />
     <Content Include="app\views\admin\package\edit.html" />
-    <Content Include="app\views\admin\question\openQuestionAdd.html" />
+    <Content Include="app\views\admin\question\open\add.html" />
     <Content Include="app\views\admin\quiz\add.html" />
     <Content Include="app\views\admin\quiz\delete.html" />
     <Content Include="app\views\admin\quiz\edit.html" />
@@ -572,6 +573,9 @@
     <Content Include="Views\Home\Quiz.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="app\views\admin\question\category\" />
+    <Folder Include="app\views\admin\question\sort\" />
+    <Folder Include="app\views\admin\question\test\" />
     <Folder Include="app\views\user\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
