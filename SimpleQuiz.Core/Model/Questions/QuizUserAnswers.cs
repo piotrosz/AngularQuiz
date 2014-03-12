@@ -10,6 +10,7 @@ namespace SimpleQuiz.Core.Model.Questions
         public QuizUserAnswers(int quizId)
         {
             QuizId = quizId;
+            Answers = new List<QuestionUserAnswer>();
         }
 
         public int QuizId { get; private set; }

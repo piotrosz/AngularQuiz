@@ -15,21 +15,23 @@ namespace SimpleQuiz.Core.AnswerCheck
         private QuizUserAnswers _userAnswers;
 
         private CheckQuizAnswersResult _checkQuizAnswersResult;
+        private Quiz _quiz;
         
         public QuizAnswersChecker(Quiz quiz, QuestionCheckStrategies answerStrategies)
         {
-            _checkQuizAnswersResult = new CheckQuizAnswersResult(quiz);
+            _quiz = quiz;
+            _checkQuizAnswersResult = new CheckQuizAnswersResult(_quiz);
             _answerStrategies = answerStrategies;
         }
 
-        public CheckQuizAnswersResult Check(Quiz quiz, QuizUserAnswers userAnswers)
+        public CheckQuizAnswersResult Check(QuizUserAnswers userAnswers)
         {
             _userAnswers = userAnswers;
 
-            CheckQuestionGroup<OpenQuestion>(quiz.OpenQuestions, _answerStrategies.OpenQuestionStrategy);
-            CheckQuestionGroup<SortQuestion>(quiz.SortQuestions, _answerStrategies.SortQuestionStrategy);
-            CheckQuestionGroup<TestQuestion>(quiz.TestQuestions, _answerStrategies.TestQuestionStrategy);
-            CheckQuestionGroup<CategoryQuestion>(quiz.CategoryQuestions, _answerStrategies.CategoryQuestionStrategy);
+            CheckQuestionGroup<OpenQuestion>(_quiz.OpenQuestions, _answerStrategies.OpenQuestionStrategy);
+            CheckQuestionGroup<SortQuestion>(_quiz.SortQuestions, _answerStrategies.SortQuestionStrategy);
+            CheckQuestionGroup<TestQuestion>(_quiz.TestQuestions, _answerStrategies.TestQuestionStrategy);
+            CheckQuestionGroup<CategoryQuestion>(_quiz.CategoryQuestions, _answerStrategies.CategoryQuestionStrategy);
 
             return _checkQuizAnswersResult;
         }

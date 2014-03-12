@@ -13,91 +13,35 @@ using SimpleQuiz.Core.DAL;
 
 namespace SimpleQuiz.Web.Controllers
 {
-    public class OpenQuestionController : QuizControllerBase
+    public class OpenQuestionController : QuizControllerBase<OpenQuestion>
     {
-        public OpenQuestionController(IUnitOfWork unitOfWork) : base(unitOfWork) {}
+        public OpenQuestionController(IUnitOfWork unitOfWork) : base(unitOfWork, unitOfWork.OpenQuestion) {}
 
         // GET api/OpenQuestion/5
         [ResponseType(typeof(OpenQuestion))]
         public IHttpActionResult GetOpenQuestion(int id)
         {
-            OpenQuestion question = _unitOfWork.OpenQuestion.List().SingleOrDefault(q => q.Id == id);
-            if (question == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(question);
+            return GetEntity(id);
         }
 
         // PUT api/OpenQuestion/5
         public IHttpActionResult PutOpenQuestion(int id, OpenQuestion question)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            if (id != question.Id)
-            {
-                return BadRequest();
-            }
-
-            _unitOfWork.OpenQuestion.Attach(question);
-
-            try
-            {
-                _unitOfWork.Save();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!OpenQuestionExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return StatusCode(HttpStatusCode.NoContent);
+            return PutEntity(id, question);
         }
 
         // POST api/OpenQuestion
         [ResponseType(typeof(OpenQuestion))]
         public IHttpActionResult PostOpenQuestion(OpenQuestion question)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            _unitOfWork.OpenQuestion.Insert(question);
-            _unitOfWork.Save();
-
-            return CreatedAtRoute("DefaultApi", new { id = question.Id }, question);
+            return PostEntity(question);
         }
 
         // DELETE api/OpenQuestion/5
         [ResponseType(typeof(OpenQuestion))]
         public IHttpActionResult DeleteOpenQuestion(int id)
         {
-            OpenQuestion question = _unitOfWork.OpenQuestion.List().SingleOrDefault(q => q.Id == id);
-            if (question == null)
-            {
-                return NotFound();
-            }
-
-            _unitOfWork.OpenQuestion.Delete(question);
-            _unitOfWork.Save();
-
-            return Ok(question);
-        }
-
-        private bool OpenQuestionExists(int id)
-        {
-            return _unitOfWork.OpenQuestion.List().Any(e => e.Id == id);
+            return DeleteEntity(id);
         }
     }
 }

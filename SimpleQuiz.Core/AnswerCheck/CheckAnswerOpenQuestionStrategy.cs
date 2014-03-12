@@ -29,14 +29,17 @@ namespace SimpleQuiz.Core.AnswerCheck
                 throw new ArgumentNullException("userAnswer.Answers");
             }
 
+            if(question.CorrectAnswers == null)
+            {
+                throw new ArgumentNullException("question.CorrectAnswers");
+            }
+
             if(userAnswer.Answers.Count != question.CorrectAnswers.Count())
             {
                 throw new ArgumentException("Number of user answers must be the same as the number of question answers", "userAnswer");
             }
 
-            var result = new CheckAnswerResult(question);
-
-            result.IsCorrect = true;
+            var result = new CheckAnswerResult(question) { IsCorrect = true };
 
             for (int answerIndex = 0; answerIndex < userAnswer.Answers.Count; answerIndex++)
             {

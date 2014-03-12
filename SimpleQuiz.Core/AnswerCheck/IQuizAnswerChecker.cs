@@ -9,6 +9,6 @@ namespace SimpleQuiz.Core.AnswerCheck
 {
     public interface IQuizAnswerChecker
     {
-        CheckQuizAnswersResult Check(Quiz quiz, QuizUserAnswers userAnswers);
+        CheckQuizAnswersResult Check(QuizUserAnswers userAnswers);
     }
 }

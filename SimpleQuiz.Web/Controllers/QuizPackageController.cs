@@ -17,9 +17,9 @@ namespace SimpleQuiz.Web.Controllers
 {
     // TODO: Enable Authorize
     //[Authorize(Roles="admin")]
-    public class QuizPackageController : QuizControllerBase
+    public class QuizPackageController : QuizControllerBase<QuizPackage>
     {
-        public QuizPackageController(IUnitOfWork unitOfWork) : base(unitOfWork) {}
+        public QuizPackageController(IUnitOfWork unitOfWork) : base(unitOfWork, unitOfWork.QuizPackage) {}
 
         // GET api/QuizPackage
         public PagedResults<QuizPackage> GetQuizPackages(int pageSize, int offset, string searchPhrase = null)
@@ -53,85 +53,27 @@ namespace SimpleQuiz.Web.Controllers
         [ResponseType(typeof(QuizPackage))]
         public IHttpActionResult GetQuizPackage(int id)
         {
-            QuizPackage quizpackage = _unitOfWork.QuizPackage.List().SingleOrDefault(p => p.Id == id);
-            if (quizpackage == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(quizpackage);
+            return GetEntity(id);
         }
 
         // PUT api/QuizPackage/5
-        public IHttpActionResult PutQuizPackage(int id, QuizPackage quizpackage)
+        public IHttpActionResult PutQuizPackage(int id, QuizPackage quizPackage)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            if (id != quizpackage.Id)
-            {
-                return BadRequest();
-            }
-
-            _unitOfWork.QuizPackage.Attach(quizpackage);
-
-            try
-            {
-                _unitOfWork.Save();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!QuizPackageExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return StatusCode(HttpStatusCode.NoContent);
+            return PutEntity(id, quizPackage);
         }
 
         // POST api/QuizPackage
         [ResponseType(typeof(QuizPackage))]
-        public IHttpActionResult PostQuizPackage(QuizPackage quizpackage)
+        public IHttpActionResult PostQuizPackage(QuizPackage quizPackage)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            _unitOfWork.QuizPackage.Insert(quizpackage);
-            _unitOfWork.Save();
-
-            return CreatedAtRoute("DefaultApi", new { id = quizpackage.Id }, quizpackage);
+            return PostEntity(quizPackage);
         }
 
         // DELETE api/QuizPackage/5
         [ResponseType(typeof(QuizPackage))]
         public IHttpActionResult DeleteQuizPackage(int id)
         {
-            QuizPackage quizpackage = _unitOfWork.QuizPackage.List()
-                .SingleOrDefault(p => p.Id == id);
-
-            if (quizpackage == null)
-            {
-                return NotFound();
-            }
-
-            _unitOfWork.QuizPackage.Delete(quizpackage);
-            _unitOfWork.Save();
-
-            return Ok(quizpackage);
-        }
-
-        private bool QuizPackageExists(int id)
-        {
-            return _unitOfWork.QuizPackage.List().Any(e => e.Id == id);
-        }
+            return DeleteEntity(id);
+        }  
     }
 }

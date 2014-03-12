@@ -16,5 +16,7 @@ namespace SimpleQuiz.Core.AnswerCheck
 
         public Quiz Quiz { get; private set; }
         public List<CheckAnswerResult> AnswersResults { get; set; }
+
+        public int CorrectAnswersCount { get { return AnswersResults.Count(a => a.IsCorrect); } }
     }
 }

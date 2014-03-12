@@ -15,6 +15,7 @@ namespace SimpleQuiz.Migrations
                         CategoryQuestionId = c.Int(nullable: false),
                         Category = c.String(nullable: false, maxLength: 1024),
                         Content = c.String(nullable: false),
+                        OrderId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.CategoryQuestion", t => t.CategoryQuestionId, cascadeDelete: true)

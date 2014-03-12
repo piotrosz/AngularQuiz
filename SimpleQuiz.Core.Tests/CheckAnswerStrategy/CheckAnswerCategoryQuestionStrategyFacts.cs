@@ -42,7 +42,21 @@ namespace SimpleQuiz.Core.Tests.CheckAnswerStrategy
         [Fact]
         public void should_check_incorrect_answer()
         {
+            // Arrange
+            var question = StubCategoryQuestions.CategoryQuestion;
+            var userAnswer = new QuestionUserAnswer(question.Id);
+            userAnswer.Answers.Add("Alphabet");
+            userAnswer.Answers.Add("Bird");
+            userAnswer.Answers.Add("Number");
+            userAnswer.Answers.Add("Alphabet");
+            userAnswer.Answers.Add("Bird");
 
+            // Act
+            var result = _target.Check(userAnswer, question);
+
+            // Assert
+            Assert.False(result.IsCorrect);
+            Assert.Equal(3, result.CorrectAswersIds.Count);
         }
     }
 }

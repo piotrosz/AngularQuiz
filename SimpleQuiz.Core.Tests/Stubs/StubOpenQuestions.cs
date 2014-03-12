@@ -48,7 +48,7 @@ namespace SimpleQuiz.Core.Tests.Stubs
             }
         }
 
-        public static Question ThreeAnswersThreeOptionsQuestion
+        public static OpenQuestion ThreeAnswersThreeOptionsQuestion
         {
             get
             {

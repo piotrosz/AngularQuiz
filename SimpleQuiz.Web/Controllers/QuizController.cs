@@ -15,9 +15,9 @@ using SimpleQuiz.Core.Model.Questions;
 
 namespace SimpleQuiz.Web.Controllers
 {
-    public class QuizController : QuizControllerBase
+    public class QuizController : QuizControllerBase<Quiz>
     {
-        public QuizController(IUnitOfWork unitOfWork) : base(unitOfWork) {}
+        public QuizController(IUnitOfWork unitOfWork) : base(unitOfWork, unitOfWork.Quiz) {}
 
         //private IQuizAnswerChecker _answerChecker;
 
@@ -59,50 +59,14 @@ namespace SimpleQuiz.Web.Controllers
         // PUT api/Quiz/5
         public IHttpActionResult PutQuiz(int id, Quiz quiz)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            if (id != quiz.Id)
-            {
-                return BadRequest();
-            }
-
-            _unitOfWork.Quiz.Attach(quiz);
-
-            try
-            {
-                _unitOfWork.Save();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!QuizExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return StatusCode(HttpStatusCode.NoContent);
+            return PutEntity(id, quiz);
         }
 
         // POST api/Quiz
         [ResponseType(typeof(Quiz))]
         public IHttpActionResult PostQuiz(Quiz quiz)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            _unitOfWork.Quiz.Insert(quiz);
-            _unitOfWork.Save();
-
-            return CreatedAtRoute("DefaultApi", new { id = quiz.Id }, quiz);
+            return PostEntity(quiz);
         }
 
         //[Route("api/quizcheckanswers")]
@@ -124,30 +88,7 @@ namespace SimpleQuiz.Web.Controllers
         [ResponseType(typeof(Quiz))]
         public IHttpActionResult DeleteQuiz(int id)
         {
-            Quiz quiz = _unitOfWork.Quiz.List().SingleOrDefault(q => q.Id == id);
-            if (quiz == null)
-            {
-                return NotFound();
-            }
-
-            _unitOfWork.Quiz.Delete(quiz);
-            _unitOfWork.Save();
-
-            return Ok(quiz);
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                _unitOfWork.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        private bool QuizExists(int id)
-        {
-            return _unitOfWork.Quiz.List().Any(e => e.Id == id);
+            return DeleteEntity(id);
         }
     }
 }
