@@ -1,11 +1,15 @@
-﻿quizApp.directive("question", function () {
+﻿quizApp.directive("count", function () {
     return {
         restrict: "E",
-        scope: { content: "@" },
-        replace: true,
-        //link: function (scope) {
-            
-        //},
-        template: "<p>{{content}}</p>"
+        scope: { value: "@" },
+        template: "<span class='badge'>{{value}}</span>"
+    };
+});
+
+quizApp.directive("order", function () {
+    return {
+        restrict: "E",
+        scope: { value: "@" },
+        template: "<span class='label label-primary'>{{value}}</span>"
     };
 });

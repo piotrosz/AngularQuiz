@@ -91,21 +91,24 @@
             {
                 QuizId = quiz.Id,
                 Content = "Pues muy tremenda, muy... ¡Ay! ¡Qué miedo []!",
-                View = "OpenQuestionStandard"
+                View = "Standard",
+                OrderId = 0
             };
 
             var question2 = new OpenQuestion
             {
                 QuizId = quiz.Id,
                 Content = "[] un cliente para hacerle la entrada - el check-in - como [] antes y le [] yo atendiendo y le [] un ataque.",
-                View = "OpenQuestionStandard"
+                View = "Standard",
+                OrderId = 1
             };
 
             var question3 = new OpenQuestion
             {
                 QuizId = quiz.Id,
                 Content = "Y se [] aquí - aquí justo delante de la recepción que Uds. no lo pueden ver, pero aquí delante...Y el cliente no []",
-                View = "OpenQuestionStandard"
+                View = "Standard",
+                OrderId = 2
             };
 
             context.OpenQuestions.AddOrUpdate(q => q.Content, question1, question2, question3);

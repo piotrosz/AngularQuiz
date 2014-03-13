@@ -9,8 +9,10 @@ namespace SimpleQuiz.Core.Model.Questions
 {
     public abstract class Question : Entity
     {
+        [Required]
         public int QuizId { get; set; }
 
+        [Required]
         public int OrderId { get; set; }
 
         [Required]

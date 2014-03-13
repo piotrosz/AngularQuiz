@@ -5,6 +5,7 @@ quizApp.controller("OpenQuestionAddController", function ($scope, $controller, $
     $controller("ModalControllerBase", { $scope: $scope, $modalInstance: $modalInstance, toaster: toaster, $log: $log });
 
     $scope.question = {
+        QuizId: $scope.quizId,
         Content: "",
         CorrectAnswers:
             [
@@ -15,7 +16,7 @@ quizApp.controller("OpenQuestionAddController", function ($scope, $controller, $
     $scope.currentOrderId = 1;
 
     $scope.add = function () {
-        questionService.add('open', { /*TODO*/ },
+        questionService.add('open', $scope.question,
             function (result) {
                 toaster.pop('success', "Added successfully", "Open question has been added.");
                 $modalInstance.close();
