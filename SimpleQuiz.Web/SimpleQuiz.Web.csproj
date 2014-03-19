@@ -209,6 +209,7 @@
     <Content Include="app\controllers\modalControllerBase.js" />
     <Content Include="app\controllers\question\categoryQuestionAddController.js" />
     <Content Include="app\controllers\question\openQuestionAddController.js" />
+    <Content Include="app\controllers\question\openQuestionDeleteController.js" />
     <Content Include="app\controllers\question\sortQuestionAddController.js" />
     <Content Include="app\controllers\question\testQuestionAddController.js" />
     <Content Include="app\controllers\quiz\quizAddController.js" />

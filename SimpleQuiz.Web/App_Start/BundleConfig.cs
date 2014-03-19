@@ -41,28 +41,16 @@ namespace SimpleQuiz.Web
                 ));
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
+                    "~/app/directives/*.js",    
                     "~/app/app.js",
-                    "~/app/util.js",
-                    "~/app/directives/directives.js",
-                    "~/app/filters/filters.js",
-                    "~/app/controllers/listControllerBase.js",
-                    "~/app/controllers/modalControllerBase.js",
-                    "~/app/controllers/question/questionListController.js",
-                    "~/app/controllers/quiz/quizAddController.js",
-                    "~/app/controllers/quiz/quizDeleteController.js",
-                    "~/app/controllers/quiz/quizEditController.js",
-                    "~/app/controllers/quiz/quizListController.js",
-                    "~/app/controllers/package/packageAddController.js",
-                    "~/app/controllers/package/packageDeleteController.js",
-                    "~/app/controllers/package/packageEditController.js",
-                    "~/app/controllers/package/packageListController.js",
-                    "~/app/controllers/question/categoryQuestionAddController.js",
-                    "~/app/controllers/question/openQuestionAddController.js",
-                    "~/app/controllers/question/sortQuestionAddController.js",
-                    "~/app/controllers/question/testQuestionAddController.js",
-                    "~/app/services/packageService.js",
-                    "~/app/services/quizService.js",
-                    "~/app/services/questionService.js"
+                    "~/app/util.js", 
+                    "~/app/filters/*.js",
+                    "~/app/controllers/*.js",
+                    "~/app/controllers/question/*.js",
+                    "~/app/controllers/quiz/*.js",
+                    "~/app/controllers/package/*.js",
+                    "~/app/controllers/question/*.js",
+                    "~/app/services/*.js"
                 ));
         }
     }

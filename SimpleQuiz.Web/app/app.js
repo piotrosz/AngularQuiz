@@ -1,4 +1,4 @@
-﻿var quizApp = angular.module("quiz", ["ngRoute", "ngResource", "ngAnimate" , "ui.bootstrap", "chieffancypants.loadingBar", "toaster"]);
+﻿var quizApp = angular.module("quiz", ["ngRoute", "ngResource", "ngAnimate" , "ui.bootstrap", "chieffancypants.loadingBar", "toaster", 'quizdirectives']);
 
 quizApp.config(function ($routeProvider) {
 

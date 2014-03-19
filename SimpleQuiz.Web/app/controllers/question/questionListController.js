@@ -10,23 +10,29 @@ quizApp.controller("QuestionListController", function ($scope, quizService, toas
     {
         $scope.quizId = $routeParams.quizId;
 
-        getQuiz();
+        getQuiz(true);
     }
 
-    function getQuiz()
+    function getQuiz(expandAll)
     {
         quizService.get($scope.quizId,
             function (result) {
                 $scope.quiz = result;
-
-                $scope.areOpenQuestionsCollapsed = true;
-                $scope.areTestQuestionsCollapsed = true;
-                $scope.areCategoryQuestionsCollapsed = true;
-                $scope.areSortQuestionsCollapsed = true;
+                if(expandAll) {
+                    expandAll();
+                }
             },
             function (result) {
 
             });
+    }
+
+    function expandAll()
+    {
+        $scope.areOpenQuestionsCollapsed = true;
+        $scope.areTestQuestionsCollapsed = true;
+        $scope.areCategoryQuestionsCollapsed = true;
+        $scope.areSortQuestionsCollapsed = true;
     }
 
     $scope.openAddModal = function(questionType)

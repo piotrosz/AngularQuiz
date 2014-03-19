@@ -1,11 +1,11 @@
 ﻿'use strict';
 
-quizApp.controller("OpenQuestionAddController", function ($scope, $controller, $modalInstance, questionService, toaster, $log) {
+quizApp.controller("OpenQuestionAddController", function ($scope, $controller, $modalInstance, questionService, toaster, $log, quizId) {
 
     $controller("ModalControllerBase", { $scope: $scope, $modalInstance: $modalInstance, toaster: toaster, $log: $log });
 
     $scope.question = {
-        QuizId: $scope.quizId,
+        QuizId: quizId,
         Content: "",
         CorrectAnswers:
             [

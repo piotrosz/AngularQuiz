@@ -34,7 +34,7 @@ namespace SimpleQuiz.Web.Controllers
             return Ok(entity);
         }
 
-        public IHttpActionResult PutEntity(int id, TEntity entity)
+        protected IHttpActionResult PutEntity(int id, TEntity entity)
         {
             if (!ModelState.IsValid)
             {
@@ -67,7 +67,7 @@ namespace SimpleQuiz.Web.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        public IHttpActionResult PostEntity(TEntity entity)
+        protected IHttpActionResult PostEntity(TEntity entity)
         {
             if (!ModelState.IsValid)
             {
@@ -80,7 +80,7 @@ namespace SimpleQuiz.Web.Controllers
             return CreatedAtRoute("DefaultApi", new { id = entity.Id }, entity);
         }
 
-        public IHttpActionResult DeleteEntity(int id)
+        protected IHttpActionResult DeleteEntity(int id)
         {
             TEntity entity = _repository.List().SingleOrDefault(e => e.Id == id);
             if (entity == null)
