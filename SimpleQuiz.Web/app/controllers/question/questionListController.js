@@ -1,8 +1,6 @@
 ﻿'use strict';
 
-quizApp.controller("QuestionListController", function ($scope, quizService, toaster, $routeParams, $modal, $controller) {
-
-    $controller("ListControllerBase", { $scope: $scope });
+quizApp.controller("QuestionListController", function ($scope, quizService, toaster, $routeParams, $modal, $controller, modalService) {
 
     init();
 
@@ -38,8 +36,8 @@ quizApp.controller("QuestionListController", function ($scope, quizService, toas
     $scope.openAddModal = function(questionType)
     {
         var modalInstance = $modal.open({
-            templateUrl: $scope.getModalTemplateUrl("question/" + questionType, "add"),
-            controller: $scope.getModalControllerName(questionType + "Question", "add"),
+            templateUrl: modalService.getModalTemplateUrl("question/" + questionType, "add"),
+            controller: modalService.getModalControllerName(questionType + "Question", "add"),
             resolve: {
                 quizId: function () { return $scope.quizId; }
             }
@@ -53,8 +51,8 @@ quizApp.controller("QuestionListController", function ($scope, quizService, toas
     $scope.openEditModal = function(questionType, question)
     {
         var modalInstance = $modal.open({
-            templateUrl: $scope.getModalTemplateUrl("question/" + questionType, "edit"),
-            controller: $scope.getModalControllerName(questionType + "Question", "add"),
+            templateUrl: modalService.getModalTemplateUrl("question/" + questionType, "edit"),
+            controller: modalService.getModalControllerName(questionType + "Question", "edit"),
             resolve: {
                 question: function () { return question; }
             }
@@ -64,8 +62,8 @@ quizApp.controller("QuestionListController", function ($scope, quizService, toas
     $scope.openDeleteModal = function(questionType, question)
     {
         var modalInstance = $modal.open({
-            templateUrl: $scope.getModalTemplateUrl("question/" + questionType, "delete"),
-            controller: $scope.getModalControllerName(questionType + "Question", "delete"),
+            templateUrl: modalService.getModalTemplateUrl("question/" + questionType, "delete"),
+            controller: modalService.getModalControllerName(questionType + "Question", "delete"),
             resolve: {
                 question: function () { return question; }
             }

@@ -1,19 +1,22 @@
 ﻿'use strict';
 
-quizApp.controller("QuizEditController", function ($scope, $controller, $modalInstance, quiz, quizService, toaster) {
-
-    $controller("ModalControllerBase", { $scope: $scope, $modalInstance: $modalInstance });
+quizApp.controller("QuizEditController", function ($scope, $controller, quiz, quizService, modalService, $modalInstance) {
 
     $scope.quiz = quiz;
 
     $scope.save = function () {
         quizService.save($scope.quiz,
-            function (item) {
-                toaster.pop('success', "Updated successfully", "Quiz " + item.Name + " was updated successfully.");
+            function (quiz) {
+                modalService.showSaveSuccess("quiz", quiz.Name);
                 $modalInstance.close();
             },
-            function (item) {
-                toaster.pop('error', "Failed to save", "Something went wrong while saving " + item.Name + ".");
+            function (quiz) {
+                modalService.showSaveError("quiz", quiz.Name);
             });
     };
+
+
+    $scope.close = function () {
+        $modalInstance.dismiss("cancel");
+    }
 })

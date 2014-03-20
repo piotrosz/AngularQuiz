@@ -205,11 +205,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="app\controllers\listControllerBase.js" />
-    <Content Include="app\controllers\modalControllerBase.js" />
     <Content Include="app\controllers\question\categoryQuestionAddController.js" />
     <Content Include="app\controllers\question\openQuestionAddController.js" />
     <Content Include="app\controllers\question\openQuestionDeleteController.js" />
+    <Content Include="app\controllers\question\openQuestionEditController.js" />
     <Content Include="app\controllers\question\sortQuestionAddController.js" />
     <Content Include="app\controllers\question\testQuestionAddController.js" />
     <Content Include="app\controllers\quiz\quizAddController.js" />
@@ -223,6 +222,7 @@
     <Content Include="app\controllers\question\questionListController.js" />
     <Content Include="app\directives\directives.js" />
     <Content Include="app\filters\filters.js" />
+    <Content Include="app\services\modalService.js" />
     <Content Include="app\services\packageService.js" />
     <Content Include="app\services\questionService.js" />
     <Content Include="app\services\quizService.js" />

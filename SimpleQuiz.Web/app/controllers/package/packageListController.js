@@ -1,8 +1,6 @@
 ﻿'use strict';
 
-quizApp.controller("PackageListController", function ($scope, packageService, $modal, toaster, $location, $controller) {
-
-    $controller("ListControllerBase", { $scope: $scope });
+quizApp.controller("PackageListController", function ($scope, packageService, $modal, toaster, $location, $controller, modalService) {
 
     $scope.searchPhrase = null;
 
@@ -41,8 +39,8 @@ quizApp.controller("PackageListController", function ($scope, packageService, $m
 
     $scope.openEditModal = function (item) {
         var modalInstance = $modal.open({
-            templateUrl: $scope.getModalTemplateUrl("package", "edit"),
-            controller: $scope.getModalControllerName("package", "edit"),
+            templateUrl: modalService.getModalTemplateUrl("package", "edit"),
+            controller: modalService.getModalControllerName("package", "edit"),
             resolve: {
                 quizPackage: function () { return item; }
             }
@@ -51,8 +49,8 @@ quizApp.controller("PackageListController", function ($scope, packageService, $m
 
     $scope.openDeleteModal = function (item) {
         var modalInstance = $modal.open({
-            templateUrl: $scope.getModalTemplateUrl("package", "delete"),
-            controller: $scope.getModalControllerName("package", "delete"),
+            templateUrl: modalService.getModalTemplateUrl("package", "delete"),
+            controller: modalService.getModalControllerName("package", "delete"),
             resolve: {
                 quizPackage: function () { return item; }
             }
@@ -66,11 +64,10 @@ quizApp.controller("PackageListController", function ($scope, packageService, $m
         });
    }
 
-    $scope.openAddModal = function()
-    {
+    $scope.openAddModal = function() {
         var modalInstance = $modal.open({
-            templateUrl: $scope.getModalTemplateUrl("package", "add"),
-            controller: $scope.getModalControllerName("package", "add")
+            templateUrl: modalService.getModalTemplateUrl("package", "add"),
+            controller: modalService.getModalControllerName("package", "add")
         });
 
         modalInstance.result.then(function () {

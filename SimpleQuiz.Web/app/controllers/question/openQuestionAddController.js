@@ -1,8 +1,6 @@
 ﻿'use strict';
 
-quizApp.controller("OpenQuestionAddController", function ($scope, $controller, $modalInstance, questionService, toaster, $log, quizId) {
-
-    $controller("ModalControllerBase", { $scope: $scope, $modalInstance: $modalInstance, toaster: toaster, $log: $log });
+quizApp.controller("OpenQuestionAddController", function ($scope, $controller, questionService, $log, quizId, modalService, $modalInstance) {
 
     $scope.question = {
         QuizId: quizId,
@@ -18,13 +16,11 @@ quizApp.controller("OpenQuestionAddController", function ($scope, $controller, $
     $scope.add = function () {
         questionService.add('open', $scope.question,
             function (result) {
-                toaster.pop('success', "Added successfully", "Open question has been added.");
+                modalService.showAddSuccess("Open question");
                 $modalInstance.close();
             },
             function (result) {
-                toaster.pop('error', "Failed to add", "Something went wrong while adding.");
-
-                $scope.logError(result);
+                modalService.showAddError("Open question");
             });
     };
 
@@ -35,21 +31,23 @@ quizApp.controller("OpenQuestionAddController", function ($scope, $controller, $
 
     $scope.deleteAnswer = function () {
 
-        if($scope.question.CorrectAnswers.length > 1)
-        {
+        if ($scope.question.CorrectAnswers.length > 1) {
             $scope.currentOrderId--;
             $scope.question.CorrectAnswers.pop();
         }
-    }
+    };
 
     $scope.addOption = function (answer) {
         answer.CorrectAnswerOptions.push({ Content: "" });
     };
 
     $scope.deleteOption = function (answer) {
-        if (answer.CorrectAnswerOptions.length > 1)
-        {
+        if (answer.CorrectAnswerOptions.length > 1) {
             answer.CorrectAnswerOptions.pop();
         }
+    };
+
+    $scope.close = function () {
+        $modalInstance.dismiss("cancel");
     }
 })

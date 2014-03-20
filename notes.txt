@@ -28,4 +28,3 @@ app.config(function(cfpLoadingBarProvider){
 TODO:
 - Check Google log in
 - Authorize on API controllers
-- Add admin role

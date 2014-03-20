@@ -1,19 +1,21 @@
 ﻿'use strict';
 
-quizApp.controller("PackageDeleteController", function ($scope, $controller, $modalInstance, quizPackage, packageService, toaster) {
-
-    $controller("ModalControllerBase", { $scope: $scope, $modalInstance: $modalInstance });
+quizApp.controller("PackageDeleteController", function ($scope, $controller, quizPackage, packageService, modalService, $modalInstance) {
 
     $scope.quizPackage = quizPackage;
 
     $scope.delete = function () {
         packageService.delete($scope.quizPackage,
-            function (item) {
-                toaster.pop('success', "Deleted successfully", "Package " + item.Name + " was deleted successfully.");
+            function (quizPackage) {
+                modalService.showDeleteSuccess("Quiz package", quizPackage.Name);
                 $modalInstance.close();
             },
-            function (item) {
-                toaster.pop('error', "Failed to delete", "Something went wrong while deleting " + item.Name + ".");
+            function (quizPackage) {
+                modalService.showDeleteError(quizPackage.Name);
             });
     };
+
+    $scope.close = function () {
+        $modalInstance.dismiss("cancel");
+    }
 });

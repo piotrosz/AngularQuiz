@@ -1,19 +1,22 @@
 ﻿'use strict';
 
-quizApp.controller("OpenQuestionDeleteController", function ($scope, $controller, $modalInstance, question, questionService, toaster) {
-
-    $controller("ModalControllerBase", { $scope: $scope, $modalInstance: $modalInstance });
+quizApp.controller("OpenQuestionDeleteController", function ($scope, $controller, question, questionService, modalService, $modalInstance) {
 
     $scope.question = question;
 
     $scope.delete = function () {
         questionService.delete('open', $scope.question,
-            function (item) {
-                toaster.pop('success', "Deleted successfully", "Question " + item.Name + " was deleted successfully.");
+            function (question) {
+                modalService.showDeleteSuccess("Open question");
                 $modalInstance.close();
             },
             function (item) {
-                toaster.pop('error', "Failed to delete", "Something went wrong while deleting " + item.Name + ".");
+                modalService.showDeleteError("Open question");
             });
     };
+
+
+    $scope.close = function () {
+        $modalInstance.dismiss("cancel");
+    }
 });

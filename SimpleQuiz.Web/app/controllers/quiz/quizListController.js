@@ -1,8 +1,6 @@
 ﻿'use strict';
 
-quizApp.controller("QuizListController", function ($scope, $modal, quizService, packageService, toaster, $routeParams, $location, $controller) {
-
-    $controller("ListControllerBase", { $scope: $scope });
+quizApp.controller("QuizListController", function ($scope, $modal, quizService, packageService, toaster, $routeParams, $location, $controller, modalService) {
 
     init();
 
@@ -34,8 +32,8 @@ quizApp.controller("QuizListController", function ($scope, $modal, quizService, 
 
     $scope.openEditModal = function (item) {
         var modalInstance = $modal.open({
-            templateUrl: $scope.getModalTemplateUrl("quiz", "edit"),
-            controller: $scope.getModalControllerName("quiz", "edit"),
+            templateUrl: modalService.getModalTemplateUrl("quiz", "edit"),
+            controller: modalService.getModalControllerName("quiz", "edit"),
             resolve: {
                 quiz: function () { return item; }
             }
@@ -44,8 +42,8 @@ quizApp.controller("QuizListController", function ($scope, $modal, quizService, 
 
     $scope.openDeleteModal = function (item) {
         var modalInstance = $modal.open({
-            templateUrl: $scope.getModalTemplateUrl("quiz", "delete"),
-            controller: $scope.getModalControllerName("quiz", "delete"),
+            templateUrl: modalService.getModalTemplateUrl("quiz", "delete"),
+            controller: modalService.getModalControllerName("quiz", "delete"),
             resolve: {
                 quiz: function () { return item; }
             }
@@ -60,8 +58,8 @@ quizApp.controller("QuizListController", function ($scope, $modal, quizService, 
 
     $scope.openAddModal = function (packageId) {
         var modalInstance = $modal.open({
-            templateUrl: $scope.getModalTemplateUrl("quiz", "add"),
-            controller: $scope.getModalControllerName("quiz", "add"),
+            templateUrl: modalService.getModalTemplateUrl("quiz", "add"),
+            controller: modalService.getModalControllerName("quiz", "add"),
             resolve: {
                 packageId: function () { return packageId; }
             }
