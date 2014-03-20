@@ -11,12 +11,12 @@ quizApp.controller("QuestionListController", function ($scope, quizService, toas
         getQuiz(true);
     }
 
-    function getQuiz(expandAll)
+    function getQuiz(shouldExpandAll)
     {
         quizService.get($scope.quizId,
             function (result) {
                 $scope.quiz = result;
-                if(expandAll) {
+                if(shouldExpandAll) {
                     expandAll();
                 }
             },
@@ -37,9 +37,17 @@ quizApp.controller("QuestionListController", function ($scope, quizService, toas
     {
         var modalInstance = $modal.open({
             templateUrl: modalService.getModalTemplateUrl("question/" + questionType, "add"),
-            controller: modalService.getModalControllerName(questionType + "Question", "add"),
+            controller: modalService.getModalControllerName(questionType + "Question"),
             resolve: {
-                quizId: function () { return $scope.quizId; }
+                question: function () { return {
+                        QuizId: $scope.quizId,
+                        Content: "",
+                        View: "Standard",
+                        CorrectAnswers:
+                            [
+                                { OrderId: 1, CorrectAnswerOptions: [{ Content: "" }] }
+                            ]
+                    }; }
             }
         });
 
@@ -52,10 +60,14 @@ quizApp.controller("QuestionListController", function ($scope, quizService, toas
     {
         var modalInstance = $modal.open({
             templateUrl: modalService.getModalTemplateUrl("question/" + questionType, "edit"),
-            controller: modalService.getModalControllerName(questionType + "Question", "edit"),
+            controller: modalService.getModalControllerName(questionType + "Question"),
             resolve: {
                 question: function () { return question; }
             }
+        });
+
+        modalInstance.result.then(function () {
+            getQuiz();
         });
     }
 
@@ -63,7 +75,7 @@ quizApp.controller("QuestionListController", function ($scope, quizService, toas
     {
         var modalInstance = $modal.open({
             templateUrl: modalService.getModalTemplateUrl("question/" + questionType, "delete"),
-            controller: modalService.getModalControllerName(questionType + "Question", "delete"),
+            controller: modalService.getModalControllerName(questionType + "Question"),
             resolve: {
                 question: function () { return question; }
             }

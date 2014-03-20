@@ -1,15 +1,8 @@
 ﻿'use strict';
 
-quizApp.controller("OpenQuestionAddController", function ($scope, $controller, questionService, $log, quizId, modalService, $modalInstance) {
+quizApp.controller("OpenQuestionController", function ($scope, $controller, questionService, $log, question, modalService, $modalInstance) {
 
-    $scope.question = {
-        QuizId: quizId,
-        Content: "",
-        CorrectAnswers:
-            [
-                { OrderId: 1, CorrectAnswerOptions: [{ Content: "" }] }
-            ]
-    };
+    $scope.question = question;
 
     $scope.currentOrderId = 1;
 
@@ -21,6 +14,28 @@ quizApp.controller("OpenQuestionAddController", function ($scope, $controller, q
             },
             function (result) {
                 modalService.showAddError("Open question");
+            });
+    };
+
+    $scope.save = function () {
+        questionService.save('open', $scope.question,
+            function (item) {
+                modalService.showSaveSuccess("open question");
+                $modalInstance.close();
+            },
+            function (item) {
+                modalService.showSaveError("open question");
+            });
+    };
+
+    $scope.delete = function () {
+        questionService.delete('open', $scope.question,
+            function (question) {
+                modalService.showDeleteSuccess("Open question");
+                $modalInstance.close();
+            },
+            function (item) {
+                modalService.showDeleteError("Open question");
             });
     };
 

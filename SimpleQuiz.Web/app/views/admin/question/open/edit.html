@@ -1,1 +1,66 @@
-﻿Edit question
+﻿
+<div class="modal-header">
+    <a href="" class="close" data-ng-click="close()">&times;</a>
+    <h4>Edit open question</h4>
+</div>
+<div class="modal-body">
+    <form class="form-horizontal" name="questionForm" novalidate role="form">
+        <div class="form-group">
+            <div class="col-md-12">
+                <textarea class="form-control" rows="3"
+                          ng-model="question.Content"
+                          placeholder="Question content"
+                          required></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-12">
+                <input type="number"
+                       class="form-control"
+                       ng-model="question.OrderId"
+                       placeholder="Order number"
+                       required />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-12">
+                <input type="text"
+                       class="form-control"
+                       ng-model="question.View"
+                       placeholder="View"
+                       required />
+            </div>
+        </div>
+
+        <div class="form-group well" ng-repeat="answer in question.CorrectAnswers">
+            <span class="badge pull-right">{{answer.OrderId}}</span>
+
+            <div class="form-group" ng-repeat="option in answer.CorrectAnswerOptions">
+                <div class="col-md-12">
+                    <input class="form-control input-sm" placeholder="Answer option" ng-model="option.Content" required />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    <button class="btn btn-sm btn-success" ng-click="addOption(answer)">Add option</button>
+                    <button class="btn btn-sm btn-danger" ng-click="deleteOption(answer)" ng-disabled="answer.CorrectAnswerOptions.length < 2">Delete option</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-12">
+                <button class="btn btn-sm btn-success" ng-click="addAnswer()">Add answer</button>
+                <button class="btn btn-sm btn-danger" ng-click="deleteAnswer()" ng-disabled="question.CorrectAnswers.length < 2">Delete answer</button>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" ng-click="save()"
+            class="btn btn-success pull-right"
+            ng-disabled="questionForm.$invalid || !questionForm.$dirty">
+        Save
+    </button>
+</div>

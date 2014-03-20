@@ -1,13 +1,27 @@
 ﻿quizApp.factory("modalService", function ($log, toaster) {
     var _showSaveSuccess = function (entityName, name) {
-        toaster.pop('success', "Updated successfully", entityName + " <i>" + name + "</i> was updated successfully.", null, 'trustedHtml');
+
+        var message = entityName;
+
+        if (name != undefined) {
+            message += " <i>" + name + "</i>";
+        }
+
+        toaster.pop('success', "Updated successfully", message + " was updated successfully.", null, 'trustedHtml');
     };
 
     var _showSaveError = function (entityName, name) {
-        toaster.pop('error', "Failed to save", "Something went wrong while saving " + entityName + " <i>" + name + "</i>.", null, 'trustedHtml');
+
+        var message = "Something went wrong while saving " + entityName;
+
+        if (name != undefined) {
+            message += " <i>" + name + "</i>";
+        }
+
+        toaster.pop('error', "Failed to save", message, null, 'trustedHtml');
     };
 
-    var _showAddSuccess = function ($modalInstance, entityName) {
+    var _showAddSuccess = function (entityName) {
         toaster.pop('success', "Added successfully", entityName + " has been added.", null, 'trustedHtml');
     };
 
@@ -37,7 +51,14 @@
     };
 
     var _getModalControllerName = function (entity, action) {
-        return entity.capitalize() + action.capitalize() + "Controller";
+
+        var name = entity.capitalize();
+
+        if (action != undefined) {
+            name += action.capitalize();
+        }
+
+        return name + "Controller";
     };
 
     return {
