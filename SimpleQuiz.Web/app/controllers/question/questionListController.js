@@ -19,6 +19,10 @@ quizApp.controller("QuestionListController", function ($scope, quizService, toas
                 if(shouldExpandAll) {
                     expandAll();
                 }
+
+                angular.forEach($scope.quiz.CategoryQuestions, function (value, key) {
+                    value.OptionsGrouped = _.groupBy(value.Options, "Category");
+                });
             },
             function (result) {
 
@@ -35,19 +39,27 @@ quizApp.controller("QuestionListController", function ($scope, quizService, toas
 
     $scope.openAddModal = function(questionType)
     {
+        var question = {
+            QuizId: $scope.quizId,
+            Content: "",
+            View: "Standard",
+        };
+
+        switch(questionType)
+        {
+            case "Open":
+                question.CorrectAnswers = [{ OrderId: 1, CorrectAnswerOptions: [{ Content: "" }] }];
+                break;
+            case "Test":
+                question.Options = [{ Content: "", IsCorrect: false}];
+                break;
+        }
+
         var modalInstance = $modal.open({
             templateUrl: modalService.getModalTemplateUrl("question/" + questionType, "add"),
             controller: modalService.getModalControllerName(questionType + "Question"),
             resolve: {
-                question: function () { return {
-                        QuizId: $scope.quizId,
-                        Content: "",
-                        View: "Standard",
-                        CorrectAnswers:
-                            [
-                                { OrderId: 1, CorrectAnswerOptions: [{ Content: "" }] }
-                            ]
-                    }; }
+                question: function () { return question }
             }
         });
 
@@ -74,7 +86,7 @@ quizApp.controller("QuestionListController", function ($scope, quizService, toas
     $scope.openDeleteModal = function(questionType, question)
     {
         var modalInstance = $modal.open({
-            templateUrl: modalService.getModalTemplateUrl("question/" + questionType, "delete"),
+            templateUrl: modalService.getModalTemplateUrl("question/", "delete"),
             controller: modalService.getModalControllerName(questionType + "Question"),
             resolve: {
                 question: function () { return question; }

@@ -1,41 +1,44 @@
 ﻿'use strict';
 
-quizApp.controller("OpenQuestionController", function ($scope, $controller, questionService, $log, question, modalService, $modalInstance) {
+quizApp.controller("OpenQuestionController", function ($scope, $controller, questionService, question, modalService, $modalInstance) {
 
     $scope.question = question;
+
+    var questionType = "open";
+    var questionTypeName = "Open question";
 
     $scope.currentOrderId = 1;
 
     $scope.add = function () {
-        questionService.add('open', $scope.question,
+        questionService.add(questionType, $scope.question,
             function (result) {
-                modalService.showAddSuccess("Open question");
+                modalService.showAddSuccess(questionTypeName);
                 $modalInstance.close();
             },
             function (result) {
-                modalService.showAddError("Open question");
+                modalService.showAddError(questionTypeName);
             });
     };
 
     $scope.save = function () {
-        questionService.save('open', $scope.question,
+        questionService.save(questionType, $scope.question,
             function (item) {
-                modalService.showSaveSuccess("open question");
+                modalService.showSaveSuccess(questionTypeName);
                 $modalInstance.close();
             },
             function (item) {
-                modalService.showSaveError("open question");
+                modalService.showSaveError(questionTypeName);
             });
     };
 
     $scope.delete = function () {
-        questionService.delete('open', $scope.question,
+        questionService.delete(questionType, $scope.question,
             function (question) {
-                modalService.showDeleteSuccess("Open question");
+                modalService.showDeleteSuccess(questionTypeName);
                 $modalInstance.close();
             },
             function (item) {
-                modalService.showDeleteError("Open question");
+                modalService.showDeleteError(questionTypeName);
             });
     };
 

@@ -40,6 +40,9 @@ namespace SimpleQuiz.Web
                     "~/Scripts/loading-bar.js"
                 ));
 
+            bundles.Add(new ScriptBundle("~/bundles/underscore").Include(
+                "~/Scripts/underscore.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                     "~/app/directives/*.js",    
                     "~/app/app.js",

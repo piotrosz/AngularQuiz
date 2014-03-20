@@ -15,6 +15,7 @@ AngularUI Bootstrap: http://angular-ui.github.io/bootstrap/
 Toastr: https://github.com/CodeSeven/toastr
 Loading bar: https://github.com/chieffancypants/angular-loading-bar
 http://bootswatch.com/
+http://underscorejs.org/
 
 
 Uninstall-Package Newtonsoft.Json -Force

@@ -143,9 +143,8 @@
             No category questions
         </span>
 
-        <ul class="list-group" data-ng-repeat="question in quiz.CategoryQuestions | orderBy: question.OrderId">
-            <li class="list-group-item">
-                <div class="row">
+        <div class="list-group" data-ng-repeat="question in quiz.CategoryQuestions | orderBy: question.OrderId">
+                <div class="row well-sm">
                     <div class="col-md-10">
                         <order>{{question.OrderId}}</order>
                         {{question.Content}}
@@ -157,6 +156,7 @@
                         <button class="btn btn-danger pull-right" ng-click="openDeleteModal('Category', question)">Delete</button>
                     </div>
                 </div>
+              
                 <div class="row">
                     <div class="col-md-12">
 
@@ -164,13 +164,19 @@
                             No options!
                         </span>
 
-                        <ul ng-repeat="option in question.Options">
-                            <li>{{option.Content}} <span class="text-info">{{option.Category}}</span></li>
-                        </ul>
+                        <div class="panel panel-default" ng-repeat="(category, option) in question.OptionsGrouped">
+                            <div class="panel-heading">{{category}}</div>
+                            <div class="panel-body">
+                                <ul ng-repeat="o in option">
+                                    <li>
+                                        {{o.Content}}
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </li>
-        </ul>
+        </div>
     </div>
 </div>
 
