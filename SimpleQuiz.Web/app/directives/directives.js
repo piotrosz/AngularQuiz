@@ -1,6 +1,6 @@
 ﻿angular.module("quizdirectives", [])
 
-.directive("count", function () {
+.directive("qzCount", function () {
     return {
         restrict: "E",
         scope: { value: "@" },
@@ -8,7 +8,7 @@
     };
 })
 
-.directive("order", function () {
+.directive("qzOrder", function () {
     return {
         restrict: "E",
         transclude: true,
@@ -17,7 +17,7 @@
     }
 })
 
-.directive("questionContent", function () {
+.directive("qzQuestionContent", function () {
     return {
         restrict: "E",
         scope: { content: "@" },
@@ -29,6 +29,20 @@
         }
     };
 })
+
+.directive("qzSelectAllOnFocus", function () {
+    return {
+        restrict: "A",
+        link: function (scope, element) {
+            element.mouseup(function (event) {
+                event.preventDefault();
+            });
+            element.focus(function () {
+                element.select();
+            });
+        }
+    };
+});
 
 /*
 .directive('angularIcon', function () {

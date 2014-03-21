@@ -8,7 +8,7 @@
                 <span style="cursor:pointer" ng-click="areOpenQuestionsCollapsed = !areOpenQuestionsCollapsed">
                     <span class="glyphicon glyphicon-question-sign"></span>
                     <span class="text-info">Open questions</span>
-                    <count value="{{quiz.OpenQuestions.length}}"></count>
+                    <count value="{{quiz.OpenQuestions.length}}"></qz-count>
                 </span>
             </div>
 
@@ -30,8 +30,8 @@
             <li class="list-group-item">
                 <div class="row">
                     <div class="col-md-10">
-                        <order>{{question.OrderId}}</order>
-                        <question-content content="{{question.Content}}"></question-content>
+                        <qz-order{{question.OrderId}}</qz-order
+                        <qz-question-content content="{{question.Content}}"></qz-question-content>
                     </div>
                     <div class="col-md-1">
                         <button class="btn btn-success pull-right" ng-click="openEditModal('Open', question)">Edit</button>
@@ -70,7 +70,7 @@
                 <span style="cursor:pointer" ng-click="areTestQuestionsCollapsed = !areTestQuestionsCollapsed">
                     <span class="glyphicon glyphicon-ok"></span>
                     <span class="text-info">Test questions</span>
-                    <count value="{{quiz.TestQuestions.length}}"></count>
+                    <count value="{{quiz.TestQuestions.length}}"></qz-count>
                 </span>
             </div>
             <div class="col-md-6">
@@ -90,8 +90,8 @@
             <li class="list-group-item">
                 <div class="row">
                     <div class="col-md-10">
-                        <order>{{question.OrderId}}</order>
-                        <question-content content="{{question.Content}}"></question-content>
+                        <qz-order{{question.OrderId}}</qz-order
+                        <qz-question-content content="{{question.Content}}"></qz-question-content>
                     </div>
                     <div class="col-md-1">
                         <button class="btn btn-success pull-right" ng-click="openEditModal('Test', question)">Edit</button>
@@ -129,7 +129,7 @@
                 <span style="cursor:pointer" ng-click="areCategoryQuestionsCollapsed = !areCategoryQuestionsCollapsed">
                     <span class="glyphicon glyphicon-th-large"></span>
                     <span class="text-info">Category questions</span>
-                    <count value="{{quiz.CategoryQuestions.length}}"></count>
+                    <count value="{{quiz.CategoryQuestions.length}}"></qz-count>
                 </span>
             </div>
             <div class="col-md-6">
@@ -146,7 +146,7 @@
         <div class="list-group" data-ng-repeat="question in quiz.CategoryQuestions | orderBy: question.OrderId">
                 <div class="row well-sm">
                     <div class="col-md-10">
-                        <order>{{question.OrderId}}</order>
+                        <qz-order{{question.OrderId}}</qz-order
                         {{question.Content}}
                     </div>
                     <div class="col-md-1">
@@ -187,7 +187,7 @@
                 <span style="cursor:pointer" ng-click="areSortQuestionsCollapsed = !areSortQuestionsCollapsed">
                     <span class="glyphicon glyphicon-sort"></span>
                     <span class="text-info">Sort questions</span>
-                    <count value="{{quiz.SortQuestions.length}}"></count>
+                    <count value="{{quiz.SortQuestions.length}}"></qz-count>
                 </span>
             </div>
             <div class="col-md-6">
@@ -205,7 +205,7 @@
             <li class="list-group-item">
                 <div class="row">
                     <div class="col-md-10">
-                        <order>{{question.OrderId}}</order>
+                        <qz-order{{question.OrderId}}</qz-order
                         {{question.Content}}
                     </div>
                     <div class="col-md-1">
