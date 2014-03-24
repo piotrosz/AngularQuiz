@@ -15,6 +15,7 @@ namespace SimpleQuiz.Core.Tests.Stubs
             { 
                 return new TestQuestion
                 { 
+                    Id = 0,
                     Content = "What is the first aphabet letter?",
                     Options = new List<TestQuestionOption> 
                     {
@@ -32,6 +33,7 @@ namespace SimpleQuiz.Core.Tests.Stubs
             {
                 return new TestQuestion
                 {
+                    Id = 1,
                     Content = "Whar are three first alphabet letters?",
                     Options = new List<TestQuestionOption>
                     {

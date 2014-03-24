@@ -11,14 +11,14 @@ namespace SimpleQuiz.Core.Tests.Stubs
     {
         public static OpenQuestion SingleAnswerSingleOptionQuestion
         {
-            get { return new OpenQuestion("Po wodzie pływa kaczka się nazywa?", "kaczka"); }
+            get { return new OpenQuestion("Po wodzie pływa kaczka się nazywa?", "kaczka") { Id = 1}; }
         }
 
         public static OpenQuestion SingleAnswerThreeOptionsQuestion
         {
             get 
-            { 
-                var result = new OpenQuestion("What is one of my favourite colours?");
+            {
+                var result = new OpenQuestion("What is one of my favourite colours?") { Id = 2 };
 
                 result.CorrectAnswers = new List<OpenQuestionCorrectAnswer> 
                 {
@@ -35,6 +35,7 @@ namespace SimpleQuiz.Core.Tests.Stubs
             {
                 var question = new OpenQuestion
                 {
+                    Id = 3,
                     Content = "What are my top 3 favourite colours (in correct order)?",
                     CorrectAnswers = new List<OpenQuestionCorrectAnswer>
                     {
@@ -54,6 +55,7 @@ namespace SimpleQuiz.Core.Tests.Stubs
             {
                 var question = new OpenQuestion
                 {
+                    Id = 4,
                     Content = "What are my top 3 favourite colours (in correct order)?",
                     CorrectAnswers = new List<OpenQuestionCorrectAnswer>
                     {

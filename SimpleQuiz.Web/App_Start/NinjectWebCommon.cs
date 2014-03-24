@@ -55,6 +55,11 @@ namespace SimpleQuiz.Web.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Load(new CoreModule());
-        }        
+        }  
+      
+        public static IKernel GetKernel()
+        {
+            return bootstrapper.Kernel;
+        }
     }
 }

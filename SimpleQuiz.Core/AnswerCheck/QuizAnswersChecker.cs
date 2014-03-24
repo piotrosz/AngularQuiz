@@ -17,31 +17,30 @@ namespace SimpleQuiz.Core.AnswerCheck
         private CheckQuizAnswersResult _checkQuizAnswersResult;
         private Quiz _quiz;
         
-        public QuizAnswersChecker(Quiz quiz, QuestionCheckStrategies answerStrategies)
+        public QuizAnswersChecker(QuestionCheckStrategies answerStrategies)
         {
-            _quiz = quiz;
-            _checkQuizAnswersResult = new CheckQuizAnswersResult(_quiz);
             _answerStrategies = answerStrategies;
         }
 
-        public CheckQuizAnswersResult Check(QuizUserAnswers userAnswers)
+        public CheckQuizAnswersResult Check(Quiz quiz, QuizUserAnswers userAnswers)
         {
+            _checkQuizAnswersResult = new CheckQuizAnswersResult(quiz);
             _userAnswers = userAnswers;
 
-            CheckQuestionGroup<OpenQuestion>(_quiz.OpenQuestions, _answerStrategies.OpenQuestionStrategy);
-            CheckQuestionGroup<SortQuestion>(_quiz.SortQuestions, _answerStrategies.SortQuestionStrategy);
-            CheckQuestionGroup<TestQuestion>(_quiz.TestQuestions, _answerStrategies.TestQuestionStrategy);
-            CheckQuestionGroup<CategoryQuestion>(_quiz.CategoryQuestions, _answerStrategies.CategoryQuestionStrategy);
+            CheckQuestionGroup<OpenQuestion>(quiz.OpenQuestions, _answerStrategies.OpenQuestionStrategy, _userAnswers.OpenQuestionsAnswers);
+            CheckQuestionGroup<SortQuestion>(quiz.SortQuestions, _answerStrategies.SortQuestionStrategy, _userAnswers.SortQuestionsAnswers);
+            CheckQuestionGroup<TestQuestion>(quiz.TestQuestions, _answerStrategies.TestQuestionStrategy, _userAnswers.TestQuestionsAnswers);
+            CheckQuestionGroup<CategoryQuestion>(quiz.CategoryQuestions, _answerStrategies.CategoryQuestionStrategy, _userAnswers.CategoryQuestionsAnswers);
 
             return _checkQuizAnswersResult;
         }
 
-        private void CheckQuestionGroup<TQuestion>(ICollection<TQuestion> questions, ICheckAnswerStrategy<TQuestion> checkAnswerStrategy)
+        private void CheckQuestionGroup<TQuestion>(ICollection<TQuestion> questions, ICheckAnswerStrategy<TQuestion> checkAnswerStrategy, List<QuestionUserAnswer> userAnswers)
             where TQuestion : Question
         {
             foreach (var question in questions)
             {
-                var userAnswer = _userAnswers.Answers.SingleOrDefault(a => a.QuestionId == question.Id);
+                var userAnswer = userAnswers.SingleOrDefault(a => a.QuestionId == question.Id);
 
                 if (userAnswer == null)
                 {

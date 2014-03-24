@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SimpleQuiz.Core.Model;
+using SimpleQuiz.Core.Model.Questions;
 
 namespace SimpleQuiz.Core.Tests.Stubs
 {
@@ -14,6 +15,11 @@ namespace SimpleQuiz.Core.Tests.Stubs
             get 
             {
                 var quiz = new Quiz();
+
+                quiz.OpenQuestions = new List<OpenQuestion>();
+                quiz.TestQuestions = new List<TestQuestion>();
+                quiz.CategoryQuestions = new List<CategoryQuestion>();
+                quiz.SortQuestions = new List<SortQuestion>();
 
                 quiz.OpenQuestions.Add(StubOpenQuestions.SingleAnswerSingleOptionQuestion);
                 quiz.OpenQuestions.Add(StubOpenQuestions.SingleAnswerThreeOptionsQuestion);
