@@ -1,0 +1,51 @@
+﻿<div class="well-sm">
+    <button class="btn btn-default btn-sm" ng-click="prevQuestion()" ng-disabled="questionIndex == 0">&laquo; Previous</button>
+    <button class="btn btn-default btn-sm" ng-click="nextQuestion()" ng-show="questionIndex < quiz.QuestionCount - 1">Next  &raquo;</button>
+    <button class="btn btn-info btn-sm" ng-click="checkAnswers()" ng-show="questionIndex == quiz.QuestionCount - 1">Check answers!</button>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <span>{{currentQuestion.Content}}</span>
+        <span class="pull-right label label-default">
+            {{questionIndex + 1}}
+            / {{quiz.QuestionCount}}
+        </span>
+    </div>
+
+    <div class="panel-body">
+        <!-- Test question template -->
+        <div ng-show="currentQuestion.QuestionType == 'Test'">
+            <div ng-repeat="answer in currentQuestion.Answers">
+                <p>
+                    <label>
+                        <input type="checkbox" />
+                        {{answer.Content}}
+                    </label>
+                </p>
+            </div>
+        </div>
+
+        <!-- Open question template -->
+        <div ng-show="currentQuestion.QuestionType == 'Open'">
+            Open question
+        </div>
+
+        <!-- Category question template -->
+        <div ng-show="currentQuestion.QuestionType == 'Category'">
+            Category
+        </div>
+
+        <!-- Sort question template -->
+        <div ng-show="currentQuestion.QuestionType == 'Sort'">
+            <div class="alert alert-success" ng-repeat="answer in currentQuestion.Answers">
+                {{answer.Content}}
+            </div>
+        </div>
+
+    </div>
+
+    <div class="panel-footer">
+        
+    </div>
+</div>
