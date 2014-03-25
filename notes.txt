@@ -18,6 +18,7 @@ http://bootswatch.com/
 http://underscorejs.org/
 
 
+
 Uninstall-Package Newtonsoft.Json -Force
 Install-Package Newtonsoft.Json -Version 4.0.5
 
@@ -29,3 +30,7 @@ app.config(function(cfpLoadingBarProvider){
 TODO:
 - Check Google log in
 - Authorize on API controllers
+- Admin: sort & category questions management
+
+TODO: 
+- Read https://github.com/angular-ui/ui-router

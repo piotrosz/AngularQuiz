@@ -83,6 +83,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Questions\CategoryQuestionOption.cs" />
+    <Compile Include="Model\Questions\QuestionType.cs" />
     <Compile Include="Model\Questions\SortQuestionOption.cs" />
     <Compile Include="Model\Questions\TestQuestionOption.cs" />
     <Compile Include="Model\Questions\CategoryQuestion.cs" />

@@ -8,6 +8,11 @@ namespace SimpleQuiz.Core.Model.Questions
 {
     public class TestQuestion : Question<TestQuestionOption>
     {
+        public override QuestionType QuestionType
+        {
+            get { return QuestionType.Test; }
+        }
+
         public override ICollection<TestQuestionOption> Answers { get; set; }
     }
 }

@@ -33,6 +33,11 @@ namespace SimpleQuiz.Core.Model.Questions
             Answers = multipleCorrectAnswers.Select(a => new OpenQuestionCorrectAnswer(a)).ToList();
         }
 
+        public override QuestionType QuestionType
+        {
+            get { return QuestionType.Open; }
+        }
+
         public override ICollection<OpenQuestionCorrectAnswer> Answers { get; set; }
     }
 

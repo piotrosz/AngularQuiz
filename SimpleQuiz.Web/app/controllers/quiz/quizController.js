@@ -1,11 +1,12 @@
 ﻿quizApp.controller("QuizController", function ($scope, quizService, $routeParams, $filter) {
 
     init();
-
+    
     function init() {
         $scope.quizId = $routeParams.quizId;
         $scope.currentQuestion = {};
         $scope.currentQuestionIndex = 0;
+        $scope.questionIndex = 0;
         $scope.quiz = {};
         $scope.userAnswers =
             {
@@ -19,20 +20,7 @@
         quizService.get($scope.quizId, function (quiz) {
             $scope.quiz = quiz;
 
-            if (quiz.TestQuestions.length > 0) {
-                $scope.currentQuestion = $filter('orderBy')(quiz.TestQuestions, "OrderId")[0];
-            }
-            else if (quiz.OpenQuestions.length > 0) {
-                $scope.currentQuestion = quiz.OpenQuestions[0];
-            }
-            else if (quiz.SortQuestions.length > 0) {
-                $scope.currentQuestion = quiz.SortQuestions[0];
-            }
-            else if (quiz.CategoryQuestions, length > 0) {
-                $scope.currentQuestion = quiz.CategoryQuestions[0];
-            }
-            
-            
+            $scope.currentQuestion = $filter('orderBy')(quiz.AllQuestions, "OrderId")[0];
         });
 
         $scope.quiz
@@ -43,25 +31,31 @@
     }
 
     $scope.prevQuestion = function () {
-
+        if ($scope.questionIndex > 0) {
+            $scope.questionIndex--;
+            setCurrentQuestion();
+        }
     }
 
     $scope.nextQuestion = function () {
 
         // TODO: Save users answers
-
-        $scope.userAnswers.TestQuestionsAnswers.push({ QuestionId: $scope.currentQuestion.Id, Answers: [] });
+        //if ($scope.currentQuestion.QuestionType == "Test") {
+        //    $scope.userAnswers.TestQuestionsAnswers.push({ QuestionId: $scope.currentQuestion.Id, Answers: [] });
+        //}
 
         // TODO: Get next question
-
-
-    }
-
-    $scope.showResults = function () {
-
+        if ($scope.quiz.QuestionCount > $scope.questionIndex) {
+            $scope.questionIndex++;
+            setCurrentQuestion();
+        }
     }
 
     $scope.checkAnswers = function () {
+        
+    }
 
+    function setCurrentQuestion() {
+        $scope.currentQuestion = $filter('orderBy')($scope.quiz.AllQuestions, "OrderId")[$scope.questionIndex];
     }
 });
