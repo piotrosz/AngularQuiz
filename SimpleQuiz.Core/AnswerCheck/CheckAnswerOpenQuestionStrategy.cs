@@ -29,12 +29,12 @@ namespace SimpleQuiz.Core.AnswerCheck
                 throw new ArgumentNullException("userAnswer.Answers");
             }
 
-            if(question.CorrectAnswers == null)
+            if(question.Answers == null)
             {
-                throw new ArgumentNullException("question.CorrectAnswers");
+                throw new ArgumentNullException("question.Answers");
             }
 
-            if(userAnswer.Answers.Count != question.CorrectAnswers.Count())
+            if(userAnswer.Answers.Count != question.Answers.Count())
             {
                 throw new ArgumentException("Number of user answers must be the same as the number of question answers", "userAnswer");
             }
@@ -43,7 +43,7 @@ namespace SimpleQuiz.Core.AnswerCheck
 
             for (int answerIndex = 0; answerIndex < userAnswer.Answers.Count; answerIndex++)
             {
-                OpenQuestionCorrectAnswer correctAnswer = question.CorrectAnswers.OrderBy(a => a.OrderId).ElementAt(answerIndex);
+                OpenQuestionCorrectAnswer correctAnswer = question.Answers.OrderBy(a => a.OrderId).ElementAt(answerIndex);
 
                 if (correctAnswer.CorrectAnswerOptions.Any(
                     o => o.Content.Equals(userAnswer.Answers[answerIndex], StringComparison.CurrentCultureIgnoreCase))

@@ -11,7 +11,7 @@ namespace SimpleQuiz.Extensions
     {
         public static string GetFirstOptionInFirstQuestion(this OpenQuestion question)
         {
-            return question.CorrectAnswers.First().CorrectAnswerOptions.First().Content;
+            return question.Answers.First().CorrectAnswerOptions.First().Content;
         }
     }
 }

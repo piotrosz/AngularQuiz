@@ -16,7 +16,7 @@ namespace SimpleQuiz.Core.Tests.Stubs
                 return new CategoryQuestion
                 {
                     Content = "Assign to categories",
-                    Options = new List<CategoryQuestionOption>
+                    Answers = new List<CategoryQuestionOption>
                     {
                         new CategoryQuestionOption { Content = "A", Category = "Alphabet", OrderId = 1 },
                         new CategoryQuestionOption { Content = "B", Category = "Alphabet", OrderId = 2 },

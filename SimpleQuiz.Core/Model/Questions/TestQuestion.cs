@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace SimpleQuiz.Core.Model.Questions
 {
-    public class TestQuestion : Question
+    public class TestQuestion : Question<TestQuestionOption>
     {
-        public ICollection<TestQuestionOption> Options { get; set; }
+        public override ICollection<TestQuestionOption> Answers { get; set; }
     }
 }

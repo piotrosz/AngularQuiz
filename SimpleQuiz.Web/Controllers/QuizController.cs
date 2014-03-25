@@ -36,14 +36,14 @@ namespace SimpleQuiz.Web.Controllers
         {
             Quiz quiz = _unitOfWork.Quiz.List()
                 .Include("OpenQuestions")
-                .Include("OpenQuestions.CorrectAnswers")
-                .Include("OpenQuestions.CorrectAnswers.CorrectAnswerOptions")
+                .Include("OpenQuestions.Answers")
+                .Include("OpenQuestions.Answers.CorrectAnswerOptions")
                 .Include("TestQuestions")
-                .Include("TestQuestions.Options")
+                .Include("TestQuestions.Answers")
                 .Include("CategoryQuestions")
-                .Include("CategoryQuestions.Options")
+                .Include("CategoryQuestions.Answers")
                 .Include("SortQuestions")
-                .Include("SortQuestions.Options")
+                .Include("SortQuestions.Answers")
                 .SingleOrDefault(q => q.Id == id);
 
             if (quiz == null)

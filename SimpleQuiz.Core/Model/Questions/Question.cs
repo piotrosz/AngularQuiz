@@ -7,7 +7,15 @@ using System.Text;
 
 namespace SimpleQuiz.Core.Model.Questions
 {
-    public abstract class Question : Entity
+    public interface IQuestion
+    {
+        int Id { get; set; }
+        int QuizId { get; set; }
+        int OrderId { get; set; }
+        string Content { get; set; }
+    }
+
+    public abstract class Question<TEntity> : Entity, IQuestion where TEntity : Entity
     {
         [Required]
         public int QuizId { get; set; }
@@ -18,7 +26,6 @@ namespace SimpleQuiz.Core.Model.Questions
         [Required]
         public string Content { get; set; }
 
-        [Required]
-        public string View { get; set; }
+        public abstract ICollection<TEntity> Answers { get; set; }
     }
 }

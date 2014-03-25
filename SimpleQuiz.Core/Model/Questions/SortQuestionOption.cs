@@ -17,6 +17,5 @@ namespace SimpleQuiz.Core.Model.Questions
         public int OrderId { get; set; }
 
         public int SortQuestionId { get; set; }
-
     }
 }

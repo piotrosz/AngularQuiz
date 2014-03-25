@@ -8,9 +8,9 @@ namespace SimpleQuiz.Core.AnswerCheck
 {
     public class CheckAnswerResult
     {
-        public Question Question { get; private set; }
+        public IQuestion Question { get; private set; }
 
-        public CheckAnswerResult(Question question)
+        public CheckAnswerResult(IQuestion question)
         {
             CorrectAswersIds = new List<int>();
             Question = question;

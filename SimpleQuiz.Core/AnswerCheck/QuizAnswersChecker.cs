@@ -36,7 +36,7 @@ namespace SimpleQuiz.Core.AnswerCheck
         }
 
         private void CheckQuestionGroup<TQuestion>(ICollection<TQuestion> questions, ICheckAnswerStrategy<TQuestion> checkAnswerStrategy, List<QuestionUserAnswer> userAnswers)
-            where TQuestion : Question
+            where TQuestion : IQuestion
         {
             foreach (var question in questions)
             {

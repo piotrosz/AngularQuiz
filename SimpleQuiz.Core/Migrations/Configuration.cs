@@ -45,8 +45,8 @@
 
             context.SaveChanges();
 
-            AddOpenQuestions(context, quiz1);
             AddTestQuestions(context, quiz1);
+            AddOpenQuestions(context, quiz1);
             AddCategoryQuestions(context, quiz1);
             AddSortQuestions(context, quiz1);
         }
@@ -91,7 +91,6 @@
             {
                 QuizId = quiz.Id,
                 Content = "Pues muy tremenda, muy... ¡Ay! ¡Qué miedo []!",
-                View = "Standard",
                 OrderId = 0
             };
 
@@ -99,7 +98,6 @@
             {
                 QuizId = quiz.Id,
                 Content = "[] un cliente para hacerle la entrada - el check-in - como [] antes y le [] yo atendiendo y le [] un ataque.",
-                View = "Standard",
                 OrderId = 1
             };
 
@@ -107,8 +105,7 @@
             {
                 QuizId = quiz.Id,
                 Content = "Y se [] aquí - aquí justo delante de la recepción que Uds. no lo pueden ver, pero aquí delante...Y el cliente no []",
-                View = "Standard",
-                OrderId = 2
+                OrderId = 2 
             };
 
             context.OpenQuestions.AddOrUpdate(q => q.Content, question1, question2, question3);
@@ -154,7 +151,7 @@
 
         private static void AddTestQuestions(SimpleQuizContext context, Quiz quiz)
         {
-            var question1 = new TestQuestion() { Content = "He llegado [ ] 5 minutos.", OrderId = 6, QuizId = quiz.Id, View = "TestQuestionStandard" };
+            var question1 = new TestQuestion() { Content = "He llegado [ ] 5 minutos.", OrderId = 6, QuizId = quiz.Id };
             context.TestQuestions.AddOrUpdate(q => q.Content, question1);
 
             context.SaveChanges();
@@ -172,7 +169,7 @@
 
         private static void AddCategoryQuestions(SimpleQuizContext context, Quiz quiz)
         {
-            var question1 = new CategoryQuestion { Content = "Alphabet or number or bird?", QuizId = quiz.Id, OrderId = 9, View = "Standard" };
+            var question1 = new CategoryQuestion { Content = "Alphabet or number or bird?", QuizId = quiz.Id, OrderId = 9 };
 
             context.CategoryQuestions.Add(question1);
             context.SaveChanges();
@@ -192,7 +189,7 @@
 
         private static void AddSortQuestions(SimpleQuizContext context, Quiz quiz)
         {
-            var question1 = new SortQuestion { Content = "Sort the dialogue", QuizId = quiz.Id, View = "Standard", OrderId = 8 };
+            var question1 = new SortQuestion { Content = "Sort the dialogue", QuizId = quiz.Id, OrderId = 8 };
 
             context.SortQuestions.Add(question1);
             context.SaveChanges();

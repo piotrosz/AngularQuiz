@@ -1,12 +1,22 @@
 ﻿<div class="panel panel-default">
     <div class="panel-heading">
-        <qz-question-content content="{{question.Content}}"></qz-question-content>
+        <span>{{currentQuestion.Content}}</span>
     </div>
     <div class="panel-body">
 
+        <div ng-repeat="option in currentQuestion.Answers">
+            <p>
+                <label ng-switch="testQuestionHasManyAnswers(currentQuestion)">
+                    <input type="checkbox" ng-model="option.IsChecked" ng-switch-when="true" />
+                    <input type="radio" ra name="option" ng-model="option.IsChecked" ng-switch-when="false" />
+                    {{option.Content}}
+                </label>
+            </p>
+        </div>
+
     </div>
     <div class="panel-footer">
-        <button class="btn btn-default btn-sm" ng-click="next()">&laquo; Previous</button>
-        <button class="btn btn-default btn-sm" ng-click="prev()">Next  &raquo;</button>
+        <button class="btn btn-default btn-sm" ng-click="prevQuestion()">&laquo; Previous</button>
+        <button class="btn btn-default btn-sm" ng-click="nextQuestion()">Next  &raquo;</button>
     </div>
 </div>

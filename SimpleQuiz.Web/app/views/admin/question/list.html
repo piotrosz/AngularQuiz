@@ -8,7 +8,7 @@
                 <span style="cursor:pointer" ng-click="areOpenQuestionsCollapsed = !areOpenQuestionsCollapsed">
                     <span class="glyphicon glyphicon-question-sign"></span>
                     <span class="text-info">Open questions</span>
-                    <count value="{{quiz.OpenQuestions.length}}"></qz-count>
+                    <qz-count value="{{quiz.OpenQuestions.length}}"></qz-count>
                 </span>
             </div>
 
@@ -30,7 +30,7 @@
             <li class="list-group-item">
                 <div class="row">
                     <div class="col-md-10">
-                        <qz-order{{question.OrderId}}</qz-order
+                        <qz-order>{{question.OrderId}}</qz-order>
                         <qz-question-content content="{{question.Content}}"></qz-question-content>
                     </div>
                     <div class="col-md-1">
@@ -43,11 +43,11 @@
                 <div class="row">
                     <div class="col-md-12">
 
-                        <span class="label label-warning" ng-show="question.CorrectAnswers == null">
+                        <span class="label label-warning" ng-show="question.Answers == null">
                             No correct answers!
                         </span>
 
-                        <ul ng-repeat="answer in question.CorrectAnswers | orderBy: answer.OrderId">
+                        <ul ng-repeat="answer in question.Answers | orderBy: answer.OrderId">
                             <li>
                                 <span class="label label-success" ng-repeat="option in answer.CorrectAnswerOptions">
                                     {{option.Content}}
@@ -70,7 +70,7 @@
                 <span style="cursor:pointer" ng-click="areTestQuestionsCollapsed = !areTestQuestionsCollapsed">
                     <span class="glyphicon glyphicon-ok"></span>
                     <span class="text-info">Test questions</span>
-                    <count value="{{quiz.TestQuestions.length}}"></qz-count>
+                    <qz-count value="{{quiz.TestQuestions.length}}"></qz-count>
                 </span>
             </div>
             <div class="col-md-6">
@@ -90,7 +90,7 @@
             <li class="list-group-item">
                 <div class="row">
                     <div class="col-md-10">
-                        <qz-order{{question.OrderId}}</qz-order
+                        <qz-order{{question.OrderId}}</qz-order>
                         <qz-question-content content="{{question.Content}}"></qz-question-content>
                     </div>
                     <div class="col-md-1">
@@ -103,11 +103,11 @@
                 <div class="row">
                     <div class="col-md-12">
 
-                        <span class="label label-warning" ng-show="question.Options.length == 0">
+                        <span class="label label-warning" ng-show="question.Answers.length == 0">
                             No options!
                         </span>
 
-                        <ul ng-repeat="option in question.Options | orderBy: answer.OrderId">
+                        <ul ng-repeat="option in question.Answers | orderBy: answer.OrderId">
                             <li ng-switch="option.IsCorrect">
                                 <span class="label label-success" ng-switch-when="true">{{option.Content}}</span>
                                 <span class="label label-danger" ng-switch-when="false">{{option.Content}}</span>
@@ -129,7 +129,7 @@
                 <span style="cursor:pointer" ng-click="areCategoryQuestionsCollapsed = !areCategoryQuestionsCollapsed">
                     <span class="glyphicon glyphicon-th-large"></span>
                     <span class="text-info">Category questions</span>
-                    <count value="{{quiz.CategoryQuestions.length}}"></qz-count>
+                    <qz-count value="{{quiz.CategoryQuestions.length}}"></qz-count>
                 </span>
             </div>
             <div class="col-md-6">
@@ -146,7 +146,7 @@
         <div class="list-group" data-ng-repeat="question in quiz.CategoryQuestions | orderBy: question.OrderId">
                 <div class="row well-sm">
                     <div class="col-md-10">
-                        <qz-order{{question.OrderId}}</qz-order
+                        <qz-order>{{question.OrderId}}</qz-order>
                         {{question.Content}}
                     </div>
                     <div class="col-md-1">
@@ -160,16 +160,16 @@
                 <div class="row">
                     <div class="col-md-12">
 
-                        <span class="label label-warning" ng-show="question.Options.length == 0">
+                        <span class="label label-warning" ng-show="question.Answers.length == 0">
                             No options!
                         </span>
 
-                        <div class="panel panel-default" ng-repeat="(category, option) in question.OptionsGrouped">
+                        <div class="panel panel-default" ng-repeat="(category, answer) in question.AnswersGrouped">
                             <div class="panel-heading">{{category}}</div>
                             <div class="panel-body">
-                                <ul ng-repeat="o in option">
+                                <ul ng-repeat="a in answer">
                                     <li>
-                                        {{o.Content}}
+                                        {{a.Content}}
                                     </li>
                                 </ul>
                             </div>
@@ -187,7 +187,7 @@
                 <span style="cursor:pointer" ng-click="areSortQuestionsCollapsed = !areSortQuestionsCollapsed">
                     <span class="glyphicon glyphicon-sort"></span>
                     <span class="text-info">Sort questions</span>
-                    <count value="{{quiz.SortQuestions.length}}"></qz-count>
+                    <qz-count value="{{quiz.SortQuestions.length}}"></qz-count>
                 </span>
             </div>
             <div class="col-md-6">
@@ -205,7 +205,7 @@
             <li class="list-group-item">
                 <div class="row">
                     <div class="col-md-10">
-                        <qz-order{{question.OrderId}}</qz-order
+                        <qz-order>{{question.OrderId}}</qz-order>
                         {{question.Content}}
                     </div>
                     <div class="col-md-1">
@@ -218,14 +218,14 @@
                 <div class="row">
                     <div class="col-md-12">
 
-                        <span class="label label-warning" ng-show="question.Options.length == 0">
+                        <span class="label label-warning" ng-show="question.Answers.length == 0">
                             No options!
                         </span>
 
-                        <div ng-repeat="option in question.Options | orderBy: answer.OrderId">
+                        <div ng-repeat="answer in question.Answers | orderBy: answer.OrderId">
                             <p>
-                                <span class="badge">{{option.OrderId}}</span>
-                                <span>{{option.Content}}</span>
+                                <span class="badge">{{answer.OrderId}}</span>
+                                <span>{{answer.Content}}</span>
 
                             </p>
                         </div>

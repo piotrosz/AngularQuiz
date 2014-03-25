@@ -3,7 +3,7 @@ namespace SimpleQuiz.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Init : DbMigration
+    public partial class Init1 : DbMigration
     {
         public override void Up()
         {
@@ -29,7 +29,6 @@ namespace SimpleQuiz.Migrations
                         QuizId = c.Int(nullable: false),
                         OrderId = c.Int(nullable: false),
                         Content = c.String(nullable: false),
-                        View = c.String(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Quiz", t => t.QuizId, cascadeDelete: true)
@@ -67,7 +66,6 @@ namespace SimpleQuiz.Migrations
                         QuizId = c.Int(nullable: false),
                         OrderId = c.Int(nullable: false),
                         Content = c.String(nullable: false),
-                        View = c.String(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Quiz", t => t.QuizId, cascadeDelete: true)
@@ -104,7 +102,6 @@ namespace SimpleQuiz.Migrations
                         QuizId = c.Int(nullable: false),
                         OrderId = c.Int(nullable: false),
                         Content = c.String(nullable: false),
-                        View = c.String(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Quiz", t => t.QuizId, cascadeDelete: true)
@@ -131,7 +128,6 @@ namespace SimpleQuiz.Migrations
                         QuizId = c.Int(nullable: false),
                         OrderId = c.Int(nullable: false),
                         Content = c.String(nullable: false),
-                        View = c.String(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Quiz", t => t.QuizId, cascadeDelete: true)

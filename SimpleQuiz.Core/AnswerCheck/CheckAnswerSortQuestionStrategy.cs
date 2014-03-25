@@ -26,13 +26,13 @@ namespace SimpleQuiz.Core.AnswerCheck
                 throw new ArgumentNullException("userAnswer.Answers");
             }
 
-            if(userAnswer.Answers.Count != question.Options.Count)
+            if(userAnswer.Answers.Count != question.Answers.Count)
             {
                 throw new ArgumentException("Number of user answers must be the same as question options");
             }
 
             var result = new CheckAnswerResult(question) { IsCorrect = true };
-            var orderedOptions = question.Options.OrderBy(o => o.OrderId);
+            var orderedOptions = question.Answers.OrderBy(o => o.OrderId);
 
             for (int i = 0; i < userAnswer.Answers.Count; i++)
             {

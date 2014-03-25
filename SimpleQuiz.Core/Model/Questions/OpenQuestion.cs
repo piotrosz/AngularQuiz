@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace SimpleQuiz.Core.Model.Questions
 {
-    public class OpenQuestion : Question
+    public class OpenQuestion : Question<OpenQuestionCorrectAnswer>
     {
         public OpenQuestion() { }
 
         public OpenQuestion(string content, string singleCorrectAnswer)
         {
             Content = content;
-            CorrectAnswers = new List<OpenQuestionCorrectAnswer>
+            Answers = new List<OpenQuestionCorrectAnswer>
             {
                 new OpenQuestionCorrectAnswer(singleCorrectAnswer)
             };
@@ -30,10 +30,10 @@ namespace SimpleQuiz.Core.Model.Questions
             }
 
             Content = content;
-            CorrectAnswers = multipleCorrectAnswers.Select(a => new OpenQuestionCorrectAnswer(a)).ToList();
+            Answers = multipleCorrectAnswers.Select(a => new OpenQuestionCorrectAnswer(a)).ToList();
         }
 
-        public virtual ICollection<OpenQuestionCorrectAnswer> CorrectAnswers { get; set; }
+        public override ICollection<OpenQuestionCorrectAnswer> Answers { get; set; }
     }
 
 }

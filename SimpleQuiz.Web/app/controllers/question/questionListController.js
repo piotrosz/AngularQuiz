@@ -21,7 +21,7 @@ quizApp.controller("QuestionListController", function ($scope, quizService, toas
                 }
 
                 angular.forEach($scope.quiz.CategoryQuestions, function (value, key) {
-                    value.OptionsGrouped = _.groupBy(value.Options, "Category");
+                    value.AnswersGrouped = _.groupBy(value.Answers, "Category");
                 });
             },
             function (result) {
@@ -48,10 +48,16 @@ quizApp.controller("QuestionListController", function ($scope, quizService, toas
         switch(questionType)
         {
             case "Open":
-                question.CorrectAnswers = [{ OrderId: 1, CorrectAnswerOptions: [{ Content: "" }] }];
+                question.Answers = [{ OrderId: 1, CorrectAnswerOptions: [{ Content: "" }] }];
                 break;
             case "Test":
-                question.Options = [{ Content: "", IsCorrect: false}];
+                question.Answers = [{ Content: "", IsCorrect: false}];
+                break;
+            case "Category":
+                question.Answers = [{ Category: "", Content: "", OrderId: 1}];
+                break;
+            case "Sort":
+                question.Answers = [{ Content: "", OrderId: 1}]
                 break;
         }
 

@@ -2,6 +2,7 @@
 using SimpleQuiz.Core.Model;
 using SimpleQuiz.Core.Model.Questions;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -25,17 +26,22 @@ namespace SimpleQuiz.Core.Model
 
         public virtual ICollection<CategoryQuestion> CategoryQuestions { get; set; }
 
-        public int QuestionCount 
-        { 
-            get 
+        public int QuestionCount
+        {
+            get { return AllQuestions.Count; }
+        }
+
+        public List<IQuestion> AllQuestions
+        {
+            get
             {
-                int count = 0;
-                if (TestQuestions != null) { count += TestQuestions.Count; }
-                if (SortQuestions != null) { count += SortQuestions.Count; }
-                if (OpenQuestions != null) { count += OpenQuestions.Count; }
-                if (CategoryQuestions != null) { count += CategoryQuestions.Count; }
-                return count;
-            } 
+                var result = new List<IQuestion>();
+                if(TestQuestions != null) { result.AddRange(TestQuestions); }
+                if (SortQuestions != null) { result.AddRange(SortQuestions); }
+                if (OpenQuestions != null) { result.AddRange(OpenQuestions); }
+                if (CategoryQuestions != null) { result.AddRange(CategoryQuestions); }
+                return result;
+            }
         }
 
         public int QuizPackageId { get; set; }

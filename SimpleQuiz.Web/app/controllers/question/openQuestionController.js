@@ -44,14 +44,14 @@ quizApp.controller("OpenQuestionController", function ($scope, $controller, ques
 
     $scope.addAnswer = function () {
         $scope.currentOrderId++;
-        $scope.question.CorrectAnswers.push({ OrderId: $scope.currentOrderId, CorrectAnswerOptions: [{ Content: "" }] });
+        $scope.question.Answers.push({ OrderId: $scope.currentOrderId, CorrectAnswerOptions: [{ Content: "" }] });
     };
 
     $scope.deleteAnswer = function () {
 
-        if ($scope.question.CorrectAnswers.length > 1) {
+        if ($scope.question.Answers.length > 1) {
             $scope.currentOrderId--;
-            $scope.question.CorrectAnswers.pop();
+            $scope.question.Answers.pop();
         }
     };
 

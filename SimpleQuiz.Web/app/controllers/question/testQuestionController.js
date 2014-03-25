@@ -42,12 +42,12 @@ quizApp.controller("TestQuestionController", function ($scope, $controller, ques
 
 
     $scope.addOption = function () {
-        $scope.question.Options.push({ Content: "", IsCorrect: false });
+        $scope.question.Answers.push({ Content: "", IsCorrect: false });
     };
 
     $scope.deleteOption = function () {
-        if ($scope.question.Options.length > 1) {
-            $scope.question.Options.pop();
+        if ($scope.question.Answers.length > 1) {
+            $scope.question.Answers.pop();
         }
     };
 

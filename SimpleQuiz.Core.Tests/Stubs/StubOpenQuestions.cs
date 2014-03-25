@@ -20,7 +20,7 @@ namespace SimpleQuiz.Core.Tests.Stubs
             {
                 var result = new OpenQuestion("What is one of my favourite colours?") { Id = 2 };
 
-                result.CorrectAnswers = new List<OpenQuestionCorrectAnswer> 
+                result.Answers = new List<OpenQuestionCorrectAnswer> 
                 {
                     new OpenQuestionCorrectAnswer("red", "black", "blue")
                 };
@@ -37,7 +37,7 @@ namespace SimpleQuiz.Core.Tests.Stubs
                 {
                     Id = 3,
                     Content = "What are my top 3 favourite colours (in correct order)?",
-                    CorrectAnswers = new List<OpenQuestionCorrectAnswer>
+                    Answers = new List<OpenQuestionCorrectAnswer>
                     {
                         new OpenQuestionCorrectAnswer("red") { OrderId = 1 },
                         new OpenQuestionCorrectAnswer("black") { OrderId = 2 },
@@ -57,7 +57,7 @@ namespace SimpleQuiz.Core.Tests.Stubs
                 {
                     Id = 4,
                     Content = "What are my top 3 favourite colours (in correct order)?",
-                    CorrectAnswers = new List<OpenQuestionCorrectAnswer>
+                    Answers = new List<OpenQuestionCorrectAnswer>
                     {
                         new OpenQuestionCorrectAnswer("red", "rojo", "czerwony") { OrderId = 1 },
                         new OpenQuestionCorrectAnswer("black", "negro", "czarny") { OrderId = 2 },

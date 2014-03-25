@@ -21,9 +21,9 @@ namespace SimpleQuiz.Core.AnswerCheck
                 throw new ArgumentNullException("question");
             }
 
-            if(question.Options == null)
+            if(question.Answers == null)
             {
-                throw new ArgumentNullException("question.Options");
+                throw new ArgumentNullException("question.Answers");
             }
 
             if(userAnswer.Answers == null)
@@ -31,13 +31,13 @@ namespace SimpleQuiz.Core.AnswerCheck
                 throw new ArgumentNullException("userAnswer.Answers");
             }
 
-            if(question.Options.Count != userAnswer.Answers.Count)
+            if(question.Answers.Count != userAnswer.Answers.Count)
             {
                 throw new ArgumentException("Number of user answers must be the same as the number of question options");
             }
 
             var result = new CheckAnswerResult(question) { IsCorrect = true };
-            var orderedOptions = question.Options.OrderBy(o => o.OrderId);
+            var orderedOptions = question.Answers.OrderBy(o => o.OrderId);
 
             for (int i = 0; i < userAnswer.Answers.Count; i++)
             {

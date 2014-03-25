@@ -17,7 +17,7 @@ namespace SimpleQuiz.Core.AnswerCheck
 
             foreach (var answer in userAnswer.Answers)
             {
-                var option = question.Options
+                var option = question.Answers
                     .Where(o => o.IsCorrect)
                     .FirstOrDefault(o => o.Content.Equals(answer, StringComparison.CurrentCultureIgnoreCase));       
 

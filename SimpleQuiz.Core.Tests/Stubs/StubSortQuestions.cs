@@ -17,7 +17,7 @@ namespace SimpleQuiz.Core.Tests.Stubs
                 {
                     Id = 234,
                     Content = "Sort alphabet",
-                    Options = new List<SortQuestionOption>
+                    Answers = new List<SortQuestionOption>
                     {
                         new SortQuestionOption { Content = "A", OrderId = 1 },
                         new SortQuestionOption { Content = "B", OrderId = 2 },
