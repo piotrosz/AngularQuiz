@@ -27,11 +27,16 @@ quizApp.factory("quizService", function ($resource) {
         $resource(requestUrl, { id: "@Id" }).get({ id: id }, success, error);
     }
 
+    var _getForUser = function (id, success, error) {
+        $resource("/api/quizforuser/:id", { id: "@id" }).get({ id: id }, success, error);
+    }
+
     return {
         query: _query,
         save: _save,
         add: _add,
         delete: _delete,
-        get: _get
+        get: _get,
+        getForUser: _getForUser
     };
 });

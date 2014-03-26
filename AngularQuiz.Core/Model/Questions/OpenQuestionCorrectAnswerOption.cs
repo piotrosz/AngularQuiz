@@ -20,7 +20,7 @@ namespace AngularQuiz.Core.Model.Questions
 
         [Required]
         [StringLength(1024)]
-        [JsonIgnore]
+        [Secret]
         public string Content { get; set; }
     }
 }

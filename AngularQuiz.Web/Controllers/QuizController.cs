@@ -12,19 +12,15 @@ using AngularQuiz.Core.Model;
 using AngularQuiz.Core.DAL;
 using AngularQuiz.Core.AnswerCheck;
 using AngularQuiz.Core.Model.Questions;
+using AngularQuiz.Web.Infrastructure;
 
 namespace AngularQuiz.Web.Controllers
 {
     public class QuizController : QuizControllerBase<Quiz>
     {
-        IQuizAnswerChecker _answerChecker;
+        public QuizController(IUnitOfWork unitOfWork) : base(unitOfWork, unitOfWork.Quiz) {}
 
-        public QuizController(IQuizAnswerChecker answerChecker, IUnitOfWork unitOfWork) : base(unitOfWork, unitOfWork.Quiz) 
-        {
-            _answerChecker = answerChecker;
-        }
-
-        [Route("api/quizesbypackage/{packageId:int:min(1)}")]
+        [Route("api/quizesbypackage/{packageId:int:min(0)}")]
         public IEnumerable<Quiz> GetQuizesByPackageId(int packageId)
         {
             return _unitOfWork.Quiz.List().Where(q => q.QuizPackageId == packageId).ToList();
@@ -35,16 +31,8 @@ namespace AngularQuiz.Web.Controllers
         public IHttpActionResult GetQuiz(int id)
         {
             Quiz quiz = _unitOfWork.Quiz.List()
-                .Include("OpenQuestions")
-                .Include("OpenQuestions.Answers")
-                .Include("OpenQuestions.Answers.CorrectAnswerOptions")
-                .Include("TestQuestions")
-                .Include("TestQuestions.Answers")
-                .Include("CategoryQuestions")
-                .Include("CategoryQuestions.Answers")
-                .Include("SortQuestions")
-                .Include("SortQuestions.Answers")
-                .SingleOrDefault(q => q.Id == id);
+               .Include("OpenQuestions.Answers.CorrectAnswerOptions")
+               .SingleOrDefault(q => q.Id == id);
 
             if (quiz == null)
             {
@@ -65,21 +53,6 @@ namespace AngularQuiz.Web.Controllers
         public IHttpActionResult PostQuiz(Quiz quiz)
         {
             return PostEntity(quiz);
-        }
-
-        [Route("api/quizcheckanswers")]
-        public IHttpActionResult CheckAnswers(int id, QuizUserAnswers userAnswers)
-        {
-            var quiz = _unitOfWork.Quiz.List().SingleOrDefault(q => q.Id == id);
-
-            if (quiz == null)
-            {
-                return NotFound();
-            }
-
-            CheckQuizAnswersResult result = _answerChecker.Check(quiz, userAnswers);
-
-            return Ok(result);
         }
 
         // DELETE api/Quiz/5

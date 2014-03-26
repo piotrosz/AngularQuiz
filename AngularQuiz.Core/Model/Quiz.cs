@@ -26,24 +26,6 @@ namespace AngularQuiz.Core.Model
 
         public virtual ICollection<CategoryQuestion> CategoryQuestions { get; set; }
 
-        public int QuestionCount
-        {
-            get { return AllQuestions.Count; }
-        }
-
-        public List<IQuestion> AllQuestions
-        {
-            get
-            {
-                var result = new List<IQuestion>();
-                if(TestQuestions != null) { result.AddRange(TestQuestions); }
-                if (SortQuestions != null) { result.AddRange(SortQuestions); }
-                if (OpenQuestions != null) { result.AddRange(OpenQuestions); }
-                if (CategoryQuestions != null) { result.AddRange(CategoryQuestions); }
-                return result;
-            }
-        }
-
         public int QuizPackageId { get; set; }
 
         [JsonIgnore]

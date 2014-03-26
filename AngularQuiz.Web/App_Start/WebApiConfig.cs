@@ -23,6 +23,9 @@ namespace AngularQuiz.Web
             // Remove XML formatter
             var appXmlType = config.Formatters.XmlFormatter.SupportedMediaTypes.FirstOrDefault(t => t.MediaType == "application/xml");
             config.Formatters.XmlFormatter.SupportedMediaTypes.Remove(appXmlType);
+
+            // Add indent - for easier debugging
+            config.Formatters.JsonFormatter.Indent = true;
         }
     }
 }

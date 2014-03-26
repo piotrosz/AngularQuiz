@@ -38,7 +38,7 @@
 
         <!-- Sort question template -->
         <div ng-show="currentQuestion.QuestionType == 'Sort'">
-            <div class="alert alert-success" ng-repeat="answer in currentQuestion.Answers">
+            <div class="alert alert-success" ng-repeat="answer in currentQuestion.Answers | orderBy:'PresentedOrderId'">
                 {{answer.Content}}
             </div>
         </div>

@@ -25,7 +25,7 @@ namespace AngularQuiz.Web.Controllers
         protected IHttpActionResult GetEntity(int id)
         {
             TEntity entity = _repository.List().SingleOrDefault(e => e.Id == id);
-
+            
             if (entity == null)
             {
                 return NotFound();

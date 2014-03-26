@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
+using AngularQuiz.Core.Model;
 
 namespace AngularQuiz.Core.Model.Questions
 {
@@ -15,7 +16,7 @@ namespace AngularQuiz.Core.Model.Questions
 
         public int TestQuestionId { get; set; }
 
-        [JsonIgnore]
+        [Secret]
         public bool IsCorrect { get; set; }
     }
 }

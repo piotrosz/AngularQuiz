@@ -196,17 +196,17 @@
 
             var options = new List<SortQuestionOption>
             {
-                new SortQuestionOption { Content = "Hola, por favor siéntese en la silla.", SortQuestionId = question1.Id, OrderId = 1 },
-                new SortQuestionOption { Content = "Tengo un dolor de muelas terrible.", SortQuestionId = question1.Id, OrderId = 2 },
-                new SortQuestionOption { Content = "¿Hace cuánto tiempo tiene el dolor?", SortQuestionId = question1.Id, OrderId = 3 },
-                new SortQuestionOption { Content = "Hace varios días.", SortQuestionId = question1.Id, OrderId = 4 },
-                new SortQuestionOption { Content = "¿Ha tenido este tipo de dolor antes?", SortQuestionId = question1.Id, OrderId = 5 },
-                new SortQuestionOption { Content = "¿En dónde exactamente tiene el dolor?", SortQuestionId = question1.Id, OrderId = 6 },
-                new SortQuestionOption { Content = "Me duele el diente.", SortQuestionId = question1.Id, OrderId = 7 },
-                new SortQuestionOption { Content = "Por favor abra su boca.", SortQuestionId = question1.Id, OrderId = 8 },
-                new SortQuestionOption { Content = "Vamos a tener que sacar el diente.", SortQuestionId = question1.Id, OrderId = 9 },
-                new SortQuestionOption { Content = "La anestesia local hará que no duela.", SortQuestionId = question1.Id, OrderId = 10 },
-                new SortQuestionOption { Content = "Muchas gracias, Doctor.", SortQuestionId = question1.Id, OrderId = 11 }
+                new SortQuestionOption { Content = "Hola, por favor siéntese en la silla.", SortQuestionId = question1.Id, OrderId = 1, PresentedOrderId = 11 },
+                new SortQuestionOption { Content = "Tengo un dolor de muelas terrible.", SortQuestionId = question1.Id, OrderId = 2, PresentedOrderId = 10 },
+                new SortQuestionOption { Content = "¿Hace cuánto tiempo tiene el dolor?", SortQuestionId = question1.Id, OrderId = 3, PresentedOrderId = 9 },
+                new SortQuestionOption { Content = "Hace varios días.", SortQuestionId = question1.Id, OrderId = 4, PresentedOrderId = 8 },
+                new SortQuestionOption { Content = "¿Ha tenido este tipo de dolor antes?", SortQuestionId = question1.Id, OrderId = 5, PresentedOrderId = 7 },
+                new SortQuestionOption { Content = "¿En dónde exactamente tiene el dolor?", SortQuestionId = question1.Id, OrderId = 6, PresentedOrderId = 6 },
+                new SortQuestionOption { Content = "Me duele el diente.", SortQuestionId = question1.Id, OrderId = 7, PresentedOrderId = 5 },
+                new SortQuestionOption { Content = "Por favor abra su boca.", SortQuestionId = question1.Id, OrderId = 8, PresentedOrderId = 4 },
+                new SortQuestionOption { Content = "Vamos a tener que sacar el diente.", SortQuestionId = question1.Id, OrderId = 9, PresentedOrderId = 3 },
+                new SortQuestionOption { Content = "La anestesia local hará que no duela.", SortQuestionId = question1.Id, OrderId = 10, PresentedOrderId = 2 },
+                new SortQuestionOption { Content = "Muchas gracias, Doctor.", SortQuestionId = question1.Id, OrderId = 11, PresentedOrderId = 1 }
             };
 
             options.ForEach(option => context.SortQuestionOptions.AddOrUpdate(o => o.Content, options.ToArray()));

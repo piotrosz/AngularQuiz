@@ -77,9 +77,9 @@
     <Compile Include="DAL\UnitOfWork.cs" />
     <Compile Include="Extensions\QuestionExtrensions.cs" />
     <Compile Include="AnswerCheck\IQuizAnswerChecker.cs" />
-    <Compile Include="Migrations\201403251046547_Init1.cs" />
-    <Compile Include="Migrations\201403251046547_Init1.Designer.cs">
-      <DependentUpon>201403251046547_Init1.cs</DependentUpon>
+    <Compile Include="Migrations\201403261040096_Init.cs" />
+    <Compile Include="Migrations\201403261040096_Init.Designer.cs">
+      <DependentUpon>201403261040096_Init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Questions\CategoryQuestionOption.cs" />
@@ -90,6 +90,7 @@
     <Compile Include="Model\Questions\SortQuestion.cs" />
     <Compile Include="Model\Questions\OpenQuestion.cs" />
     <Compile Include="Model\Questions\TestQuestion.cs" />
+    <Compile Include="Model\SecretAtribute.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Model\Entity.cs" />
     <Compile Include="Model\Questions\QuestionUserAnswer.cs" />
@@ -110,8 +111,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201403251046547_Init1.resx">
-      <DependentUpon>201403251046547_Init1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201403261040096_Init.resx">
+      <DependentUpon>201403261040096_Init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

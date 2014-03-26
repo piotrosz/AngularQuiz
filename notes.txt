@@ -1,13 +1,13 @@
-Enable-Migrations -ProjectName SimpleQuiz.Core -ContextProjectName SimpleQuiz.Core -ContextTypeName SimpleQuiz.Core.DAL.SimpleQuizContext -StartupProjectName SimpleQuiz.Web [-Force]
-Add-Migration ... -ProjectName SimpleQuiz.Core -StartupProjectName SimpleQuiz.Web
-Update-Database -ProjectName SimpleQuiz.Core -StartupProjectName SimpleQuiz.Web
+Enable-Migrations -ProjectName AngularQuiz.Core -ContextProjectName AngularQuiz.Core -ContextTypeName AngularQuiz.Core.DAL.AngularQuizContext -StartupProjectName AngularQuiz.Web [-Force]
+Add-Migration ... -ProjectName AngularQuiz.Core -StartupProjectName AngularQuiz.Web
+Update-Database -ProjectName AngularQuiz.Core -StartupProjectName AngularQuiz.Web
 
 -ContextTypeName
 -MigrationsDirectory
 
-Update-Database -ProjectName SimpleQuiz.Core -StartupProjectName SimpleQuiz.Web -TargetMigration $InitialDatabase
+Update-Database -ProjectName AngularQuiz.Core -StartupProjectName AngularQuiz.Web -TargetMigration $InitialDatabase
 delete migration
-Add-Migration Init -ProjectName SimpleQuiz.Core -StartupProjectName SimpleQuiz.Web 
+Add-Migration Init -ProjectName AngularQuiz.Core -StartupProjectName AngularQuiz.Web 
 
 Entity Framework lazy loading options: http://msdn.microsoft.com/en-us/data/jj574232.aspx
 AngularJS-Toaster: https://github.com/jirikavi/AngularJS-Toaster

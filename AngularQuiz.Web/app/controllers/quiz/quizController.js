@@ -13,7 +13,6 @@
             $scope.questionIndex = 0;
         }
 
-        $scope.quiz = {};
         $scope.userAnswers =
             {
                 OpenQuestionsAnswers: [],
@@ -23,13 +22,14 @@
             };
 
 
-        quizService.get($scope.quizId, function (quiz) {
+        quizService.getForUser($scope.quizId, function (quiz) {
             $scope.quiz = quiz;
+
+            $scope.quiz.AllQuestions = quiz.OpenQuestions.concat(quiz.TestQuestions, quiz.CategoryQuestions, quiz.SortQuestions);
+            $scope.quiz.QuestionCount = $scope.quiz.AllQuestions.length;
 
             $scope.currentQuestion = $filter('orderBy')($scope.quiz.AllQuestions, "OrderId")[$scope.questionIndex];
         });
-
-        $scope.quiz
     }
 
     $scope.prevQuestion = function () {

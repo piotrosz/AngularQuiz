@@ -15,8 +15,11 @@ namespace AngularQuiz.Core.Model.Questions
         public string Content { get; set; }
 
         [Required]
-        [JsonIgnore]
+        [Secret]
         public int OrderId { get; set; }
+
+        [Required]
+        public int PresentedOrderId { get; set; }
 
         public int SortQuestionId { get; set; }
     }
