@@ -17,8 +17,6 @@ Loading bar: https://github.com/chieffancypants/angular-loading-bar
 http://bootswatch.com/
 http://underscorejs.org/
 
-
-
 Uninstall-Package Newtonsoft.Json -Force
 Install-Package Newtonsoft.Json -Version 4.0.5
 
