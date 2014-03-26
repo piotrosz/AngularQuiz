@@ -1,12 +1,13 @@
 ﻿'use strict';
 
-quizApp.controller("CategoryQuestionController", function ($scope, $controller, questionService, question, modalService, $modalInstance) {
+quizApp.controller("CategoryQuestionController", function ($scope, $controller, questionService, question, view, modalService, $modalInstance) {
 
     var questionType = "category";
     var questionTypeName = "Category question"
 
     $scope.currentOrderId = 1;
 
+    $scope.view = view;
     $scope.question = question;
 
     $scope.add = function () {

@@ -1,6 +1,6 @@
 ﻿'use strict';
 
-quizApp.controller("OpenQuestionController", function ($scope, $controller, questionService, question, modalService, $modalInstance) {
+quizApp.controller("OpenQuestionController", function ($scope, $controller, questionService, question, view, modalService, $modalInstance) {
 
     $scope.question = question;
 
@@ -8,6 +8,7 @@ quizApp.controller("OpenQuestionController", function ($scope, $controller, ques
     var questionTypeName = "Open question";
 
     $scope.currentOrderId = 1;
+    $scope.view = view;
 
     $scope.add = function () {
         questionService.add(questionType, $scope.question,

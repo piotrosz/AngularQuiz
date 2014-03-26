@@ -1,10 +1,11 @@
 ﻿'use strict';
 
-quizApp.controller("SortQuestionController", function ($scope, $controller, questionService, question, modalService, $modalInstance) {
+quizApp.controller("SortQuestionController", function ($scope, $controller, questionService, question, view, modalService, $modalInstance) {
 
     var questionType = "sort";
     var questionTypeName = "Sort question";
 
+    $scope.view = view;
     $scope.question = question;
 
     $scope.add = function () {

@@ -26,9 +26,12 @@ app.config(function(cfpLoadingBarProvider){
 })
 
 TODO:
+BUG:  Adding, deleting children does not work while editing in admin
+
 - Check Google log in
 - Authorize on API controllers
 - Admin: sort & category questions management
+
 
 TODO: 
 - Read https://github.com/angular-ui/ui-router

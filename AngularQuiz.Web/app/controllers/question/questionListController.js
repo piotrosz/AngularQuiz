@@ -62,10 +62,12 @@ quizApp.controller("QuestionListController", function ($scope, quizService, toas
         }
 
         var modalInstance = $modal.open({
-            templateUrl: modalService.getModalTemplateUrl("question/" + questionType, "add"),
+            templateUrl: modalService.getModalTemplateUrl("question/" + questionType, "add-edit"),
             controller: modalService.getModalControllerName(questionType + "Question"),
             resolve: {
-                question: function () { return question }
+                question: function () { return question },
+                view: function () { return "add"; }
+
             }
         });
 
@@ -77,10 +79,11 @@ quizApp.controller("QuestionListController", function ($scope, quizService, toas
     $scope.openEditModal = function(questionType, question)
     {
         var modalInstance = $modal.open({
-            templateUrl: modalService.getModalTemplateUrl("question/" + questionType, "edit"),
+            templateUrl: modalService.getModalTemplateUrl("question/" + questionType, "add-edit"),
             controller: modalService.getModalControllerName(questionType + "Question"),
             resolve: {
-                question: function () { return question; }
+                question: function () { return question; },
+                view: function () { return "edit" }
             }
         });
 

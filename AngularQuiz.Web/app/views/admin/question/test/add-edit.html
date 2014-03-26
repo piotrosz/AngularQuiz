@@ -1,7 +1,8 @@
 ﻿
-<div class="modal-header">
+<div class="modal-header" ng-switch="view">
     <a href="" class="close" data-ng-click="close()">&times;</a>
-    <h4>Add new test question</h4>
+    <h4 ng-switch-when="add">Add new test question</h4>
+    <h4 ng-switch-when="edit">Edit test question</h4>
 </div>
 <div class="modal-body">
 
@@ -47,10 +48,16 @@
 
     </form>
 </div>
-<div class="modal-footer">
-    <button type="button" ng-click="add()"
+<div class="modal-footer" ng-switch="view">
+    <button type="button" ng-click="add()" ng-switch-when="add"
             class="btn btn-success pull-right"
             ng-disabled="questionForm.$invalid || !questionForm.$dirty">
         Add
+    </button>
+
+    <button type="button" ng-click="save()" ng-switch-when="edit"
+            class="btn btn-success pull-right"
+            ng-disabled="questionForm.$invalid || !questionForm.$dirty">
+        Save
     </button>
 </div>
