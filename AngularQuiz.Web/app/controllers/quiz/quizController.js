@@ -13,15 +13,6 @@
             $scope.questionIndex = 0;
         }
 
-        $scope.userAnswers =
-            {
-                OpenQuestionsAnswers: [],
-                TestQuestionsAnswers: [],
-                SortQuestionsAnswers: [],
-                CategoryQuestionsAnswers: []
-            };
-
-
         quizService.getForUser($scope.quizId, function (quiz) {
             $scope.quiz = quiz;
 
@@ -40,6 +31,10 @@
     }
 
     $scope.nextQuestion = function () {
+
+        // TODO: Store answers (?)
+
+
         if ($scope.questionIndex < $scope.quiz.QuestionCount - 1) {
             $scope.questionIndex++;
             $location.path("/quiz/" + $scope.quizId + "/" + $scope.questionIndex);

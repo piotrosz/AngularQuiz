@@ -30,7 +30,14 @@
     };
 
     var _showDeleteSuccess = function (entityName, name) {
-        toaster.pop('success', "Deleted successfully", entityName + " " + name + " was deleted successfully.", null, 'trustedHtml');
+
+        var message = entityName;
+
+        if (name != undefined) {
+            message += " <i>" + name + "</i>";
+        }
+
+        toaster.pop('success', "Deleted successfully", massage + " was deleted successfully.", null, 'trustedHtml');
     };
 
     var _showDeleteError = function (name) {

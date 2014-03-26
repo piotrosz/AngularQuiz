@@ -13,7 +13,7 @@ namespace AngularQuiz.Core.Model.Questions
             get { return QuestionType.Category; }
         }
 
-        public List<string> Categories { get { return Answers.Select(a => a.Category).Distinct().ToList(); } }
+        public List<string> Categories { get { return Answers == null ? null : Answers.Select(a => a.Category).Distinct().ToList(); } }
 
         public override ICollection<CategoryQuestionOption> Answers { get; set; }
     }

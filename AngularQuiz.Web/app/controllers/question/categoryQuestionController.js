@@ -5,6 +5,8 @@ quizApp.controller("CategoryQuestionController", function ($scope, $controller, 
     var questionType = "category";
     var questionTypeName = "Category question"
 
+    $scope.currentOrderId = 1;
+
     $scope.question = question;
 
     $scope.add = function () {
@@ -42,5 +44,17 @@ quizApp.controller("CategoryQuestionController", function ($scope, $controller, 
 
     $scope.close = function () {
         $modalInstance.dismiss("cancel");
+    }
+
+    $scope.addAnswer = function() {
+        $scope.currentOrderId++;
+        $scope.question.Answers.push({ OrderId: $scope.currentOrderId, Content: "" });
+    }
+
+    $scope.deleteAnswer = function () {
+        if ($scope.question.Answers.length > 1) {
+            $scope.currentOrderId--;
+            $scope.question.Answers.pop();
+        }
     }
 })
