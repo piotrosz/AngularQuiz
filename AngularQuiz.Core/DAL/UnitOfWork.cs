@@ -17,6 +17,7 @@ namespace AngularQuiz.Core.DAL
         private GenericRepository<TestQuestion> _testQuestionRepository;
         private GenericRepository<CategoryQuestion> _categoryQuestionRepository;
         private GenericRepository<SortQuestion> _sortQuestionRepository;
+        private GenericRepository<TestQuestionOption> _testQuestionOptionRepository;
 
         public UnitOfWork()
         {
@@ -54,6 +55,11 @@ namespace AngularQuiz.Core.DAL
             get { return GetRepositoryLazy(_testQuestionRepository); }
         }
 
+        public IGenericRepository<TestQuestionOption> TestQuestionOption
+        {
+            get { return GetRepositoryLazy(_testQuestionOptionRepository); }
+        }
+
         public IGenericRepository<CategoryQuestion> CategoryQuestion
         {
             get { return GetRepositoryLazy(_categoryQuestionRepository); }
@@ -76,5 +82,8 @@ namespace AngularQuiz.Core.DAL
                 _context.Dispose();
             }
         }
+
+
+       
     }
 }

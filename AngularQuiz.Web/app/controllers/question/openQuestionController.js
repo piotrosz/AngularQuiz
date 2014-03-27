@@ -48,11 +48,12 @@ quizApp.controller("OpenQuestionController", function ($scope, $controller, ques
         $scope.question.Answers.push({ OrderId: $scope.currentOrderId, CorrectAnswerOptions: [{ Content: "" }] });
     };
 
-    $scope.deleteAnswer = function () {
+    $scope.deleteAnswer = function (form) {
 
         if ($scope.question.Answers.length > 1) {
             $scope.currentOrderId--;
             $scope.question.Answers.pop();
+            form.$setDirty();
         }
     };
 
@@ -60,9 +61,10 @@ quizApp.controller("OpenQuestionController", function ($scope, $controller, ques
         answer.CorrectAnswerOptions.push({ Content: "" });
     };
 
-    $scope.deleteOption = function (answer) {
+    $scope.deleteOption = function (answer, form) {
         if (answer.CorrectAnswerOptions.length > 1) {
             answer.CorrectAnswerOptions.pop();
+            form.$setDirty();
         }
     };
 

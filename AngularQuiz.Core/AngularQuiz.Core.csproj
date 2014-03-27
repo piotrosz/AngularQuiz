@@ -70,10 +70,10 @@
     <Compile Include="AnswerCheck\ICheckAnswerStrategy.cs" />
     <Compile Include="AnswerCheck\CheckQuizAnswersResult.cs" />
     <Compile Include="AnswerCheck\QuestionCheckStrategies.cs" />
+    <Compile Include="DAL\AngularQuizContext.cs" />
     <Compile Include="DAL\GenericRepository.cs" />
     <Compile Include="DAL\IGenericRepository.cs" />
     <Compile Include="DAL\IUnitOfWork.cs" />
-    <Compile Include="DAL\SimpleQuizContext.cs" />
     <Compile Include="DAL\UnitOfWork.cs" />
     <Compile Include="Extensions\QuestionExtrensions.cs" />
     <Compile Include="AnswerCheck\IQuizAnswerChecker.cs" />

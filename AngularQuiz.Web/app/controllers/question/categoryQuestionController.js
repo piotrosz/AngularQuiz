@@ -52,10 +52,11 @@ quizApp.controller("CategoryQuestionController", function ($scope, $controller, 
         $scope.question.Answers.push({ OrderId: $scope.currentOrderId, Content: "" });
     }
 
-    $scope.deleteAnswer = function () {
+    $scope.deleteAnswer = function (form) {
         if ($scope.question.Answers.length > 1) {
             $scope.currentOrderId--;
             $scope.question.Answers.pop();
+            form.$setDirty();
         }
     }
 })

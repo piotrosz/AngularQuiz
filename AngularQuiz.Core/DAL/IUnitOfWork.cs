@@ -16,6 +16,7 @@ namespace AngularQuiz.Core.DAL
         IGenericRepository<TestQuestion> TestQuestion { get; }
         IGenericRepository<CategoryQuestion> CategoryQuestion { get; }
         IGenericRepository<SortQuestion> SortQuestion { get; }
+        IGenericRepository<TestQuestionOption> TestQuestionOption { get; }
 
         void Save();
     }

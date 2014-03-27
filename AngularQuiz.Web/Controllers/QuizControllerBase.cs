@@ -94,7 +94,7 @@ namespace AngularQuiz.Web.Controllers
             return Ok(entity);
         }
 
-        private bool EntityExists(int id)
+        protected bool EntityExists(int id)
         {
             return _repository.List().Any(e => e.Id == id);
         }

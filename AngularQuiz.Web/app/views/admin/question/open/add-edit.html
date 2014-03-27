@@ -36,7 +36,7 @@
             <div class="form-group">
                 <div class="col-md-12">
                     <button class="btn btn-sm btn-success" ng-click="addOption(answer)">Add option</button>
-                    <button class="btn btn-sm btn-danger" ng-click="deleteOption(answer)" ng-disabled="answer.CorrectAnswerOptions.length < 2">Delete option</button>
+                    <button class="btn btn-sm btn-danger" ng-click="deleteOption(answer, questionForm)" ng-disabled="answer.CorrectAnswerOptions.length < 2">Delete option</button>
                 </div>
             </div>
         </div>
@@ -44,7 +44,7 @@
         <div class="form-group">
             <div class="col-md-12">
                 <button class="btn btn-sm btn-success" ng-click="addAnswer()">Add answer</button>
-                <button class="btn btn-sm btn-danger" ng-click="deleteAnswer()" ng-disabled="question.Answers.length < 2">Delete answer</button>
+                <button class="btn btn-sm btn-danger" ng-click="deleteAnswer(questionForm)" ng-disabled="question.Answers.length < 2">Delete answer</button>
             </div>
         </div>
     </form>
