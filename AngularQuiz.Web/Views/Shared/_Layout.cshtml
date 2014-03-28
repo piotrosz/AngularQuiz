@@ -9,7 +9,7 @@
 
     <meta name="description" content="The description of my page" />
 </head>
-<body>
+<body ng-app="quiz">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -22,8 +22,8 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="#/admin/packages">Packages (admin)</a> </li>
-                    <li><a href="#/quiz/1">First quiz (user)</a></li>
+                    <li><a ui-sref="adminpackages">Packages (admin)</a> </li>
+                    <li><a ui-sref="userquiz({quizId: 1})">First quiz (user)</a></li>
 
                     @*<li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
@@ -36,7 +36,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Quiz</p>
+            <p>&copy; @DateTime.Now.Year - AngularQuiz</p>
         </footer>
     </div>
 

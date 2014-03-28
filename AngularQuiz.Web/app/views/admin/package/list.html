@@ -38,7 +38,7 @@
             <div class="row">
                 <div class="col-md-10">
                     <span class="label label-info">{{package.QuizCount}}</span>
-                    <button class="btn btn-link" ng-click="details(package)">{{package.Name}}</button>
+                    <button class="btn btn-link" ui-sref="adminquizes({ packageId: package.Id })">{{package.Name}}</button>
                 </div>
 
                 <div class="col-md-1">

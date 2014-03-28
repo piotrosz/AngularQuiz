@@ -75,8 +75,4 @@ quizApp.controller("PackageListController", function ($scope, packageService, $m
             getPackages();
         });
     }
-
-    $scope.details = function (item) {
-        $location.path("/admin/quizes/" + item.Id);
-    }
 });

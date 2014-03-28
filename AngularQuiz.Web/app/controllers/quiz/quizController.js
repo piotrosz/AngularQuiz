@@ -1,13 +1,13 @@
-﻿quizApp.controller("QuizController", function ($scope, quizService, $routeParams, $filter, $location) {
+﻿quizApp.controller("QuizController", function ($scope, $state, quizService, $stateParams, $filter, $location) {
 
     init();
     
     function init() {
-        $scope.quizId = $routeParams.quizId;
+        $scope.quizId = $stateParams.quizId;
         $scope.currentQuestion = {};
 
-        if ($routeParams.questionIndex != undefined) {
-            $scope.questionIndex = parseInt($routeParams.questionIndex);
+        if ($stateParams.questionIndex != undefined) {
+            $scope.questionIndex = parseInt($stateParams.questionIndex);
         }
         else {
             $scope.questionIndex = 0;
@@ -26,7 +26,7 @@
     $scope.prevQuestion = function () {
         if ($scope.questionIndex > 0) {
             $scope.questionIndex--;
-            $location.path("/quiz/" + $scope.quizId + "/" + $scope.questionIndex);
+            $state.go("userquiz", { quizId: $scope.quizId, questionIndex: $scope.questionIndex});
         }
     }
 
@@ -37,7 +37,7 @@
 
         if ($scope.questionIndex < $scope.quiz.QuestionCount - 1) {
             $scope.questionIndex++;
-            $location.path("/quiz/" + $scope.quizId + "/" + $scope.questionIndex);
+            $state.go("userquiz", { quizId: $scope.quizId, questionIndex: $scope.questionIndex });
         }
     }
 

@@ -23,7 +23,7 @@
         <div class="row">
             <div class="col-md-10">
                 <span class="label label-info">{{quiz.QuestionCount}}</span>
-                <button class="btn btn-link" ng-click="details(quiz)">{{quiz.Name}}</button>
+                <button class="btn btn-link" ui-sref="adminquestions({ quizId: quiz.Id })">{{quiz.Name}}</button>
             </div>
 
             <div class="col-md-1">

@@ -43,12 +43,15 @@ quizApp.controller("TestQuestionController", function ($scope, $controller, ques
 
 
     $scope.addOption = function () {
-        $scope.question.Answers.push({ Content: "", IsCorrect: false });
+        $scope.question.Answers.push({ Content: "", IsCorrect: false, State: "New" });
     };
 
     $scope.deleteOption = function (form) {
         if ($scope.question.Answers.length > 1) {
-            $scope.question.Answers.pop();
+            var removedItem = $scope.question.Answers.pop();
+
+
+
             form.$setDirty();
         }
     };

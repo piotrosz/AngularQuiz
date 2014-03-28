@@ -1,27 +1,36 @@
-﻿var quizApp = angular.module("quiz", ["ngRoute", "ngResource", "ngAnimate" , "ui.bootstrap", "chieffancypants.loadingBar", "toaster", 'quizdirectives']);
+﻿var quizApp = angular.module("quiz", ["ngResource", "ngAnimate" , "ui.bootstrap", "chieffancypants.loadingBar", "toaster", "quizdirectives", "ui.router"]);
 
-quizApp.config(function ($routeProvider) {
+quizApp.config(function ($stateProvider, $urlRouterProvider) {
 
-    $routeProvider
-        .when("/admin/packages",
+    $urlRouterProvider.otherwise("/quiz/1");
+
+    $stateProvider
+        .state("adminpackages",
         {
+            url: "/admin/packages",
             controller: "PackageListController",
             templateUrl: "/app/views/admin/package/list.html"
         })
-        .when("/admin/quizes/:packageId",
+        .state("adminquizes",
         {
+            url: "/admin/quizes/:{packageId:[0-9]{1,4}}",
             controller: "QuizListController",
             templateUrl: "/app/views/admin/quiz/list.html"
         })
-        .when("/admin/questions/:quizId",
+        .state("adminquestions", 
         {
+            url: "/admin/questions/:{quizId:[0-9]{1,4}}",
             controller: "QuestionListController",
             templateUrl: "/app/views/admin/question/list.html"
         })
-        .when("/quiz/:quizId/:questionIndex?",
+        .state("userquiz",
         {
-            controller: "QuizController",
-            templateUrl: "/app/views/user/quiz.html"
+            url: "/quiz/:{quizId:[0-9]{1,4}}/:{questionIndex:[0-9]{1,4}?}",
+            templateUrl: "/app/views/user/quiz.html",
+            controller: "QuizController"
         })
-        .otherwise({ redirectTo: "/quiz/:quizId" });
+
+
+        
+
 });

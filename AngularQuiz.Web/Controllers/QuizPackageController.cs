@@ -12,6 +12,7 @@ using AngularQuiz.Core.Model;
 using AngularQuiz.Core.DAL;
 using Ninject;
 using AngularQuiz.Web.Infrastructure;
+using System.Threading;
 
 namespace AngularQuiz.Web.Controllers
 {

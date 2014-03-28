@@ -31,7 +31,8 @@ namespace AngularQuiz.Web
 
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                     "~/Scripts/angular.js",
-                    "~/Scripts/angular-route.js",
+                    //"~/Scripts/angular-route.js",
+                    "~/Scripts/angular-ui-router.js",
                     "~/Scripts/angular-resource.js",
                     "~/Scripts/angular-animate.js",
                     "~/Scripts/toaster.js",

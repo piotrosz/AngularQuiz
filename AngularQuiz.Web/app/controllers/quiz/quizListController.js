@@ -1,11 +1,11 @@
 ﻿'use strict';
 
-quizApp.controller("QuizListController", function ($scope, $modal, quizService, packageService, toaster, $routeParams, $location, $controller, modalService) {
+quizApp.controller("QuizListController", function ($scope, $modal, quizService, packageService, toaster, $stateParams, $location, $controller, modalService) {
 
     init();
 
     function init() {
-        $scope.packageId = $routeParams.packageId;
+        $scope.packageId = $stateParams.packageId;
         getQuizPackage();
         getQuizes();
     }
@@ -69,9 +69,4 @@ quizApp.controller("QuizListController", function ($scope, $modal, quizService, 
             getQuizes();
         });
     }
-
-    $scope.details = function (item) {
-        $location.path("/admin/questions/" + item.Id);
-    }
-
 });

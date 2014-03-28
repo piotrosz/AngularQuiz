@@ -1,12 +1,12 @@
 ﻿'use strict';
 
-quizApp.controller("QuestionListController", function ($scope, quizService, toaster, $routeParams, $modal, $controller, modalService) {
+quizApp.controller("QuestionListController", function ($scope, quizService, toaster, $stateParams, $modal, $controller, modalService) {
 
     init();
 
     function init()
     {
-        $scope.quizId = $routeParams.quizId;
+        $scope.quizId = $stateParams.quizId;
 
         getQuiz(true);
     }
