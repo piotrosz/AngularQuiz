@@ -25,7 +25,11 @@
         </div>
 
         <div class="form-group well" ng-repeat="answer in question.Answers">
-            <span class="badge pull-right">{{answer.OrderId}}</span>
+            <div class="form-group">
+                <div class="col-md-12">
+                    <span class="badge pull-right">{{answer.OrderId}}</span>
+                </div>
+            </div>
 
             <div class="form-group" ng-repeat="option in answer.CorrectAnswerOptions">
                 <div class="col-md-12">

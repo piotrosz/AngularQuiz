@@ -17,6 +17,9 @@ Loading bar: https://github.com/chieffancypants/angular-loading-bar
 http://bootswatch.com/
 http://underscorejs.org/
 
+https://github.com/angular-ui/ui-router
+
+
 Uninstall-Package Newtonsoft.Json -Force
 Install-Package Newtonsoft.Json -Version 4.0.5
 
@@ -30,8 +33,5 @@ BUG:  Adding, deleting children does not work while editing in admin
 
 - Check Google log in
 - Authorize on API controllers
-- Admin: sort & category questions management
 
 
-TODO: 
-- Read https://github.com/angular-ui/ui-router
