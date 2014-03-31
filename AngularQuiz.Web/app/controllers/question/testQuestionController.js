@@ -12,9 +12,11 @@ quizApp.controller("TestQuestionController", function ($scope, $controller, ques
         $scope.question = question;
         $scope.view = view;
 
-        angular.forEach($scope.question.Answers, function(value, key) {
-            value.State = "Edited";
-        });
+        if (view === "edit") {
+            angular.forEach($scope.question.Answers, function (value, key) {
+                value.State = "Edited";
+            });
+        }
     }
 
     $scope.deletedAnswers = [];

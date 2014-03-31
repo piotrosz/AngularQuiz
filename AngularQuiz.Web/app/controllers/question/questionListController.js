@@ -51,7 +51,7 @@ quizApp.controller("QuestionListController", function ($scope, quizService, toas
                 question.Answers = [{ OrderId: 1, CorrectAnswerOptions: [{ Content: "" }] }];
                 break;
             case "Test":
-                question.Answers = [{ Content: "", IsCorrect: false}];
+                question.Answers = [{ Content: "", IsCorrect: false, State: "New"}];
                 break;
             case "Category":
                 question.Answers = [{ Category: "", Content: "", OrderId: 1}];
@@ -98,7 +98,8 @@ quizApp.controller("QuestionListController", function ($scope, quizService, toas
             templateUrl: modalService.getModalTemplateUrl("question/", "delete"),
             controller: modalService.getModalControllerName(questionType + "Question"),
             resolve: {
-                question: function () { return question; }
+                question: function () { return question; },
+                view: "delete"
             }
         });
 
