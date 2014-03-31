@@ -193,6 +193,7 @@
     <Compile Include="Controllers\QuizPackageController.cs" />
     <Compile Include="Controllers\SortQuestionController.cs" />
     <Compile Include="Controllers\TestQuestionController.cs" />
+    <Compile Include="Controllers\TestQuestionOptionController.cs" />
     <Compile Include="Controllers\UserQuizController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -221,6 +222,7 @@
     <Content Include="app\controllers\question\questionListController.js" />
     <Content Include="app\directives\directives.js" />
     <Content Include="app\filters\filters.js" />
+    <Content Include="app\services\dataService.js" />
     <Content Include="app\services\modalService.js" />
     <Content Include="app\services\packageService.js" />
     <Content Include="app\services\questionService.js" />
