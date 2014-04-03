@@ -1,0 +1,22 @@
+﻿
+<div class="modal-header">
+    <a href="" class="close" ng-click="cancel()">&times;</a>
+    <h4>Add phrase</h4>
+</div>
+
+<div class="modal-body">
+
+    <form role="form" class="form">
+        <div class="form-group">
+            <input type="text" class="form-control" data-ng-model="phrase.content" data-z-validate placeholder="Phrase">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" data-ng-model="phrase.translation" data-z-validate placeholder="Translation">
+        </div>
+    </form>
+
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-success" data-ng-click="add()">Add</button>
+</div>
