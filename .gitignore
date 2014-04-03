@@ -30,5 +30,5 @@ _ReSharper*/
 *.mdf
 *.ldf
 
-packages/*
-!packages/repositories.config
+*/packages/*
+!*/packages/repositories.config
