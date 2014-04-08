@@ -12,12 +12,16 @@
                                     <tr>
                                         <th>Phrase</th>
                                         <th>Translation</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr data-ng-repeat="p in vm.phrases">
                                         <td>{{p.content}}</td>
                                         <td>{{p.translation}}</td>
+                                        <td align="right">
+                                            <button class="btn btn-danger btn-sm" data-ng-click="vm.openDeletePhraseModal(p)">Delete</button>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>

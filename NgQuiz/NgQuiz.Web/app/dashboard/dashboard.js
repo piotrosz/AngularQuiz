@@ -1,9 +1,9 @@
 ﻿(function () {
     'use strict';
     var controllerId = 'dashboard';
-    angular.module('app').controller(controllerId, ['common', 'datacontext', '$modal', dashboard]);
+    angular.module('app').controller(controllerId, ['common', 'datacontext', '$modal', 'bootstrap.dialog', dashboard]);
 
-    function dashboard(common, datacontext, $modal) {
+    function dashboard(common, datacontext, $modal, bootstrapDialog) {
         var getLogFn = common.logger.getLogFn;
         var log = getLogFn(controllerId);
 
@@ -16,6 +16,7 @@
         vm.phrases = [];
         vm.title = 'My phrases';
         vm.openAddPhraseModal = openAddPhraseModal;
+        vm.openDeletePhraseModal = openDeletePhraseModal;
 
         activate();
 
@@ -43,6 +44,16 @@
             modalInstance.result.then(function () {
                 getPhrases();
             });
+        }
+
+        function openDeletePhraseModal(phrase) {
+            bootstrapDialog.deleteDialog(phrase.content).then(function (p) {
+                phrase.entityAspect.setDeleted();
+                datacontext
+                    .saveChanges()
+                    .then(getPhrases);
+                
+            })
         }
     }
 
